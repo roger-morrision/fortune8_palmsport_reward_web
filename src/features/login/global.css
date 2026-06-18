@@ -1,0 +1,19 @@
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  /* Prevent autofill yellow/white background */
+  transition:
+    background-color 9999s ease-out,
+    color 9999s ease-out;
+  transition-delay: 9999s;
+  -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+  box-shadow: 0 0 0 1000px transparent inset !important;
+
+  /* Inherit font color and caret color */
+  -webkit-text-fill-color: inherit !important;
+  caret-color: inherit !important;
+
+  /* Optional: remove border autofill styles */
+  border: inherit !important;
+}

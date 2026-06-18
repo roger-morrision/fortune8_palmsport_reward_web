@@ -1,0 +1,164 @@
+import Text from "@/src/common/components/Text";
+import View from "@/src/common/components/View";
+import useAppSelector from "@/src/common/hooks/useAppSelector";
+import { useAssetContext } from "@/src/context/AssetContext";
+import { useHomeContext } from "@/src/context/HomeContext";
+import { selectAuthLoggedIn } from "@/src/store/slices/auth.slice";
+import { useRouter } from "expo-router";
+import React from "react";
+import { Image, Pressable } from "react-native";
+import { ids, styles } from "./styles.css";
+
+function Footer({ onLayout }: any) {
+  const router = useRouter();
+  const { images } = useAssetContext();
+  const { scrollToSection } = useHomeContext();
+  const isLoggedIn = useAppSelector(selectAuthLoggedIn);
+
+  const onScroll = (view: any) => {
+    if (view === "howItWorks") {
+      router.push("/(modal)/how-it-works");
+    } else {
+      router.replace("/");
+    }
+
+    setTimeout(() => {
+      scrollToSection(view);
+    }, 10);
+  };
+
+  return (
+    <View
+      backgroundColor="primary"
+      style={styles.container}
+      dataSet={{ media: ids.container }}
+      onLayout={onLayout}
+    >
+      <View style={styles.v_center} dataSet={{ media: ids.v_center }}>
+        <Pressable onPress={() => router.navigate(isLoggedIn ? "Home" : "Welcome")}>
+          <Image
+            style={styles.reward_logo}
+            dataSet={{ media: ids.reward_logo }}
+            source={{ uri: images?.["gambly-logo"].uri }}
+            resizeMode="contain"
+          />
+        </Pressable>
+        <View style={styles.v_right_content} dataSet={{ media: ids.v_right_content }}>
+          <View style={styles.v_row} dataSet={{ media: ids.v_row }}>
+            <Text
+              fontFamily="PoppinsBold"
+              style={styles.t_note_title}
+              dataSet={{ media: ids.t_note_title }}
+            >
+              NORTHSTAR ADVISORY LLC
+            </Text>
+            <Text style={styles.t_note_subtitle} dataSet={{ media: ids.t_note_subtitle }}>
+              333 3rd Ave N, Suite 400
+            </Text>
+            <Text style={styles.t_note_subtitle} dataSet={{ media: ids.t_note_subtitle }}>
+              Saint Petersburg, FL, 33710{"\n\n"}
+            </Text>
+            <Text
+              fontFamily="PoppinsBold"
+              style={[styles.t_note_title, { marginBottom: 0 }]}
+              dataSet={{ media: ids.t_note_title }}
+            >
+              Contact No.
+            </Text>
+            <Text style={styles.t_note_subtitle} dataSet={{ media: ids.t_note_subtitle }}>
+              701-484-1383
+            </Text>
+          </View>
+          <View style={styles.v_row} dataSet={{ media: ids.v_row }}>
+            <Text
+              fontFamily="PoppinsBold"
+              style={styles.t_note_title}
+              dataSet={{ media: ids.t_note_title }}
+            >
+              GAMBLY
+            </Text>
+            <Text
+              selectable={false}
+              onPress={() => onScroll("howItWorks")}
+              style={styles.t_note_subtitle}
+              dataSet={{ media: ids.t_note_subtitle }}
+            >
+              How It Works
+            </Text>
+            <Text
+              selectable={false}
+              onPress={() =>
+                isLoggedIn ? router.navigate("/redeem") : router.navigate("/auth/login")
+              }
+              style={styles.t_note_subtitle}
+              dataSet={{ media: ids.t_note_subtitle }}
+            >
+              Redeem
+            </Text>
+            <Text
+              selectable={false}
+              onPress={() =>
+                isLoggedIn ? router.navigate("/user-profile") : router.navigate("/auth/login")
+              }
+              style={styles.t_note_subtitle}
+              dataSet={{ media: ids.t_note_subtitle }}
+            >
+              My Account
+            </Text>
+          </View>
+          <View style={styles.v_row} dataSet={{ media: ids.v_row }}>
+            <Text
+              fontFamily="PoppinsBold"
+              selectable={false}
+              style={styles.t_note_title}
+              dataSet={{ media: ids.t_note_title }}
+            >
+              POLICIES
+            </Text>
+            <Text
+              selectable={false}
+              onPress={() => router.navigate("/about/terms-and-conditions")}
+              style={styles.t_note_subtitle}
+              dataSet={{ media: ids.t_note_subtitle }}
+            >
+              Terms & Conditions
+            </Text>
+            <Text
+              selectable={false}
+              onPress={() => router.navigate("/about/privacy-policy")}
+              style={styles.t_note_subtitle}
+              dataSet={{ media: ids.t_note_subtitle }}
+            >
+              Privacy Policy
+            </Text>
+            <Text
+              selectable={false}
+              onPress={() => router.navigate("/about/sweepstakes-rules")}
+              style={styles.t_note_subtitle}
+              dataSet={{ media: ids.t_note_subtitle }}
+            >
+              Sweepstakes Rules
+            </Text>
+            {/* <Text selectable={false} onPress={() => router.navigate("/about/faqs")}
+              style={styles.t_note_subtitle} dataSet={{media: ids.t_note_subtitle}}>FAQ’s</Text> */}
+          </View>
+        </View>
+      </View>
+      <View style={styles.v_copyright} dataSet={{ media: ids.v_copyright }}>
+        <Pressable onPress={() => router.navigate("/")}>
+          <Image
+            style={styles.reward_logo_below}
+            dataSet={{ media: ids.reward_logo_below }}
+            source={{ uri: images?.["gambly-logo"].uri }}
+            resizeMode="contain"
+          />
+        </Pressable>
+        <Text style={styles.t_copyright} dataSet={{ media: ids.t_copyright }}>
+          Copyright © 2026 GAMBLY REWARDS
+        </Text>
+      </View>
+    </View>
+  );
+}
+
+export default Footer;
