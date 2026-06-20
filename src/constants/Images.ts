@@ -1,7 +1,7 @@
 import { Asset } from "expo-asset";
 
 export const Images = {
-  "gambly-logo": require("@/assets/images/gambly-logo.png"),
+  "palmsplay-rewards": require("@/assets/images/palmsplay-rewards.png"),
   "g-logo": require("@/assets/images/g-logo.png"),
   "floating-bg": require("@/assets/images/floating-bg.png"),
   "gold-earning": require("@/assets/images/gold-earning.png"),

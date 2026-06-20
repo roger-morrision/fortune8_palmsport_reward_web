@@ -23,6 +23,7 @@ export default function TextInput({
   style,
   onFocus,
   onBlur,
+  value,
   ...props
 }: TextInputProps) {
   const [key, setKey] = useState<ColorName>(borderColor);
@@ -36,6 +37,7 @@ export default function TextInput({
   return (
     <Input
       {...props}
+      value={value ?? ""}
       onFocus={(e) => {
         setKey("primary");
         onFocus && onFocus(e);

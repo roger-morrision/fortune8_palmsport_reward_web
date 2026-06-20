@@ -39,7 +39,7 @@ function Footer({ onLayout }: any) {
           <Image
             style={styles.reward_logo}
             dataSet={{ media: ids.reward_logo }}
-            source={{ uri: images?.["gambly-logo"].uri }}
+            source={{ uri: images?.["palmsplay-rewards"].uri }}
             resizeMode="contain"
           />
         </Pressable>
@@ -149,7 +149,7 @@ function Footer({ onLayout }: any) {
           <Image
             style={styles.reward_logo_below}
             dataSet={{ media: ids.reward_logo_below }}
-            source={{ uri: images?.["gambly-logo"].uri }}
+            source={{ uri: images?.["palmsplay-rewards"].uri }}
             resizeMode="contain"
           />
         </Pressable>

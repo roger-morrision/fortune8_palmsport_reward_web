@@ -47,8 +47,8 @@ function HeaderAuthScreen() {
           <Image
             style={styles.gambly_logo_style}
             dataSet={{ media: ids.gambly_logo_style }}
-            source={{ uri: images?.["gambly-logo"].uri }}
-            resizeMode="stretch"
+            source={{ uri: images?.["palmsplay-rewards"].uri }}
+            resizeMode="contain"
           />
         </Button>
 
@@ -65,6 +65,15 @@ function HeaderAuthScreen() {
           <Text
             suppressHighlighting
             color="text"
+            onPress={() => router.navigate("/(stack)/user-profile")}
+            style={[styles.t_center_menu]}
+            dataSet={{ media: ids.t_center_menu }}
+          >
+            My Account
+          </Text>
+          <Text
+            suppressHighlighting
+            color="text"
             onPress={() =>
               isLoggedIn ? router.navigate("/(stack)/redeem") : router.navigate("/auth/login")
             }
@@ -72,15 +81,6 @@ function HeaderAuthScreen() {
             dataSet={{ media: ids.t_center_menu }}
           >
             Redeem
-          </Text>
-          <Text
-            suppressHighlighting
-            color="text"
-            onPress={() => router.navigate("/(stack)/user-profile")}
-            style={[styles.t_center_menu, !isLoggedIn && { display: "none" }]}
-            dataSet={{ media: ids.t_center_menu }}
-          >
-            My Account
           </Text>
         </View>
 
