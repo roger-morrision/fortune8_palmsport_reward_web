@@ -6,6 +6,7 @@ import { settingsActions, Theme } from "../slices/settings.slice";
 
 type SettingServiceOperators = {
   updateTheme: (params: Theme) => void;
+  changeLanguage: (params: "bg" | "en") => void;
   updatePopupOffers: (params: boolean) => void;
   checkingGeoLocationRequest: () => void;
 };
@@ -15,6 +16,10 @@ export const useSettingService = (): Readonly<SettingServiceOperators> => {
 
   return {
     updateTheme: useCallback((theme) => dispatch(settingsActions.updateTheme(theme)), [dispatch]),
+    changeLanguage: useCallback(
+      (value) => dispatch(settingsActions.updateLanguage(value)),
+      [dispatch]
+    ),
     updatePopupOffers: useCallback(
       (value) => dispatch(settingsActions.updateOffers(value)),
       [dispatch],

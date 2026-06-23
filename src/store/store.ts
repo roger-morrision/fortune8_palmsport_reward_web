@@ -1,17 +1,17 @@
-import { NODE_ENVIRONMENT } from "@/src/constants/Config";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { configureStore } from "@reduxjs/toolkit";
-import { Platform } from "react-native";
-import logger from "redux-logger";
 import { PERSIST, REGISTER, REHYDRATE, persistReducer, persistStore } from "redux-persist";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { NODE_ENVIRONMENT } from "@/src/constants/Config";
+import { configureStore } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
+import { Platform } from "react-native";
 import rootReducer from "./reducer";
+import logger from "redux-logger";
 import rootSaga from "./sagas";
 
 const createSagaMiddleware = require("redux-saga").default;
 
 const persistConfig = {
-  key: `rewards.gambly.casino-${NODE_ENVIRONMENT}`,
+  key: `rewards.palmsplay.com-${NODE_ENVIRONMENT}`,
   storage: Platform.OS === "web" ? storage : AsyncStorage,
   whitelist: ["auth", "sound", "settings", "lobby"],
 };

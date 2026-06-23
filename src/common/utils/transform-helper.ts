@@ -3,6 +3,10 @@ import _ from "lodash";
 import moment from "moment";
 import { useMemo } from "react";
 
+// expo-router route groups like "(stack)" are part of the file path but never
+// appear in the resolved pathname, so they must be stripped before comparing.
+export const routeToPathname = (route: string) => route.replace(/\/\([^)]+\)/g, "") || "/";
+
 // SWITCH GAMES BETWEEN FAVORITE/UNFAVORITE
 export const switchSelectedFavoriteGames = (games: any, id: number) => {
   return games.map((game: any) => {
@@ -357,3 +361,12 @@ export async function uriToBlob(uri: string): Promise<Blob> {
   const blob = await res.blob();
   return blob;
 }
+
+// CONVERT ARRAY INTO PAGINATION
+export const paginateArray = (array: any[] = [], itemsPerPage: number) => {
+  const pages = [];
+  for (let i = 0; i < array.length; i += itemsPerPage) {
+    pages.push(array.slice(i, i + itemsPerPage));
+  }
+  return pages;
+};

@@ -1,10 +1,10 @@
+import { useEffect } from "react";
 import DatePicker from "@/src/common/components/date-picker";
 import Select from "@/src/common/components/select";
 import Text from "@/src/common/components/Text";
 import TextInput from "@/src/common/components/TextInput";
 import View from "@/src/common/components/View";
 import useAppSelector from "@/src/common/hooks/useAppSelector";
-import { Gender } from "@/src/common/utils/options-holder";
 import { CHANGE_USER_DETAILS_STATES } from "@/src/common/utils/states-holder";
 import { useInputHelper } from "@/src/common/utils/useInputHelper";
 import { getDateMinus21Years } from "@/src/common/utils/validation-helper";
@@ -12,8 +12,6 @@ import { selectUserSession } from "@/src/store/slices/user.slice";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import _ from "lodash";
-import moment from "moment";
-import React, { useEffect } from "react";
 import { DateType } from "react-native-ui-datepicker";
 import { ids, styles } from "./styles.css";
 
@@ -52,70 +50,41 @@ function AccountDetails() {
         </View>
       </View>
       <View style={styles.divider_containera} />
-      <View style={{ gap: 15 }}>
-        <Item
-          label="First Name"
-          disabled
-          value={state.firstName}
-          error={""}
-          onChangeText={onDispatch("firstName")}
-        />
-        <Item
-          label="Last Name"
-          disabled
-          value={state.lastName}
-          error={""}
-          onChangeText={onDispatch("lastName")}
-        />
-        <Item
-          label="Username"
-          disabled
-          value={state.displayName}
-          error={""}
-          onChangeText={onDispatch("displayName")}
-        />
-        <DateOfBirth
-          label="Birthday"
-          disabled
-          value={state.dateOfBirth}
-          error={""}
-          onChangeText={onDispatch("dateOfBirth")}
-        />
-        <Dropdown
-          label="State"
-          idTag={2}
-          disabled
-          value={state.countryId}
-          error={""}
-          onChangeText={onDispatch("countryId")}
-          keys={"countryId"}
-          selectedKey={state.dropdownKey}
-          options={[]}
-          labelKey="name"
-          onSelectedKeys={onDispatch("dropdownKey")}
-        />
-
-        <Dropdown
-          idTag={1}
-          keys={"gender"}
-          label="Gender"
-          labelKey=""
-          disabled
-          selectedKey={state.dropdownKey}
-          options={Gender}
-          value={state.genderId}
-          error={""}
-          onChangeText={onDispatch("genderId")}
-          onSelectedKeys={onDispatch("dropdownKey")}
-        />
-        <Item
-          label="Date Registered"
-          value={moment(user?.enrollmentDate).format("YYYY-MM-DD")}
-          disabled
-          error=""
-          onChangeText={() => {}}
-        />
-      </View>
+        <View style={{ flexDirection: "row" }}>
+          <View style={{ gap: 15, width: "45%" }}>
+            <Item
+              label="First Name"
+              disabled
+              error={""}
+              value={state.firstName}
+              onChangeText={onDispatch("firstName")}
+            />
+            <Item
+              label="Last Name"
+              disabled
+              value={state.lastName}
+              error={""}
+              onChangeText={onDispatch("lastName")}
+            />
+          </View>
+          <View style={{ gap: 15, width: "55%" }}>
+            <Item
+              label="First Name"
+              disabled
+              value={state.firstName}
+              error={""}
+              onChangeText={onDispatch("firstName")}
+            />
+            <Item
+              label="Last Name"
+              disabled
+              value={state.lastName}
+              error={""}
+              onChangeText={onDispatch("lastName")}
+            />
+            
+          </View>
+        </View>
     </View>
   );
 }

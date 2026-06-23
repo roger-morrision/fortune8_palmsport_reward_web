@@ -7,6 +7,7 @@ export type Theme = "dark" | "light";
 
 export type SettingsState = {
   theme: Theme;
+  lang: "bg" | "en";
   popupOffers: boolean;
   geoLocationAllowed: boolean;
 };
@@ -14,6 +15,7 @@ export type SettingsState = {
 export const themes: Theme[] = ["dark", "light"];
 
 const initialState: SettingsState = {
+  lang: 'en',
   theme: themes[0], // Default theme is 'auto'
   popupOffers: true,
   geoLocationAllowed: true,
@@ -27,6 +29,9 @@ export const settingsSlice = createSlice({
     updateTheme(state, { payload }: { payload: Theme }) {
       state.theme = payload;
     },
+    updateLanguage(state, { payload }: { payload: "bg" | "en" }) {
+      state.lang = payload;
+    },
     updateOffers(state, { payload }: { payload: boolean }) {
       state.popupOffers = payload;
     },
@@ -39,6 +44,7 @@ export const settingsSlice = createSlice({
 // Actions
 export const settingsActions = {
   updateTheme: settingsSlice.actions.updateTheme,
+  updateLanguage: settingsSlice.actions.updateLanguage,
   updateOffers: settingsSlice.actions.updateOffers,
   updateGeoLocationStatus: settingsSlice.actions.updateGeoLocationStatus,
   checkingGeoLocationRequest: createAction(`${settingsSlice.name}/checkingGeoLocationRequest`),
@@ -46,6 +52,7 @@ export const settingsActions = {
 
 // Selectors
 export const selectedTheme = (state: RootState) => state.settings.theme as Theme;
+export const selectedLangauge = (state: RootState) => state.settings.lang;
 export const selectedPopupOffers = (state: RootState) => state.settings.popupOffers as boolean;
 export const selectedGeoLocationStatus = (state: RootState) =>
   state.settings.geoLocationAllowed as boolean;

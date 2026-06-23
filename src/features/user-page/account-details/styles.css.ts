@@ -2,25 +2,19 @@ import StyleSheet from "react-native-media-query";
 
 const { ids, styles } = StyleSheet.create({
   container: {
-    zIndex: 2,
     gap: 15,
-    width: "100%",
-    maxWidth: 974,
-    marginTop: 11,
+    minHeight: 208,
+    width: "48.5%",
     alignSelf: "center",
-    marginLeft: 20,
-    marginRight: 20,
     paddingTop: 30,
     borderRadius: 8,
     paddingBottom: 30,
     paddingHorizontal: 15,
     borderWidth: 1.82,
-    borderColor: "#192851",
-    "@media (max-width: 1920px) and (min-width: 800px)": {
-      marginTop: 33,
-    },
+    borderColor: "#1C3470",
+    backgroundColor: "#09183B",
     "@media (max-width: 768px)": {
-      width: "90%",
+      width: "100%",
     },
   },
   button_edit: {

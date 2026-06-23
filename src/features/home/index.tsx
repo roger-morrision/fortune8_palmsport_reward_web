@@ -13,6 +13,8 @@ import HowItWorks from "./how-it-works";
 import { ids, styles } from "./styles.css";
 import Welcome from "./welcome";
 import Sweepscoin from "./sweepscoin";
+import Banner from "./banner";
+import BGButton from "@/src/common/components/BGButton";
 
 export default function HomePage() {
   const isLoggedIn = useAppSelector(selectAuthLoggedIn);
@@ -21,29 +23,7 @@ export default function HomePage() {
   return (
     <ScrollView ref={scrollRef} showsVerticalScrollIndicator={false}>
       <View style={styles.container} dataSet={{ media: ids.container }}>
-        <View style={{ gap: 22 }}>
-          <>
-            {isLoggedIn ? <Sweepscoin /> : <Welcome />}
-            <View
-              onLayout={(e) => {
-                sectionY.current.howItWorks = e.nativeEvent.layout.y;
-              }}
-            >
-              <HowItWorks />
-            </View>
-          </>
-        </View>
-        <View
-          onLayout={(e) => {
-            sectionY.current.rewards = e.nativeEvent.layout.y;
-          }}
-        >
-          <View style={styles.v_cashback_rewards} dataSet={{ media: ids.v_cashback_rewards }}>
-            <PalmsPlayRewards />
-            <CashBack />
-          </View>
-        </View>
-
+        <Banner />
         <View
           onLayout={(e) => {
             sectionY.current.hotDeals = e.nativeEvent.layout.y;
@@ -51,9 +31,16 @@ export default function HomePage() {
         >
           <HotDeals />
         </View>
+        <BGButton
+          // onPress={() => setTab(tab === "silver" ? "gold" : "silver")}
+          borderWidth={2}
+          fontFamily="PoppinsBold"
+          label={"ENTER NOW"}
+          style={styles.button_view_result}
+          labelStyle={styles.label_view_result}
+        />
 
         <View style={styles.footer} dataSet={{ media: ids.footer }}>
-          <GotoGambly />
           <Footer />
         </View>
       </View>

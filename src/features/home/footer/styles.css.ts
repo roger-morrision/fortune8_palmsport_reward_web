@@ -33,8 +33,9 @@ const { ids, styles } = StyleSheet.create({
   v_right_content: {
     flex: 1,
     flexDirection: "row",
-    alignItems: "flex-start",
-    gap: 50,
+    // alignItems: "flex-start",
+    justifyContent: "flex-start",
+    gap: 100,
     "@media (max-width: 768px)": {
       gap: 20,
     },
@@ -76,9 +77,10 @@ const { ids, styles } = StyleSheet.create({
     },
   },
   t_note_subtitle: {
-    marginTop: 2,
+    marginTop: 4,
     fontSize: 13,
     lineHeight: 20,
+    fontFamily: "PoppinsRegular",
     "@media (max-width: 768px)": {
       fontSize: 13,
       lineHeight: 20,

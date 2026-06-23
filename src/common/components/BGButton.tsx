@@ -41,7 +41,7 @@ function BGButton(props: Props) {
   const [borderRadius, setBorderRadius] = useState(15);
   const { strokeLocations = [0, 0.5, 1], bgLocations = [0, 1] } = props;
   const {
-    borderWidth,
+    borderWidth = 2,
     textColor = "textDark",
     fontFamily = "PoppinsSemiBold",
     strokeColors = ["#E4C234", "#FFFFAAE3", "#E08A14"],

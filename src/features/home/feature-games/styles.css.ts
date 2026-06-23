@@ -4,7 +4,7 @@ const { ids, styles } = StyleSheet.create({
   categories_container: {
     width: "100%",
     marginTop: 48,
-    maxWidth: 1280,
+    maxWidth: 1084,
     alignSelf: "center",
     justifyContent: "center",
     // '@media (min-width: 996px)': {

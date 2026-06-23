@@ -2,6 +2,7 @@ import { Asset } from "expo-asset";
 
 export const Images = {
   "palmsplay-rewards": require("@/assets/images/palmsplay-rewards.png"),
+  "gold": require("@/assets/images/gold.png"),
   "g-logo": require("@/assets/images/g-logo.png"),
   "floating-bg": require("@/assets/images/floating-bg.png"),
   "gold-earning": require("@/assets/images/gold-earning.png"),
@@ -28,6 +29,7 @@ export const Images = {
   "kyc-verification-verified": require("@/assets/images/auth/kyc-verification-verified.png"),
 
   // HOME
+  "banner-1": require("@/assets/images/home/banner-1.png"),
   lock: require("@/assets/images/home/lock.png"),
   "top-game": require("@/assets/images/home/top-game.png"),
   "new-game": require("@/assets/images/home/new-game.png"),
@@ -100,6 +102,10 @@ export const Images = {
   "guide-1": require("@/assets/images/rewards/guide-1.png"),
   "guide-2": require("@/assets/images/rewards/guide-2.png"),
   "guide-3": require("@/assets/images/rewards/guide-3.png"),
+
+  // COUNTRIES LOGO
+  "en": require("@/assets/images/countries-logo/en.png"),
+  "bg": require("@/assets/images/countries-logo/bg.png"),
 } as const;
 
 export type ImageKey = keyof typeof Images;

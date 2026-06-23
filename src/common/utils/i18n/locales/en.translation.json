@@ -1,0 +1,9 @@
+{
+  "header": {
+    "home": "HOME",
+    "myaccount": "MY ACCOUNT",
+    "raffles": "RAFFLES",
+    "r-raffle-draw": "Raffle Draw",
+    "r-draw-result": "Draw Result"
+  }
+}

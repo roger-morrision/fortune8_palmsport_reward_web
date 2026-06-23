@@ -1,3 +1,4 @@
+import { ImageKey } from "@/src/constants/Images";
 import { SVGName } from "@/src/constants/SVGIcon";
 import moment from "moment";
 
@@ -24,6 +25,41 @@ export const Settings: CategoriesValues = [
     name: "Contact Support",
     route: "/contact-support",
   },
+];
+
+export type LanguagesValues = {
+  source: "bg" | "en",
+  name: string;
+  short: string;
+};
+
+export const Languages: LanguagesValues[] = [
+  {
+    source: "en",
+    name: "English",
+    short: "ENG",
+  },
+  {
+    source: "bg",
+    name: "Bulgarian",
+    short: "BUL",
+  }
+];
+
+export type RaffleValue = {
+  name: string;
+  route: string;
+};
+
+export const Raffles: RaffleValue[] = [
+  {
+    name: "r-raffle-draw",
+    route: "/(stack)/raffle-draw",
+  },
+  {
+    name: "r-draw-result",
+    route: "/(stack)/draw-result",
+  }
 ];
 
 export const AUTHSettings: CategoriesValues = [

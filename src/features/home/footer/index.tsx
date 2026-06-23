@@ -8,6 +8,8 @@ import { useRouter } from "expo-router";
 import React from "react";
 import { Image, Pressable } from "react-native";
 import { ids, styles } from "./styles.css";
+import moment from "moment";
+import Lang from "./language";
 
 function Footer({ onLayout }: any) {
   const router = useRouter();
@@ -47,68 +49,6 @@ function Footer({ onLayout }: any) {
           <View style={styles.v_row} dataSet={{ media: ids.v_row }}>
             <Text
               fontFamily="PoppinsBold"
-              style={styles.t_note_title}
-              dataSet={{ media: ids.t_note_title }}
-            >
-              NORTHSTAR ADVISORY LLC
-            </Text>
-            <Text style={styles.t_note_subtitle} dataSet={{ media: ids.t_note_subtitle }}>
-              333 3rd Ave N, Suite 400
-            </Text>
-            <Text style={styles.t_note_subtitle} dataSet={{ media: ids.t_note_subtitle }}>
-              Saint Petersburg, FL, 33710{"\n\n"}
-            </Text>
-            <Text
-              fontFamily="PoppinsBold"
-              style={[styles.t_note_title, { marginBottom: 0 }]}
-              dataSet={{ media: ids.t_note_title }}
-            >
-              Contact No.
-            </Text>
-            <Text style={styles.t_note_subtitle} dataSet={{ media: ids.t_note_subtitle }}>
-              701-484-1383
-            </Text>
-          </View>
-          <View style={styles.v_row} dataSet={{ media: ids.v_row }}>
-            <Text
-              fontFamily="PoppinsBold"
-              style={styles.t_note_title}
-              dataSet={{ media: ids.t_note_title }}
-            >
-              GAMBLY
-            </Text>
-            <Text
-              selectable={false}
-              onPress={() => onScroll("howItWorks")}
-              style={styles.t_note_subtitle}
-              dataSet={{ media: ids.t_note_subtitle }}
-            >
-              How It Works
-            </Text>
-            <Text
-              selectable={false}
-              onPress={() =>
-                isLoggedIn ? router.navigate("/redeem") : router.navigate("/auth/login")
-              }
-              style={styles.t_note_subtitle}
-              dataSet={{ media: ids.t_note_subtitle }}
-            >
-              Redeem
-            </Text>
-            <Text
-              selectable={false}
-              onPress={() =>
-                isLoggedIn ? router.navigate("/user-profile") : router.navigate("/auth/login")
-              }
-              style={styles.t_note_subtitle}
-              dataSet={{ media: ids.t_note_subtitle }}
-            >
-              My Account
-            </Text>
-          </View>
-          <View style={styles.v_row} dataSet={{ media: ids.v_row }}>
-            <Text
-              fontFamily="PoppinsBold"
               selectable={false}
               style={styles.t_note_title}
               dataSet={{ media: ids.t_note_title }}
@@ -131,17 +71,48 @@ function Footer({ onLayout }: any) {
             >
               Privacy Policy
             </Text>
+            
+          </View>
+          <View style={styles.v_row} dataSet={{ media: ids.v_row }}>
+            <Text
+              fontFamily="PoppinsBold"
+              style={styles.t_note_title}
+              dataSet={{ media: ids.t_note_title }}
+            >
+              AZ CONSULTING EOOD
+            </Text>
+            <Text style={styles.t_note_subtitle} dataSet={{ media: ids.t_note_subtitle }}>
+              7 Kukush Street
+            </Text>
+            <Text style={styles.t_note_subtitle} dataSet={{ media: ids.t_note_subtitle }}>
+              Sofia 1345, Bulgaria{"\n\n"}
+            </Text>
+            
+            <Lang />
+
+          </View>
+          <View style={styles.v_row} dataSet={{ media: ids.v_row }}>
+            <Text
+              fontFamily="PoppinsBold"
+              style={styles.t_note_title}
+              dataSet={{ media: ids.t_note_title }}
+            >
+              SUPPORT
+            </Text>
             <Text
               selectable={false}
-              onPress={() => router.navigate("/about/sweepstakes-rules")}
+              onPress={() => onScroll("howItWorks")}
               style={styles.t_note_subtitle}
               dataSet={{ media: ids.t_note_subtitle }}
             >
-              Sweepstakes Rules
+              Contant Support
             </Text>
-            {/* <Text selectable={false} onPress={() => router.navigate("/about/faqs")}
-              style={styles.t_note_subtitle} dataSet={{media: ids.t_note_subtitle}}>FAQ’s</Text> */}
+            <Text selectable={false} onPress={() => router.navigate("/about/faqs")}
+              style={styles.t_note_subtitle} dataSet={{media: ids.t_note_subtitle}}>
+              FAQ’s
+            </Text>
           </View>
+          
         </View>
       </View>
       <View style={styles.v_copyright} dataSet={{ media: ids.v_copyright }}>
@@ -154,7 +125,7 @@ function Footer({ onLayout }: any) {
           />
         </Pressable>
         <Text style={styles.t_copyright} dataSet={{ media: ids.t_copyright }}>
-          Copyright © 2026 GAMBLY REWARDS
+          Copyright © {moment().format("YYYY")} Palms Play Rewards
         </Text>
       </View>
     </View>

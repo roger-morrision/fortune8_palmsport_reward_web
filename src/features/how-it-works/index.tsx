@@ -46,7 +46,7 @@ export default function HowItWorkPage() {
           <Image
             style={styles.gambly_logo_style}
             dataSet={{ media: ids.gambly_logo_style }}
-            source={{ uri: images?.["gambly-logo"].uri }}
+            source={{ uri: images?.["palmsplay-rewards"].uri }}
             resizeMode="stretch"
           />
           <Text

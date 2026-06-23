@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { SagaIterator } from "@redux-saga/core";
-import { call, put, select, takeEvery } from "redux-saga/effects";
+import { call, put, select, takeEvery, takeLatest } from "redux-saga/effects";
 import * as Types from "@/src/store/types";
 
 // Slice
 import { uriToBlob } from "@/src/common/utils/transform-helper";
 import { router } from "expo-router";
-import { authActions, selectAuthLoggedIn } from "../slices/auth.slice";
+import { selectAuthLoggedIn } from "../slices/auth.slice";
 import { lobbyActions, selectKYCInputs } from "../slices/lobby.slice";
 import { notificationActions } from "../slices/notification.slice";
 import { selectedUserUserID, userActions } from "../slices/user.slice";
@@ -16,6 +16,8 @@ import { RedeemService } from "@/src/api/services/redeem.service";
 import { KYCService } from "@/src/api/services/kyc.service";
 import { NotificationService } from "@/src/api/services/notification.service";
 import _ from "lodash";
+import i18n from "@/src/common/utils/i18n";
+import { settingsActions } from "../slices/settings.slice";
 
 function* handleLobbyRequest(): SagaIterator {
   try {
@@ -36,6 +38,16 @@ function* handleLobbyRequest(): SagaIterator {
     yield put(lobbyActions.lobbySuccess());
   } catch (error: any) {
     yield put(lobbyActions.lobbyFailure(error?.data));
+  }
+}
+
+function* handleLanguageChange(action: {
+  type: string,
+  payload: any;
+}): SagaIterator {
+  try {
+    yield call(i18n.changeLanguage, action.payload);
+  } catch (error) {
   }
 }
 
@@ -113,6 +125,7 @@ function* handleRefreshNotification(): SagaIterator {
 // Watcher Saga
 function* lobbyWatcherSaga(): SagaIterator {
   yield takeEvery(lobbyActions.lobbyRequest.type, handleLobbyRequest);
+  yield takeLatest(settingsActions.updateLanguage.type, handleLanguageChange);
   yield takeEvery(lobbyActions.kycRequest.type, handleKYCRequest);
   yield takeEvery(notificationActions.notificationMessage.type, handleRefreshNotification);
 }

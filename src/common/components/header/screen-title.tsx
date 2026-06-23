@@ -1,12 +1,11 @@
+import { NativeStackHeaderProps, useRouter } from "expo-router";
 import useThemeColor from "@/src/common/hooks/useThemeColor";
 import { useBreakpoint } from "@/src/constants/BreakPoint";
 import { MaterialIcons } from "@expo/vector-icons";
-import { NativeStackHeaderProps, useRouter } from "expo-router";
-import React from "react";
+import { ids, styles } from "./styles.css";
 import Button from "../Button";
 import Text from "../Text";
 import View from "../View";
-import { ids, styles } from "./styles.css";
 
 function ScreenTitle(props: NativeStackHeaderProps | any) {
   const router = useRouter();

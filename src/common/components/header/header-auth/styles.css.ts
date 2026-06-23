@@ -11,20 +11,19 @@ const { ids, styles } = StyleSheet.create({
     gap: 10,
     height: 80,
     width: "100%",
+    maxWidth: 1084,
     alignSelf: "center",
     paddingHorizontal: 21,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
     "@media (min-width: 1600px)": {
-      maxWidth: 1280,
       height: 80,
       paddingLeft: 0,
       paddingRight: 0,
       justifyContent: "space-between",
     },
     "@media (max-width: 1600px) and (min-width: 800px)": {
-      maxWidth: 1280,
       height: 80,
       paddingLeft: 21,
       paddingRight: 21,
@@ -97,6 +96,7 @@ const { ids, styles } = StyleSheet.create({
   t_bell_number: { fontSize: 8, lineHeight: 10 },
 
   v_center_menu: {
+    gap: 60,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
@@ -107,7 +107,6 @@ const { ids, styles } = StyleSheet.create({
   t_center_menu: {
     fontSize: 16,
     lineHeight: 20,
-    paddingHorizontal: 20,
   },
 });
 

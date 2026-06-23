@@ -1,7 +1,7 @@
 /**
  * The primary brand color used throughout the application.
  */
-export const brandColor = "#FCBB45";
+export const brandColor = "#FFCF3D";
 export const borderColor = "#1C2C55";
 export const closeColor = "#ACB9D2";
 
@@ -25,7 +25,6 @@ const Colors = {
     categoryName: "#000000",
     button: brandColor,
     buttonDisable: "#A88930",
-    accent: brandColor,
     error: "#FF0000",
     success: "#009c4a",
     warning: "#FFA500",
@@ -81,7 +80,7 @@ const Colors = {
   dark: {
     background: "#040E28",
     backgroundDark: "#020817",
-    primary: "#0D1835",
+    primary: "#03225B",
     secondary: "#0C193A",
     tertiary: "#202534",
     text: "#F5F5F5",
@@ -92,7 +91,6 @@ const Colors = {
     categoryName: "#9C9CAB",
     button: brandColor,
     buttonDisable: "#A88930",
-    accent: brandColor,
     error: "#FF0000",
     success: "#009c4a",
     warning: "#FFA500",

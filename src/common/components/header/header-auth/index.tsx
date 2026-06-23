@@ -4,16 +4,21 @@ import { useHomeContext } from "@/src/context/HomeContext";
 import { selectAuthLoggedIn } from "@/src/store/slices/auth.slice";
 import { selectNotificationUnreadCount } from "@/src/store/slices/notification.slice";
 import { MaterialIcons } from "@expo/vector-icons";
-import { useNavigation, useRouter } from "expo-router";
+import { useNavigation, usePathname, useRouter } from "expo-router";
 import React from "react";
 import { Image } from "react-native";
 import Button from "../../Button";
 import Text from "../../Text";
 import View from "../../View";
 import { ids, styles } from "./styles.css";
+import Raffles from "./raffles";
+import { routeToPathname } from "@/src/common/utils/transform-helper";
+import { useTranslation } from "react-i18next";
 
 function HeaderAuthScreen() {
   const router = useRouter();
+  const { t } = useTranslation();
+  const pathname = usePathname();
   const navigation = useNavigation();
   const { images } = useAssetContext();
   const { scrollToSection } = useHomeContext();
@@ -55,33 +60,25 @@ function HeaderAuthScreen() {
         <View style={styles.v_center_menu} dataSet={{ media: ids.v_center_menu }}>
           <Text
             suppressHighlighting
-            color="text"
-            onPress={() => onScroll("howItWorks")}
+            fontFamily="PoppinsMedium"
             style={styles.t_center_menu}
+            onPress={() => router.navigate("/")}
             dataSet={{ media: ids.t_center_menu }}
+            color={routeToPathname("/") === pathname ? "button" : "text"}
           >
-            How It Works
+            {t("header.home")}
           </Text>
           <Text
             suppressHighlighting
-            color="text"
+            fontFamily="PoppinsMedium"
             onPress={() => router.navigate("/(stack)/user-profile")}
             style={[styles.t_center_menu]}
             dataSet={{ media: ids.t_center_menu }}
+            color={routeToPathname("/(stack)/user-profile") === pathname ? "button" : "text"}
           >
-            My Account
+            {t("header.myaccount")}
           </Text>
-          <Text
-            suppressHighlighting
-            color="text"
-            onPress={() =>
-              isLoggedIn ? router.navigate("/(stack)/redeem") : router.navigate("/auth/login")
-            }
-            style={styles.t_center_menu}
-            dataSet={{ media: ids.t_center_menu }}
-          >
-            Redeem
-          </Text>
+          <Raffles />
         </View>
 
         <View
