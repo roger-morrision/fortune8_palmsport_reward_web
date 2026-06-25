@@ -34,7 +34,7 @@ export default function UploadFile(props: Props) {
           dataSet={{ media: ids.button_style }}
         >
           <Text
-            fontFamily="PoppinsSemiBold"
+            fontFamily="Montserrat-SemiBold"
             style={styles.button_label}
             dataSet={{ media: ids.button_label }}
           >

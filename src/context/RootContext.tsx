@@ -13,7 +13,6 @@ import {
   useEffect,
   useState,
 } from "react";
-import Restricted from "../common/components/modals/restricted";
 
 type ContextType = {
   initiateLobby: boolean;
@@ -64,7 +63,6 @@ const RootProvider = ({ children }: ProviderProps) => {
       {children}
       <Success />
       <Error />
-      <Restricted />
     </RootContext.Provider>
   );
 };

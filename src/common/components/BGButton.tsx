@@ -1,7 +1,7 @@
+import { ReactNode, useState } from "react";
 import { ColorName } from "@/src/constants/Colors";
 import { FontFamily } from "@/src/constants/Fonts";
 import { LinearGradient, LinearGradientPoint } from "expo-linear-gradient";
-import React, { ReactNode, useState } from "react";
 import {
   ColorValue,
   GestureResponderEvent,
@@ -35,6 +35,7 @@ type Props = {
   innerEnd?: LinearGradientPoint | null;
   onPress?: ((event: GestureResponderEvent) => void) | undefined;
   children?: ReactNode;
+  dataSet?: Record<string, string>;
 };
 
 function BGButton(props: Props) {
@@ -43,7 +44,7 @@ function BGButton(props: Props) {
   const {
     borderWidth = 2,
     textColor = "textDark",
-    fontFamily = "PoppinsSemiBold",
+    fontFamily = "Montserrat-SemiBold",
     strokeColors = ["#E4C234", "#FFFFAAE3", "#E08A14"],
     bgColors = ["#DF7B0B", "#E5D33D"],
     ...rest

@@ -22,7 +22,7 @@ export default function Requirements() {
     <View style={styles.container}>
       <View style={styles.v_redemption_container}>
         <Text
-          fontFamily="PoppinsBold"
+          fontFamily="Montserrat-Bold"
           style={styles.t_redemption}
           dataSet={{ media: ids.t_redemption }}
         >

@@ -14,6 +14,7 @@ const { ids, styles } = StyleSheet.create({
   },
   v_center: {
     flex: 1,
+    zIndex: 2,
     flexDirection: "row",
     gap: 118,
     alignItems: "center",
@@ -33,7 +34,6 @@ const { ids, styles } = StyleSheet.create({
   v_right_content: {
     flex: 1,
     flexDirection: "row",
-    // alignItems: "flex-start",
     justifyContent: "flex-start",
     gap: 100,
     "@media (max-width: 768px)": {
@@ -41,6 +41,7 @@ const { ids, styles } = StyleSheet.create({
     },
   },
   v_row: {
+    zIndex: 2,
     flexShrink: 1,
   },
   v_copyright: {
@@ -62,7 +63,7 @@ const { ids, styles } = StyleSheet.create({
   t_copyright: {
     fontSize: 14,
     lineHeight: 21,
-    fontFamily: "Inter",
+    fontFamily: "Montserrat",
     "@media (max-width: 768px)": {
       fontSize: 10,
     },
@@ -80,7 +81,7 @@ const { ids, styles } = StyleSheet.create({
     marginTop: 4,
     fontSize: 13,
     lineHeight: 20,
-    fontFamily: "PoppinsRegular",
+    fontFamily: "Montserrat",
     "@media (max-width: 768px)": {
       fontSize: 13,
       lineHeight: 20,

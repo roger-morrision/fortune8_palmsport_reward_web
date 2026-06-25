@@ -1,6 +1,5 @@
 import View from "@/src/common/components/View";
 import useAppSelector from "@/src/common/hooks/useAppSelector";
-import ConnectUs from "@/src/features/home/connect-with-us";
 import Footer from "@/src/features/home/footer";
 import GotoGambly from "@/src/features/home/go-to-gambly";
 import { selectedKYCCurrentScreen, selectedKYCLoading } from "@/src/store/slices/lobby.slice";

@@ -17,7 +17,7 @@ export default function Amount() {
       <View style={styles.v_sweeps_balance}>
         <SVGIcon name="sc-coin" width={19} height={19} />
         <Text
-          fontFamily="PoppinsBold"
+          fontFamily="Montserrat-Bold"
           style={styles.t_redemption}
           dataSet={{ media: ids.t_redemption }}
         >

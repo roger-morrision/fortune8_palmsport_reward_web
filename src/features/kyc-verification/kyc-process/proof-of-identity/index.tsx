@@ -60,7 +60,7 @@ function ProofOfIdentity() {
     <View style={styles.input_container} dataSet={{ media: ids.input_container }}>
       <Text
         color="yellowThick"
-        fontFamily="PoppinsBold"
+        fontFamily="Montserrat-Bold"
         style={styles.title_style}
         dataSet={{ media: ids.title_style }}
       >
@@ -87,7 +87,7 @@ function ProofOfIdentity() {
           <Text
             style={styles.text_error_bottom_style}
             dataSet={{ media: ids.text_error_bottom_style }}
-            fontFamily="PoppinsLight"
+            fontFamily="Montserrat-Light"
           >
             {error.type}
           </Text>
@@ -100,7 +100,7 @@ function ProofOfIdentity() {
         label="ID Number"
         errorPosition="bottom"
         placeholder="Eg. 829149237461"
-        labelFontFamily="PoppinsRegular"
+        labelFontFamily="Montserrat"
         labelStyle={styles.label_style}
         inputStyle={styles.input_style}
         value={input.idNumber}
@@ -137,7 +137,7 @@ function ProofOfIdentity() {
               color={"primary"}
               style={styles.login_label_style}
               dataSet={{ media: ids.login_label_style }}
-              fontFamily="PoppinsMedium"
+              fontFamily="Montserrat-Medium"
             >
               Continue
             </Text>
@@ -154,7 +154,7 @@ function ProofOfIdentity() {
           <Text
             style={styles.login_label_style}
             dataSet={{ media: ids.login_label_style }}
-            fontFamily="PoppinsMedium"
+            fontFamily="Montserrat-Medium"
           >
             Cancel
           </Text>

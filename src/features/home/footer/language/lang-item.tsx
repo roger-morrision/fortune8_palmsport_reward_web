@@ -17,10 +17,10 @@ const LangItem = ({baseWidth, baseHeight, source, onPress, label }: Props) => {
   return (
     <BGButton
       textColor="text"
-      fontFamily="PoppinsMedium"
+      fontFamily="Montserrat-Medium"
       bgLocations={[0, 0.95, 1]}
       borderRadius={11}
-      label="KJHS"
+      label=" "
       onPress={onPress}
       innerStart={{ x: 0, y: 1 }}
       innerEnd={{ x: 0, y: 0 }}
@@ -35,7 +35,7 @@ const LangItem = ({baseWidth, baseHeight, source, onPress, label }: Props) => {
               height: baseWidth * 0.2 }} 
               source={source} resizeMode="stretch" />
             <Text color="text" 
-              fontFamily="PoppinsBold" 
+              fontFamily="Montserrat-Bold" 
               style={{fontSize: baseWidth * 0.11, marginBottom: "2%",}}
               >{label}
             </Text>

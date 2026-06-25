@@ -86,7 +86,7 @@ function PaypalDetails() {
   return (
     <>
       <View style={styles.container} dataSet={{ media: ids.container }}>
-        <Text fontFamily="PoppinsBold" style={styles.t_title}>
+        <Text fontFamily="Montserrat-Bold" style={styles.t_title}>
           Enter Paypal Email Address:
         </Text>
         <View style={{ gap: 21, marginTop: 10 }}>
@@ -134,7 +134,7 @@ function PaypalDetails() {
         {isPending ? (
           <ActivityIndicator animating size={"small"} color="textDark" />
         ) : (
-          <Text fontFamily="PoppinsSemiBold" color="textDark" style={styles.button_label}>
+          <Text fontFamily="Montserrat-SemiBold" color="textDark" style={styles.button_label}>
             Submit
           </Text>
         )}

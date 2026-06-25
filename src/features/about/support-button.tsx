@@ -28,7 +28,7 @@ function SupportButton() {
       />
       <Text
         style={styles.button_label}
-        fontFamily="PoppinsBold"
+        fontFamily="Montserrat-Bold"
         dataSet={{ media: ids.button_label }}
       >
         Contact Support

@@ -43,13 +43,13 @@ const Lang = () => {
       ...result,
       source: images?.[result?.source as ImageKey]?.uri
     }
-  },[lang, images]);
+  },[lang, images, Languages]);
 
   return (
     <View style={styles.v_fbandsound}>
       <BGButton
         textColor="text"
-        fontFamily="PoppinsMedium"
+        fontFamily="Montserrat-Medium"
         bgLocations={[0, 0.95, 1]}
         borderRadius={11}
         label={t("settings.how-to-play")}
@@ -74,15 +74,13 @@ const Lang = () => {
               style={{ width: 14, marginTop: "2%", height: 14 }} 
               source={{uri: selected.source}} resizeMode="stretch" />
             <Text color="text" 
-              fontFamily="PoppinsBold" 
+              fontFamily="Montserrat-Bold" 
               style={{fontSize: 10 }}
               >{selected?.short}
             </Text>
             <MaterialIcon disabled name="expand-more" size={14} />
           </View>
         </View>
-
-        
       </BGButton>
 
       <Dropdown {...{baseWidth: 70, baseHeight: 25}} 

@@ -15,7 +15,7 @@ export type CustomTextProps = TextProps & {
 // Define the custom Text component
 export default function Text({
   style,
-  fontFamily = "PoppinsRegular",
+  fontFamily = "Montserrat",
   color = "text",
   backgroundColor = "transparent",
   fontSize,

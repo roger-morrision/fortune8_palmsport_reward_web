@@ -34,7 +34,7 @@ export default function HomePage() {
         <BGButton
           // onPress={() => setTab(tab === "silver" ? "gold" : "silver")}
           borderWidth={2}
-          fontFamily="PoppinsBold"
+          fontFamily="Montserrat-Bold"
           label={"ENTER NOW"}
           style={styles.button_view_result}
           labelStyle={styles.label_view_result}

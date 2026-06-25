@@ -38,7 +38,7 @@ const ServiceItem = (props: ItemProps) => {
       <View style={styles.v_text_container}>
         <Text
           color="placeholder"
-          fontFamily="PoppinsBold"
+          fontFamily="Montserrat-Bold"
           style={styles.item_t_title}
           dataSet={{ media: ids.item_t_title }}
         >

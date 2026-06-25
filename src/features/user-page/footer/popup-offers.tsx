@@ -107,7 +107,7 @@ const { ids, styles } = StyleSheet.create({
     backgroundColor: "#F7A60B",
   },
   text_style: {
-    fontFamily: "PoppinsRegular",
+    fontFamily: "Montserrat",
     fontSize: 14,
     lineHeight: 16,
   },

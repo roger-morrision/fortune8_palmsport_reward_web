@@ -10,24 +10,24 @@ export default function AccountDetails() {
 
   return (
     <View style={styles.container} dataSet={{ media: ids.container }}>
-      <Text fontFamily="PoppinsBold" style={styles.t_description}>
+      <Text fontFamily="Montserrat-Bold" style={styles.t_description}>
         Verified Account Information:
       </Text>
       <Text color="placeholder" style={styles.t_user}>
         First Name:{"    "}
-        <Text color="text" fontFamily="PoppinsBold">
+        <Text color="text" fontFamily="Montserrat-Bold">
           {user.firstName}
         </Text>
       </Text>
       <Text color="placeholder" style={styles.t_user}>
         Last Name:{"    "}
-        <Text color="text" fontFamily="PoppinsBold">
+        <Text color="text" fontFamily="Montserrat-Bold">
           {user.lastName}
         </Text>
       </Text>
       <Text color="placeholder" style={styles.t_user}>
         Email Address:{"  "}
-        <Text color="text" fontFamily="PoppinsBold">
+        <Text color="text" fontFamily="Montserrat-Bold">
           {user.emailAddress}
         </Text>
       </Text>

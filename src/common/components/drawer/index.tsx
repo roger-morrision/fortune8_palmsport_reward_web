@@ -41,7 +41,7 @@ export default function DrawerComponent({ navigation }: DrawerContentComponentPr
                 <View backgroundColor="secondary" style={styles.v_header}>
                   <AccountDetails />
                   <Button onPress={gotoGambly} backgroundColor="button" style={styles.button1}>
-                    <Text fontFamily="PoppinsSemiBold" color="textDark">
+                    <Text fontFamily="Montserrat-SemiBold" color="textDark">
                       Go to Gambly
                     </Text>
                   </Button>
@@ -58,7 +58,7 @@ export default function DrawerComponent({ navigation }: DrawerContentComponentPr
                 resizeMode="contain"
               />
               <Button onPress={gotoGambly} backgroundColor="button" style={styles.button2}>
-                <Text fontFamily="PoppinsSemiBold" color="textDark">
+                <Text fontFamily="Montserrat-SemiBold" color="textDark">
                   Go to Gambly
                 </Text>
               </Button>

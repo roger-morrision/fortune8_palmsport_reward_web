@@ -20,7 +20,7 @@ type Props = {
   strokeColors?: string[]; // for gradient stroke
   offsetFillColors?: number[];
   style?: StyleProp<ViewStyle>;
-  dataSet: any;
+  dataSet?: any;
 };
 
 const SVGText = ({
@@ -29,7 +29,7 @@ const SVGText = ({
   fontSize,
   dataSet,
   strokeWidth = 3,
-  fontFamily = "PoppinsExtraBold",
+  fontFamily = "Montserrat-ExtraBold",
   fillColors = ["#D7F1FF", "#D7F1FF"],
   offsetFillColors = [0, 1], // default orange → yellow
   strokeColors = ["#000000", "#000000"], // default deep blue → violet

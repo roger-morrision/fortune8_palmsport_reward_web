@@ -91,7 +91,7 @@ export default function KYCResult() {
           resizeMode="contain"
         />
         <Text
-          fontFamily="PoppinsBold"
+          fontFamily="Montserrat-Bold"
           color="yellowThick"
           style={styles.t_verify}
           dataSet={{ media: ids.t_verify }}
@@ -99,7 +99,7 @@ export default function KYCResult() {
           {kycStatus === "VERIFIED" ? "KYC Verified!" : "KYC Verification Failed!"}
         </Text>
         <Text
-          fontFamily="PoppinsLight"
+          fontFamily="Montserrat-Light"
           style={styles.t_description}
           dataSet={{ media: ids.t_description }}
         >
@@ -114,7 +114,7 @@ export default function KYCResult() {
         >
           <Text
             color="textDark"
-            fontFamily="PoppinsSemiBold"
+            fontFamily="Montserrat-SemiBold"
             style={styles.button_label}
             dataSet={{ media: ids.button_label }}
           >

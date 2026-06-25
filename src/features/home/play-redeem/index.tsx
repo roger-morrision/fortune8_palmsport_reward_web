@@ -16,7 +16,7 @@ export default function PlayRedeem() {
     <View style={styles.v_rewards} dataSet={{ media: ids.v_rewards }}>
       <View style={styles.right_wrap}>
         <Text
-          fontFamily="PoppinsSemiBold"
+          fontFamily="Montserrat-SemiBold"
           color="yellow"
           style={styles.t_rewards}
           dataSet={{ media: ids.t_rewards }}
@@ -24,7 +24,7 @@ export default function PlayRedeem() {
           PLAY & REDEEM
         </Text>
         <Text
-          fontFamily="PoppinsRegular"
+          fontFamily="Montserrat"
           color="text"
           style={styles.t_description}
           dataSet={{ media: ids.t_description }}
@@ -39,7 +39,7 @@ export default function PlayRedeem() {
         >
           <Text
             color="textDark"
-            fontFamily="PoppinsBold"
+            fontFamily="Montserrat-Bold"
             style={styles.t_claim}
             dataSet={{ media: ids.t_claim }}
           >

@@ -1,12 +1,11 @@
 const Fonts = {
-  PoppinsLight: require("@/assets/fonts/Poppins-Light.ttf"),
-  PoppinsRegular: require("@/assets/fonts/Poppins-Regular.ttf"),
-  PoppinsMedium: require("@/assets/fonts/Poppins-Medium.ttf"),
-  PoppinsBold: require("@/assets/fonts/Poppins-Bold.ttf"),
-  PoppinsSemiBold: require("@/assets/fonts/Poppins-SemiBold.ttf"),
-  PoppinsExtraBold: require("@/assets/fonts/Poppins-ExtraBold.ttf"),
-  PoppinsBoldItalic: require("@/assets/fonts/Poppins-BoldItalic.ttf"),
-  ProximaNovaSemiBold: require("@/assets/fonts/ProximaNova-Semibold.ttf"),
+  "Montserrat": require('@/assets/fonts/Montserrat-Regular.ttf'),
+  "Montserrat-Light": require('@/assets/fonts/Montserrat-Light.ttf'),
+  "Montserrat-Medium": require('@/assets/fonts/Montserrat-Medium.ttf'),
+  "Montserrat-Bold": require('@/assets/fonts/Montserrat-Bold.ttf'),
+  "Montserrat-Black": require('@/assets/fonts/Montserrat-Black.ttf'),
+  "Montserrat-SemiBold": require('@/assets/fonts/Montserrat-SemiBold.ttf'),
+  "Montserrat-ExtraBold": require('@/assets/fonts/Montserrat-ExtraBold.ttf'),
 };
 
 export type FontFamily = keyof typeof Fonts;

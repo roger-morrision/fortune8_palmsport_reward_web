@@ -1,5 +1,4 @@
 import View from "@/src/common/components/View";
-import ConnectUs from "@/src/features/home/connect-with-us";
 import Footer from "@/src/features/home/footer";
 import GotoGambly from "@/src/features/home/go-to-gambly";
 import Guide from "./guide";
@@ -89,7 +88,6 @@ function Components() {
 
         <View style={styles.footer} dataSet={{ media: ids.footer }}>
           <GotoGambly />
-          <ConnectUs />
           <Footer />
         </View>
       </View>

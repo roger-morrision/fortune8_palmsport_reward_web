@@ -5,8 +5,8 @@ import bg from './locales/bg.translation.json';
 import en from './locales/en.translation.json';
 
 i18n.use(initReactI18next).init({
-  lng: 'bg',
-  fallbackLng: 'bg',
+  lng: 'en',
+  fallbackLng: 'en',
   resources: {
     en: {
       translation: en,

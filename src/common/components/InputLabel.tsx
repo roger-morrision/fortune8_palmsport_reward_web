@@ -1,11 +1,11 @@
-import Text from "@/src/common/components/Text";
+import { useMemo } from "react";
+import { StyleProp, TextInputProps, TextStyle, ViewStyle } from "react-native";
 import TextInput from "@/src/common/components/TextInput";
-import View from "@/src/common/components/View";
 import { ColorName } from "@/src/constants/Colors";
 import { FontFamily } from "@/src/constants/Fonts";
-import React, { useMemo } from "react";
-import { StyleProp, TextInputProps, TextStyle, ViewStyle } from "react-native";
 import StyleSheet from "react-native-media-query";
+import View from "@/src/common/components/View";
+import Text from "@/src/common/components/Text";
 
 type Props = {
   label?: string;
@@ -14,6 +14,7 @@ type Props = {
   errorPosition?: string;
   isRequired?: boolean;
   labelColor?: ColorName;
+  inputBackgroundColor?: ColorName;
   labelFontFamily?: FontFamily;
   labelStyle?: StyleProp<TextStyle> | undefined;
   labelDataSet?: Record<string, string>;
@@ -32,7 +33,7 @@ function InputLabel(props: Props) {
             <Text
               style={styles.text_error_bottom_style}
               dataSet={{ media: ids.text_error_bottom_style }}
-              fontFamily="PoppinsLight"
+              fontFamily="Montserrat-Light"
             >
               {props.error}
             </Text>
@@ -42,7 +43,7 @@ function InputLabel(props: Props) {
             <Text
               style={styles.text_error_style}
               dataSet={{ media: ids.text_error_style }}
-              fontFamily="PoppinsLight"
+              fontFamily="Montserrat-Light"
             >
               {props.error}
             </Text>
@@ -63,7 +64,7 @@ function InputLabel(props: Props) {
           color={props.error ? "red" : props.labelColor || "closeColor"}
           style={props.labelStyle || styles.label_style}
           dataSet={props.labelDataSet}
-          fontFamily={props.labelFontFamily || "PoppinsMedium"}
+          fontFamily={props.labelFontFamily || "Montserrat-Medium"}
         >
           {props.label}
           {props.isRequired && <Text color="red"> *</Text>}
@@ -82,7 +83,7 @@ function InputLabel(props: Props) {
           importantForAutofill={props.importantForAutofill}
           nativeID={props.nativeID}
           value={props.value}
-          backgroundColor="secondary"
+          backgroundColor={props.inputBackgroundColor ?? "secondary"}
           disabled={props.disabled}
           borderColor={props.error ? "error" : "borderColor"}
           placeholder={props.placeholder}

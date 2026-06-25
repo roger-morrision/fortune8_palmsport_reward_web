@@ -48,7 +48,7 @@ function Footer({ onLayout }: any) {
         <View style={styles.v_right_content} dataSet={{ media: ids.v_right_content }}>
           <View style={styles.v_row} dataSet={{ media: ids.v_row }}>
             <Text
-              fontFamily="PoppinsBold"
+              fontFamily="Montserrat-Bold"
               selectable={false}
               style={styles.t_note_title}
               dataSet={{ media: ids.t_note_title }}
@@ -75,7 +75,7 @@ function Footer({ onLayout }: any) {
           </View>
           <View style={styles.v_row} dataSet={{ media: ids.v_row }}>
             <Text
-              fontFamily="PoppinsBold"
+              fontFamily="Montserrat-Bold"
               style={styles.t_note_title}
               dataSet={{ media: ids.t_note_title }}
             >
@@ -93,7 +93,7 @@ function Footer({ onLayout }: any) {
           </View>
           <View style={styles.v_row} dataSet={{ media: ids.v_row }}>
             <Text
-              fontFamily="PoppinsBold"
+              fontFamily="Montserrat-Bold"
               style={styles.t_note_title}
               dataSet={{ media: ids.t_note_title }}
             >
@@ -105,7 +105,7 @@ function Footer({ onLayout }: any) {
               style={styles.t_note_subtitle}
               dataSet={{ media: ids.t_note_subtitle }}
             >
-              Contant Support
+              Contact Support
             </Text>
             <Text selectable={false} onPress={() => router.navigate("/about/faqs")}
               style={styles.t_note_subtitle} dataSet={{media: ids.t_note_subtitle}}>

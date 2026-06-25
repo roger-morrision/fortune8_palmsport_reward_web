@@ -26,11 +26,11 @@ export default function KYCUploading() {
   return (
     <View style={styles.v_redeem_container} dataSet={{ media: ids.v_redeem_container }}>
       <SVGIcon name="kyc-upload" {...size} />
-      <Text fontFamily="PoppinsBold" style={styles.t_verify} dataSet={{ media: ids.t_verify }}>
+      <Text fontFamily="Montserrat-Bold" style={styles.t_verify} dataSet={{ media: ids.t_verify }}>
         Submitting.{dots}
       </Text>
       <Text
-        fontFamily="PoppinsLight"
+        fontFamily="Montserrat-Light"
         color="closeColor"
         style={styles.t_description}
         dataSet={{ media: ids.t_description }}

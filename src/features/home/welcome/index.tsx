@@ -24,7 +24,7 @@ export default function Welcome() {
       />
       <View style={styles.right_wrap} dataSet={{ media: ids.right_wrap }}>
         <Text
-          fontFamily="PoppinsSemiBold"
+          fontFamily="Montserrat-SemiBold"
           color="text"
           style={styles.t_welcome}
           dataSet={{ media: ids.t_welcome }}
@@ -32,7 +32,7 @@ export default function Welcome() {
           Welcome to
         </Text>
         <Text
-          fontFamily="PoppinsSemiBold"
+          fontFamily="Montserrat-SemiBold"
           color="yellow"
           style={styles.t_rewards}
           dataSet={{ media: ids.t_rewards }}
@@ -40,7 +40,7 @@ export default function Welcome() {
           PalmsPlay Rewards
         </Text>
         <Text
-          fontFamily="PoppinsRegular"
+          fontFamily="Montserrat"
           color="text"
           style={styles.t_description}
           dataSet={{ media: ids.t_description }}
@@ -56,7 +56,7 @@ export default function Welcome() {
         >
           <Text
             color="textDark"
-            fontFamily="PoppinsBold"
+            fontFamily="Montserrat-Bold"
             style={styles.t_claim}
             dataSet={{ media: ids.t_claim }}
           >

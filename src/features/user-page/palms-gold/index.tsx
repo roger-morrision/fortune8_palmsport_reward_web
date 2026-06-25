@@ -66,7 +66,7 @@ function PalmsGold() {
           />
 
           <View borderColor="borderColor" style={styles.v_sweeps_balance}>
-            <Text fontFamily="PoppinsBold" style={styles.t_redemption}>
+            <Text fontFamily="Montserrat-Bold" style={styles.t_redemption}>
               {numeral(1241).format("0,000")}
             </Text>
           </View>

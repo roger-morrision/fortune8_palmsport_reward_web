@@ -44,7 +44,7 @@ function AuthScreen() {
             backgroundColor={"button"}
             dataSet={{ media: ids.button_style }}
           >
-            <Text color={"primary"} fontFamily="PoppinsMedium">
+            <Text color={"primary"} fontFamily="Montserrat-Medium">
               Login
             </Text>
           </Button>
@@ -90,7 +90,7 @@ const { ids, styles } = StyleSheet.create({
     borderRadius: 6,
     alignItems: "center",
     justifyContent: "center",
-    fontFamily: "PoppinsMedium",
+    fontFamily: "Montserrat-Medium",
     fontSize: 14,
     lineHeight: 16,
     "@media (min-width: 800px)": {

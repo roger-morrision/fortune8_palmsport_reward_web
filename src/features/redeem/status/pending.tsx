@@ -23,11 +23,11 @@ export default function RequestInProgress() {
   return (
     <View style={styles.v_redeem_container} dataSet={{ media: ids.v_redeem_container }}>
       <SVGIcon name="time" {...size} />
-      <Text fontFamily="PoppinsBold" style={styles.t_verify} dataSet={{ media: ids.t_verify }}>
+      <Text fontFamily="Montserrat-Bold" style={styles.t_verify} dataSet={{ media: ids.t_verify }}>
         Your Request is in progress
       </Text>
       <Text
-        fontFamily="PoppinsLight"
+        fontFamily="Montserrat-Light"
         color="closeColor"
         style={styles.t_description}
         dataSet={{ media: ids.t_description }}
@@ -48,7 +48,7 @@ export default function RequestInProgress() {
       >
         <Text
           color="textDark"
-          fontFamily="PoppinsSemiBold"
+          fontFamily="Montserrat-SemiBold"
           style={styles.button_label}
           dataSet={{ media: ids.button_label }}
         >
@@ -58,7 +58,7 @@ export default function RequestInProgress() {
 
       <Text
         color="blueLight"
-        fontFamily="PoppinsBold"
+        fontFamily="Montserrat-Bold"
         onPress={() => router.navigate("/transactions")}
         style={styles.t_view_transaction_log}
         dataSet={{ media: ids.t_view_transaction_log }}
@@ -81,7 +81,7 @@ function TransactionDetails() {
 
   return (
     <View backgroundColor="primary" style={styles.container} dataSet={{ media: ids.container }}>
-      <Text fontFamily="PoppinsBold" style={styles.t_details_description}>
+      <Text fontFamily="Montserrat-Bold" style={styles.t_details_description}>
         Request details:
       </Text>
       <Item
@@ -90,7 +90,7 @@ function TransactionDetails() {
           <View style={styles.v_sweeps_balance}>
             <SVGIcon name="sc-coin" width={17} height={17} />
             <Text
-              fontFamily="PoppinsBold"
+              fontFamily="Montserrat-Bold"
               style={styles.t_redemption}
               dataSet={{ media: ids.t_redemption }}
             >
@@ -145,7 +145,7 @@ function Item(props: { label: string; value: string | ReactNode }) {
       </Text>
 
       {typeof props.value === "string" ? (
-        <Text color="text" fontFamily="PoppinsBold" style={styles.t_label}>
+        <Text color="text" fontFamily="Montserrat-Bold" style={styles.t_label}>
           {props.value}
         </Text>
       ) : (

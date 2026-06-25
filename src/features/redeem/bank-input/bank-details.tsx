@@ -92,7 +92,7 @@ function BankDetails() {
   return (
     <>
       <View style={styles.container} dataSet={{ media: ids.container }}>
-        <Text fontFamily="PoppinsBold" style={styles.t_title}>
+        <Text fontFamily="Montserrat-Bold" style={styles.t_title}>
           Enter Account Details:
         </Text>
         <View style={{ gap: 21, marginTop: 10 }}>
@@ -112,7 +112,7 @@ function BankDetails() {
               <Text
                 style={styles.text_error_bottom_style}
                 dataSet={{ media: ids.text_error_bottom_style }}
-                fontFamily="PoppinsLight"
+                fontFamily="Montserrat-Light"
               >
                 {error.accountType}
               </Text>
@@ -179,7 +179,7 @@ function BankDetails() {
         {isPending ? (
           <ActivityIndicator animating size={"small"} color="textDark" />
         ) : (
-          <Text fontFamily="PoppinsSemiBold" color="textDark" style={styles.button_label}>
+          <Text fontFamily="Montserrat-SemiBold" color="textDark" style={styles.button_label}>
             Submit
           </Text>
         )}

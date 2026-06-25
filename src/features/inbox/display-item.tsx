@@ -36,7 +36,7 @@ function DisplayItem(props: Props) {
               size={18}
               color="inProgress"
             />
-            <Text style={styles.t_status} fontFamily="PoppinsBold" color="inProgress">
+            <Text style={styles.t_status} fontFamily="Montserrat-Bold" color="inProgress">
               {redeemStatusName(item?.extras?.status)}
             </Text>
           </View>
@@ -52,7 +52,7 @@ function DisplayItem(props: Props) {
               size={18}
               color="green"
             />
-            <Text style={styles.t_status} fontFamily="PoppinsBold" color="green">
+            <Text style={styles.t_status} fontFamily="Montserrat-Bold" color="green">
               {redeemStatusName(item?.extras?.status)}
             </Text>
           </View>
@@ -63,7 +63,7 @@ function DisplayItem(props: Props) {
             style={{ flexDirection: "row", gap: 2, alignItems: "center", justifyContent: "center" }}
           >
             <MaterialIcon name="block" backgroundColor="transparent" size={18} color="red" />
-            <Text style={styles.t_status} fontFamily="PoppinsBold" color="red">
+            <Text style={styles.t_status} fontFamily="Montserrat-Bold" color="red">
               {redeemStatusName(item?.extras?.status)}
             </Text>
           </View>
@@ -102,19 +102,19 @@ function DisplayItem(props: Props) {
           <View style={{ gap: 4 }}>
             <Text style={styles.t_label} color="textGray">
               Amount:{" "}
-              <Text style={{ color: "#FBE18A" }} fontFamily="PoppinsBold">
+              <Text style={{ color: "#FBE18A" }} fontFamily="Montserrat-Bold">
                 {numeral(item?.extras?.goldAmount).format("$0,000")}
               </Text>
             </Text>
             <Text style={styles.t_label} color="textGray">
               Transaction #:{" "}
-              <Text color="text" fontFamily="PoppinsMedium">
+              <Text color="text" fontFamily="Montserrat-Medium">
                 {item?.extras?.transactionNo}
               </Text>
             </Text>
             <Text style={styles.t_label} color="textGray">
               Date Completed:{" "}
-              <Text color="text" fontFamily="PoppinsMedium">
+              <Text color="text" fontFamily="Montserrat-Medium">
                 {item?.extras?.completedDate
                   ? moment(item?.extras?.completedDate).format("YYYY-MM-DD HH:mm")
                   : ""}
@@ -122,7 +122,7 @@ function DisplayItem(props: Props) {
             </Text>
           </View>
           <View backgroundColor="background" style={styles.v_box_payment}>
-            <Text style={styles.t_type} color="textGray" fontFamily="PoppinsBold">
+            <Text style={styles.t_type} color="textGray" fontFamily="Montserrat-Bold">
               {redeemTypeName(item?.extras.type)}
             </Text>
           </View>
@@ -157,7 +157,7 @@ function KYCItem(props: KYCItemProps) {
             style={{ flexDirection: "row", gap: 2, alignItems: "center", justifyContent: "center" }}
           >
             <MaterialIcon name="block" backgroundColor="transparent" size={18} color="red" />
-            <Text style={styles.t_status} fontFamily="PoppinsBold" color="inProgress">
+            <Text style={styles.t_status} fontFamily="Montserrat-Bold" color="inProgress">
               {redeemStatusName(item?.extras?.status)}
             </Text>
           </View>
@@ -173,7 +173,7 @@ function KYCItem(props: KYCItemProps) {
               size={18}
               color="green"
             />
-            <Text style={styles.t_status} fontFamily="PoppinsBold" color="green">
+            <Text style={styles.t_status} fontFamily="Montserrat-Bold" color="green">
               {redeemStatusName(item?.extras?.status)}
             </Text>
           </View>
@@ -330,7 +330,7 @@ const { ids, styles } = StyleSheet.create({
     },
   },
   text_title: {
-    fontFamily: "PoppinsSemiBold",
+    fontFamily: "Montserrat-SemiBold",
     fontSize: 13,
     lineHeight: 18,
     textAlign: "center",
@@ -340,7 +340,7 @@ const { ids, styles } = StyleSheet.create({
     },
   },
   text_description: {
-    fontFamily: "PoppinsLight",
+    fontFamily: "Montserrat-Light",
     fontSize: 11,
     lineHeight: 15,
     textAlign: "center",

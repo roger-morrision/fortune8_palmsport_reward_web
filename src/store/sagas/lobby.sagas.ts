@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { SagaIterator } from "@redux-saga/core";
 import { call, put, select, takeEvery, takeLatest } from "redux-saga/effects";
+import { REHYDRATE } from "redux-persist";
 import * as Types from "@/src/store/types";
 
 // Slice
@@ -47,6 +48,23 @@ function* handleLanguageChange(action: {
 }): SagaIterator {
   try {
     yield call(i18n.changeLanguage, action.payload);
+  } catch (error) {
+  }
+}
+
+// Syncs i18next with the persisted redux language once redux-persist restores
+// it on app start, since i18n.init() always boots with its static default and
+// otherwise only updates when the user explicitly changes language.
+function* handleRehydrate(action: {
+  type: string,
+  payload: any;
+}): SagaIterator {
+  try {
+    const lang = action.payload?.settings?.lang;
+
+    if (lang) {
+      yield call(i18n.changeLanguage, lang);
+    }
   } catch (error) {
   }
 }
@@ -126,6 +144,7 @@ function* handleRefreshNotification(): SagaIterator {
 function* lobbyWatcherSaga(): SagaIterator {
   yield takeEvery(lobbyActions.lobbyRequest.type, handleLobbyRequest);
   yield takeLatest(settingsActions.updateLanguage.type, handleLanguageChange);
+  yield takeLatest(REHYDRATE, handleRehydrate);
   yield takeEvery(lobbyActions.kycRequest.type, handleKYCRequest);
   yield takeEvery(notificationActions.notificationMessage.type, handleRefreshNotification);
 }

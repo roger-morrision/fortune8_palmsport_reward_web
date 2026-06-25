@@ -40,7 +40,7 @@ export default function () {
   // Callback function to hide the splash screen when layout is triggered
   const onLayout = useCallback(() => {
     SplashScreen.hideAsync();
-    document.title = "Gambly";
+    document.title = "Palmsplay Rewards";
   }, []);
 
   // Callback function executed before the persist gate is lifted

@@ -36,7 +36,7 @@ const Description = ({ text }: { text: string }) => {
         return (
           <Text
             key={index}
-            fontFamily={isBold ? "PoppinsBold" : "PoppinsLight"}
+            fontFamily={isBold ? "Montserrat-Bold" : "Montserrat-Light"}
             style={isBold ? styles.description_header_style : styles.description_style}
             dataSet={{ media: isBold ? ids.description_header_style : ids.description_style }}
           >
@@ -72,7 +72,7 @@ const { ids, styles } = StyleSheet.create({
     lineHeight: 18,
     textAlign: "center",
     textTransform: "uppercase",
-    fontFamily: "PoppinsBold",
+    fontFamily: "Montserrat-Bold",
   },
   description_header_style: {
     fontSize: 15,

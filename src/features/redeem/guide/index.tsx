@@ -21,7 +21,7 @@ function Guide() {
     <Screen style={styles.main} dataSet={{ media: ids.main }}>
       <View style={styles.container}>
         <Text
-          fontFamily="PoppinsBold"
+          fontFamily="Montserrat-Bold"
           style={styles.text_style}
           dataSet={{ media: ids.text_style }}
         >

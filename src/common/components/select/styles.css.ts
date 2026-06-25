@@ -77,12 +77,12 @@ const { ids, styles } = StyleSheet.create({
     fontSize: 15,
     lineHeight: 20,
     marginLeft: 20,
-    fontFamily: "PoppinsRegular",
+    fontFamily: "Montserrat",
   },
   t_item_active: {
     flex: 1,
     fontSize: 16,
-    fontFamily: "PoppinsBold",
+    fontFamily: "Montserrat-Bold",
   },
 });
 

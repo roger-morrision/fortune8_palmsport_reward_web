@@ -17,7 +17,7 @@ export default function Service() {
   return (
     <View style={styles.container} dataSet={{ media: ids.container }}>
       <Text
-        fontFamily="PoppinsBold"
+        fontFamily="Montserrat-Bold"
         color={error.serviceTypeError ? "red" : "yellowThick"}
         style={styles.t_verify}
         dataSet={{ media: ids.t_verify }}

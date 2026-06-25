@@ -9,25 +9,25 @@ export default function AccountDetails() {
 
   return (
     <View style={styles.container} dataSet={{ media: ids.container }}>
-      <Text fontFamily="PoppinsBold" style={styles.t_description}>
+      <Text fontFamily="Montserrat-Bold" style={styles.t_description}>
         Account Details:
       </Text>
       <View style={styles.v_divider} />
       <Text color="placeholder" style={styles.t_user}>
         Account Type:{"    "}
-        <Text color="text" fontFamily="PoppinsBold">
+        <Text color="text" fontFamily="Montserrat-Bold">
           {state.accountType}
         </Text>
       </Text>
       <Text color="placeholder" style={styles.t_user}>
         Account Number:{"    "}
-        <Text color="text" fontFamily="PoppinsBold">
+        <Text color="text" fontFamily="Montserrat-Bold">
           {state.bankAccountNumber}
         </Text>
       </Text>
       <Text color="placeholder" style={styles.t_user}>
         Routing Number:{"  "}
-        <Text color="text" fontFamily="PoppinsBold">
+        <Text color="text" fontFamily="Montserrat-Bold">
           {state.bankIbanIbcCode}
         </Text>
       </Text>

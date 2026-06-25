@@ -22,7 +22,7 @@ const RaffleItem = ({ onPress, route, label }: Props) => {
     <Pressable style={styles.lang_container} onPress={onPress}>
       <Text color={isActive ? "button" : "text"}
         numberOfLines={1}
-        fontFamily="PoppinsMedium"
+        fontFamily="Montserrat-Medium"
         style={styles.text_label}
         >
         {label}

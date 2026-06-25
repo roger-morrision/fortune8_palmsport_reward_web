@@ -58,7 +58,7 @@ const { ids, styles } = StyleSheet.create({
   text: {
     width: "60%",
     textAlign: "center",
-    fontFamily: "PoppinsBold",
+    fontFamily: "Montserrat-Bold",
     fontSize: 18,
     lineHeight: 20,
     "@media (max-width: 1920px) and (min-width: 800px)": {

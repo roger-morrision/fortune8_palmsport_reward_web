@@ -58,7 +58,7 @@ const { ids, styles } = StyleSheet.create({
   },
   text_label: {
     width: "40%",
-    fontFamily: "PoppinsRegular",
+    fontFamily: "Montserrat",
     fontSize: 14,
     lineHeight: 16,
     color: "#898989",
@@ -69,7 +69,7 @@ const { ids, styles } = StyleSheet.create({
   },
   text_value: {
     width: "35%",
-    fontFamily: "PoppinsRegular",
+    fontFamily: "Montserrat",
     fontSize: 12,
     lineHeight: 16,
     "@media (max-width: 540px)": {
@@ -102,7 +102,7 @@ const { ids, styles } = StyleSheet.create({
   text_title: {
     fontSize: 18,
     lineHeight: 22,
-    fontFamily: "PoppinsSemiBold",
+    fontFamily: "Montserrat-SemiBold",
     "@media (max-width: 1600px) and (min-width: 996px)": {
       fontSize: 16,
       lineHeight: 20,
@@ -113,7 +113,7 @@ const { ids, styles } = StyleSheet.create({
     },
   },
   text_description: {
-    fontFamily: "PoppinsRegular",
+    fontFamily: "Montserrat",
     fontSize: 14,
     lineHeight: 18,
     color: "#7F8CA1",

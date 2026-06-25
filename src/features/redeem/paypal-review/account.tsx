@@ -9,13 +9,13 @@ export default function AccountDetails() {
 
   return (
     <View style={styles.container} dataSet={{ media: ids.container }}>
-      <Text fontFamily="PoppinsBold" style={styles.t_description}>
+      <Text fontFamily="Montserrat-Bold" style={styles.t_description}>
         Paypal Email Address:
       </Text>
       <View style={styles.v_divider} />
       <Text color="placeholder" style={styles.t_user}>
         Email Address:{"    "}
-        <Text color="text" fontFamily="PoppinsBold">
+        <Text color="text" fontFamily="Montserrat-Bold">
           {state.paypalEmail}
         </Text>
       </Text>

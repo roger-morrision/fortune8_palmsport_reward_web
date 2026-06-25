@@ -38,7 +38,7 @@ function DisplayItem(props: Props) {
               backgroundColor="transparent"
               color="inProgress"
             />
-            <Text style={styles.t_status} fontFamily="PoppinsBold" color="inProgress">
+            <Text style={styles.t_status} fontFamily="Montserrat-Bold" color="inProgress">
               In Progress
             </Text>
           </View>
@@ -55,7 +55,7 @@ function DisplayItem(props: Props) {
               size={18}
               color="green"
             />
-            <Text style={styles.t_status} fontFamily="PoppinsBold" color="green">
+            <Text style={styles.t_status} fontFamily="Montserrat-Bold" color="green">
               Completed
             </Text>
           </View>
@@ -67,7 +67,7 @@ function DisplayItem(props: Props) {
             style={{ flexDirection: "row", gap: 2, alignItems: "center", justifyContent: "center" }}
           >
             <MaterialIcon name="block" backgroundColor="transparent" size={18} color="red" />
-            <Text style={styles.t_status} fontFamily="PoppinsBold" color="red">
+            <Text style={styles.t_status} fontFamily="Montserrat-Bold" color="red">
               Rejected
             </Text>
           </View>
@@ -79,7 +79,7 @@ function DisplayItem(props: Props) {
             style={{ flexDirection: "row", gap: 2, alignItems: "center", justifyContent: "center" }}
           >
             <MaterialIcon name="block" backgroundColor="transparent" size={18} color="red" />
-            <Text style={styles.t_status} fontFamily="PoppinsBold" color="red">
+            <Text style={styles.t_status} fontFamily="Montserrat-Bold" color="red">
               Cancelled
             </Text>
           </View>
@@ -98,7 +98,7 @@ function DisplayItem(props: Props) {
           >
             <Text
               color="textDark"
-              fontFamily="PoppinsSemiBold"
+              fontFamily="Montserrat-SemiBold"
               style={styles.button_label}
               dataSet={{ media: ids.button_label }}
             >
@@ -120,19 +120,19 @@ function DisplayItem(props: Props) {
         <View style={{ gap: 4 }}>
           <Text style={styles.t_label} color="textGray">
             Amount:{" "}
-            <Text style={{ color: "#FBE18A" }} fontFamily="PoppinsBold">
+            <Text style={{ color: "#FBE18A" }} fontFamily="Montserrat-Bold">
               {numeral(item.creditAmount).format("0,000")}
             </Text>
           </Text>
           <Text style={styles.t_label} color="textGray">
             Transaction #:{" "}
-            <Text color="text" fontFamily="PoppinsMedium">
+            <Text color="text" fontFamily="Montserrat-Medium">
               {item.id}
             </Text>
           </Text>
           <Text style={styles.t_label} color="textGray">
             Date Completed:{" "}
-            <Text color="text" fontFamily="PoppinsMedium">
+            <Text color="text" fontFamily="Montserrat-Medium">
               {item.completedDate ? moment(item.completedDate).format("YYYY-MM-DD HH:mm") : ""}
             </Text>
           </Text>
@@ -148,7 +148,7 @@ function DisplayItem(props: Props) {
               style={styles.t_status}
               dataSet={{ media: ids.t_status }}
               color="textGray"
-              fontFamily="PoppinsBold"
+              fontFamily="Montserrat-Bold"
             >
               {redeemTypeName(item.redeemTypeID)}
             </Text>

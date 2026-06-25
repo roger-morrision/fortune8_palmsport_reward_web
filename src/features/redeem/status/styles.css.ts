@@ -27,7 +27,7 @@ const { ids, styles } = StyleSheet.create({
     },
   },
   login_label_style: {
-    fontFamily: "PoppinsMedium",
+    fontFamily: "Montserrat-Medium",
     fontSize: 18,
     lineHeight: 20,
     "@media (min-width: 800px)": {
@@ -37,7 +37,7 @@ const { ids, styles } = StyleSheet.create({
   },
 
   title_style: {
-    fontFamily: "PoppinsMedium",
+    fontFamily: "Montserrat-Medium",
     fontSize: 24,
     lineHeight: 26,
     textAlign: "center",
@@ -47,7 +47,7 @@ const { ids, styles } = StyleSheet.create({
     },
   },
   text_style: {
-    fontFamily: "PoppinsLight",
+    fontFamily: "Montserrat-Light",
     fontSize: 18,
     lineHeight: 25,
     textAlign: "center",
@@ -76,7 +76,7 @@ const { ids, styles } = StyleSheet.create({
   },
   text_label: {
     width: "40%",
-    fontFamily: "PoppinsRegular",
+    fontFamily: "Montserrat",
     fontSize: 14,
     lineHeight: 16,
     color: "#898989",
@@ -87,7 +87,7 @@ const { ids, styles } = StyleSheet.create({
   },
   text_value: {
     width: "50%",
-    fontFamily: "PoppinsRegular",
+    fontFamily: "Montserrat",
     fontSize: 12,
     lineHeight: 16,
     textAlign: "right",

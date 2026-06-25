@@ -212,7 +212,7 @@ function PersonalDetails() {
           <Text
             style={styles.text_error_bottom_style}
             dataSet={{ media: ids.text_error_bottom_style }}
-            fontFamily="PoppinsLight"
+            fontFamily="Montserrat-Light"
           >
             {error.state}
           </Text>
@@ -249,7 +249,7 @@ function PersonalDetails() {
           <Text
             style={styles.text_error_bottom_style}
             dataSet={{ media: ids.text_error_bottom_style }}
-            fontFamily="PoppinsLight"
+            fontFamily="Montserrat-Light"
           >
             {error.dateOfBirth}
           </Text>
@@ -270,7 +270,7 @@ function PersonalDetails() {
               color={"primary"}
               style={styles.login_label_style}
               dataSet={{ media: ids.login_label_style }}
-              fontFamily="PoppinsMedium"
+              fontFamily="Montserrat-Medium"
             >
               Continue
             </Text>
@@ -287,7 +287,7 @@ function PersonalDetails() {
           <Text
             style={styles.login_label_style}
             dataSet={{ media: ids.login_label_style }}
-            fontFamily="PoppinsMedium"
+            fontFamily="Montserrat-Medium"
           >
             Cancel
           </Text>

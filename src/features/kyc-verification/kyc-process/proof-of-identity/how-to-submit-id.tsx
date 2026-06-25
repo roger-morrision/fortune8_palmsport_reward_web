@@ -101,7 +101,7 @@ export default function HowToSubmitID(props: Props) {
             resizeMode="contain"
           />
           <Text
-            fontFamily="PoppinsBold"
+            fontFamily="Montserrat-Bold"
             color="yellowThick"
             style={styles.t_verify}
             dataSet={{ media: ids.t_verify }}
@@ -109,7 +109,7 @@ export default function HowToSubmitID(props: Props) {
             How to submit your ID
           </Text>
           <Text
-            fontFamily="PoppinsLight"
+            fontFamily="Montserrat-Light"
             style={styles.t_description}
             dataSet={{ media: ids.t_description }}
           >
@@ -143,7 +143,7 @@ export default function HowToSubmitID(props: Props) {
             ) : (
               <Text
                 color="textDark"
-                fontFamily="PoppinsSemiBold"
+                fontFamily="Montserrat-SemiBold"
                 style={styles.button_label}
                 dataSet={{ media: ids.button_label }}
               >
@@ -159,7 +159,7 @@ export default function HowToSubmitID(props: Props) {
             dataSet={{ media: ids.button_home_style }}
           >
             <Text
-              fontFamily="PoppinsSemiBold"
+              fontFamily="Montserrat-SemiBold"
               style={styles.button_label}
               dataSet={{ media: ids.button_label }}
             >
@@ -184,7 +184,7 @@ const ItemRequirement = (props: ItemProps) => {
     <View style={styles.item_container} dataSet={{ media: ids.item_container }}>
       <View>
         <Text
-          fontFamily="PoppinsBold"
+          fontFamily="Montserrat-Bold"
           style={styles.item_t_title}
           dataSet={{ media: ids.item_t_title }}
         >

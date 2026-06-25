@@ -18,13 +18,13 @@ const { ids, styles } = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     "@media (min-width: 1600px)": {
-      height: 80,
+      height: 108,
       paddingLeft: 0,
       paddingRight: 0,
       justifyContent: "space-between",
     },
     "@media (max-width: 1600px) and (min-width: 800px)": {
-      height: 80,
+      height: 90,
       paddingLeft: 21,
       paddingRight: 21,
       justifyContent: "space-between",
@@ -37,8 +37,8 @@ const { ids, styles } = StyleSheet.create({
     },
   },
   gambly_logo_style: {
-    width: 71,
-    height: 43,
+    width: 90,
+    height: 65,
     "@media (max-width: 800px)": {
       width: 78,
       height: 47,
@@ -67,7 +67,7 @@ const { ids, styles } = StyleSheet.create({
     borderRadius: 6.27,
     alignItems: "center",
     justifyContent: "center",
-    fontFamily: "PoppinsMedium",
+    fontFamily: "Montserrat-Medium",
     fontSize: 14,
     lineHeight: 16,
     "@media (min-width: 800px)": {
@@ -108,6 +108,27 @@ const { ids, styles } = StyleSheet.create({
     fontSize: 16,
     lineHeight: 20,
   },
+
+  // BALANCE
+  v_sweeps_balance: {
+    marginTop: 8,
+    minWidth: 170,
+    flexDirection: "row",
+    height: 50,
+    borderWidth: 1,
+    alignItems: "center",
+    borderRadius: 10,
+    paddingRight: 10,
+    paddingLeft: 10,
+    gap: 8,
+  },
+  i_gold: {
+    width: 32,
+    height: 32,
+  },
+  t_balance: { fontSize: 14, lineHeight: 17 },
+  t_balance_label: { fontSize: 10, lineHeight: 12, color: "#FFCF3D" },
+
 });
 
 export { ids, styles };

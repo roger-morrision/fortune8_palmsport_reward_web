@@ -16,10 +16,10 @@ export default function CashBack() {
         resizeMode="contain"
       />
       <View style={styles.right_wrap}>
-        <Text fontFamily="PoppinsSemiBold" color="yellow" style={styles.t_rewards}>
+        <Text fontFamily="Montserrat-SemiBold" color="yellow" style={styles.t_rewards}>
           Cash Back Bonanza
         </Text>
-        <Text fontFamily="PoppinsRegular" color="text" style={styles.t_description}>
+        <Text fontFamily="Montserrat" color="text" style={styles.t_description}>
           Your play deserves to be rewarded in cash. Exchange your Sweeps Coins for cash and watch
           your earnings grow giving you even more reasons to play and earn.
         </Text>

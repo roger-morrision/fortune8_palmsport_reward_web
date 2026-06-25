@@ -7,7 +7,7 @@ const { ids, styles } = StyleSheet.create({
     borderRadius: 6,
     alignItems: "center",
     justifyContent: "center",
-    fontFamily: "PoppinsMedium",
+    fontFamily: "Montserrat-Medium",
     fontSize: 14,
     lineHeight: 16,
     "@media (min-width: 800px)": {
@@ -50,7 +50,7 @@ const { ids, styles } = StyleSheet.create({
     borderRadius: 6,
     alignItems: "center",
     justifyContent: "center",
-    fontFamily: "PoppinsBold",
+    fontFamily: "Montserrat-Bold",
     fontSize: 18,
     lineHeight: 20,
     "@media (min-width: 800px)": {
@@ -68,7 +68,7 @@ const { ids, styles } = StyleSheet.create({
     borderRadius: 6,
     alignItems: "center",
     justifyContent: "center",
-    fontFamily: "PoppinsBold",
+    fontFamily: "Montserrat-Bold",
     fontSize: 18,
     lineHeight: 20,
     "@media (min-width: 800px)": {
@@ -80,7 +80,7 @@ const { ids, styles } = StyleSheet.create({
     },
   },
   login_label_style: {
-    fontFamily: "PoppinsMedium",
+    fontFamily: "Montserrat-Medium",
     fontSize: 18,
     lineHeight: 20,
     "@media (min-width: 800px)": {
@@ -90,7 +90,7 @@ const { ids, styles } = StyleSheet.create({
   },
 
   forgot_password_style: {
-    fontFamily: "ProximaNovaSemiBold",
+    fontFamily: "Montserrat-SemiBold",
     fontSize: 15,
     lineHeight: 18,
     textAlign: "center",
@@ -110,7 +110,7 @@ const { ids, styles } = StyleSheet.create({
   },
   continue_style: {
     position: "absolute",
-    fontFamily: "PoppinsBold",
+    fontFamily: "Montserrat-Bold",
     fontSize: 12,
     lineHeight: 12,
     textAlign: "center",

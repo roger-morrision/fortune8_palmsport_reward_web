@@ -100,7 +100,7 @@ function Login() {
           backgroundColor="background"
           style={styles.continue_style}
           dataSet={{ media: ids.continue_style }}
-          fontFamily="PoppinsMedium"
+          fontFamily="Montserrat-Medium"
         >
           Or continue with
         </Text>
@@ -161,7 +161,7 @@ function Login() {
             color={"primary"}
             style={styles.login_label_style}
             dataSet={{ media: ids.login_label_style }}
-            fontFamily="PoppinsMedium"
+            fontFamily="Montserrat-Medium"
           >
             Login
           </Text>
@@ -183,7 +183,7 @@ function Login() {
               color={"placeholder"}
               style={styles.login_label_style}
               dataSet={{ media: ids.login_label_style }}
-              fontFamily="PoppinsMedium"
+              fontFamily="Montserrat-Medium"
             >
               Resend Verification Link
             </Text>
@@ -197,7 +197,7 @@ function Login() {
           onPress={onForgot}
           style={styles.forgot_password_style}
           dataSet={{ media: ids.forgot_password_style }}
-          fontFamily="PoppinsMedium"
+          fontFamily="Montserrat-Medium"
         >
           Forgot Password
         </Text>

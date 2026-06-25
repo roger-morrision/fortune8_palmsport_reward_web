@@ -14,6 +14,8 @@ import { ids, styles } from "./styles.css";
 import Raffles from "./raffles";
 import { routeToPathname } from "@/src/common/utils/transform-helper";
 import { useTranslation } from "react-i18next";
+import SVGIcon from "@/src/constants/SVGIcon";
+import numeral from "numeral";
 
 function HeaderAuthScreen() {
   const router = useRouter();
@@ -60,7 +62,7 @@ function HeaderAuthScreen() {
         <View style={styles.v_center_menu} dataSet={{ media: ids.v_center_menu }}>
           <Text
             suppressHighlighting
-            fontFamily="PoppinsMedium"
+            fontFamily="Montserrat-Medium"
             style={styles.t_center_menu}
             onPress={() => router.navigate("/")}
             dataSet={{ media: ids.t_center_menu }}
@@ -70,7 +72,7 @@ function HeaderAuthScreen() {
           </Text>
           <Text
             suppressHighlighting
-            fontFamily="PoppinsMedium"
+            fontFamily="Montserrat-Medium"
             onPress={() => router.navigate("/(stack)/user-profile")}
             style={[styles.t_center_menu]}
             dataSet={{ media: ids.t_center_menu }}
@@ -86,7 +88,23 @@ function HeaderAuthScreen() {
           backgroundColor="primary"
           dataSet={{ media: ids.right_container }}
         >
-          {isLoggedIn ? (
+        <View borderColor="borderColor" backgroundColor="backgroundDark" style={styles.v_sweeps_balance}>
+          <Image
+            style={styles.i_gold}
+            dataSet={{ media: ids.i_gold }}
+            source={{ uri: images?.["gold"].uri }}
+            resizeMode="contain"
+          />
+          <View>
+            <Text fontFamily="Montserrat-Bold" style={styles.t_balance}>
+              {numeral(12312).format("0,000")}
+            </Text>
+            <Text fontFamily="Montserrat-Bold" style={styles.t_balance_label}>
+              PALMS GOLD
+            </Text>
+          </View>
+        </View>
+          {/* {isLoggedIn ? (
             <Button style={{ marginRight: 10 }} onPress={() => router.navigate("/(modal)/inbox")}>
               <MaterialIcons name="notifications" size={28} color="white" />
               {unreadCount > 0 && (
@@ -104,12 +122,12 @@ function HeaderAuthScreen() {
               style={styles.button_style}
               dataSet={{ media: ids.button_style }}
             >
-              <Text fontFamily="PoppinsMedium">Log in</Text>
+              <Text fontFamily="Montserrat-Medium">Log in</Text>
             </Button>
           )}
           <Button onPress={() => (navigation as any).openDrawer()}>
             <MaterialIcons name="list" size={35} color="white" />
-          </Button>
+          </Button> */}
         </View>
       </View>
     </View>

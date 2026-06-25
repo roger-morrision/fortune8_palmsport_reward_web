@@ -2,9 +2,7 @@ import View from "@/src/common/components/View";
 import { ScrollView } from "react-native";
 import AccountDetails from "./account-details";
 import {ids, styles } from "./styles.css";
-import GotoGambly from "../home/go-to-gambly";
 import Footer from "../home/footer";
-import ConnectUs from "../home/connect-with-us";
 import PalmsGold from "./palms-gold";
 import DataRow from "./data-table/data-row";
 import BGButton from "@/src/common/components/BGButton";
@@ -22,7 +20,7 @@ function UserPage() {
           <BGButton
             // onPress={() => setTab(tab === "silver" ? "gold" : "silver")}
             borderWidth={2}
-            fontFamily="PoppinsBold"
+            fontFamily="Montserrat-Bold"
             label={"VIEW RAFFLE DRAW RESULT"}
             style={styles.button_view_result}
             labelStyle={styles.label_view_result}

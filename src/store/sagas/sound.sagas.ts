@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { SagaIterator } from "@redux-saga/core";
 import { Audio } from "expo-av";
 import { call, select, takeEvery } from "redux-saga/effects";
@@ -8,9 +7,6 @@ import audio from "@/src/constants/Audio";
 import { selectSoundEnabled, selectSoundPlaying, soundActions } from "../slices/sound.slice";
 
 let bgSoundObject: any;
-let clickSoundObject: any;
-let claimSoundObject: any;
-let rewardSoundObject: any;
 let promotionSoundObject: any;
 
 function* playSoundSaga(): SagaIterator {
@@ -46,30 +42,6 @@ function* enableSoundSaga(): SagaIterator {
   }
 }
 
-function* handleClickSound(): SagaIterator {
-  const soundEnable = yield select(selectSoundEnabled);
-
-  if (clickSoundObject && soundEnable) {
-    yield clickSoundObject.playAsync();
-  }
-}
-
-function* handleClaimSound(): SagaIterator {
-  const soundEnable = yield select(selectSoundEnabled);
-
-  if (claimSoundObject && soundEnable) {
-    yield claimSoundObject.playAsync();
-  }
-}
-
-function* handleRewardSound(): SagaIterator {
-  const soundEnable = yield select(selectSoundEnabled);
-
-  if (rewardSoundObject && soundEnable) {
-    yield rewardSoundObject.playAsync();
-  }
-}
-
 function* handlePromotionSound(action: { type: string; payload: any }): SagaIterator {
   try {
     const soundEnabled = yield select(selectSoundEnabled);
@@ -100,21 +72,10 @@ function* unloadPromotionSoundSaga(): SagaIterator {
 
 function* stopAllSoundSaga(): SagaIterator {
   try {
-    const soundObjects = [bgSoundObject, clickSoundObject, claimSoundObject, rewardSoundObject];
-
-    for (const sound of soundObjects) {
-      if (sound) {
-        yield sound.unloadAsync(); // Properly unload sound to free memory
-      }
+    if (bgSoundObject) {
+      yield bgSoundObject.unloadAsync();
+      bgSoundObject = null;
     }
-
-    // Reset references to null after unloading
-    bgSoundObject = null;
-    clickSoundObject = null;
-    claimSoundObject = null;
-    rewardSoundObject = null;
-
-    console.log("All sounds stopped and unloaded.");
   } catch (error: any) {
     console.error("Error in stopSoundSaga:", error);
   }

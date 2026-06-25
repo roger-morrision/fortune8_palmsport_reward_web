@@ -7,9 +7,9 @@ function getNestedValue(obj: any, path: string) {
 }
 
 describe("i18n", () => {
-  it("initializes with bg as the default/fallback language", () => {
-    expect(i18n.language).toBe("bg");
-    expect(i18n.options.fallbackLng).toEqual(["bg"]);
+  it("initializes with en as the default/fallback language", () => {
+    expect(i18n.language).toBe("en");
+    expect(i18n.options.fallbackLng).toEqual(["en"]);
   });
 
   it("registers en and bg resource bundles", () => {

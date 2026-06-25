@@ -118,16 +118,16 @@ export default function RedeemYourRewards() {
   return (
     <>
       <View style={styles.container}>
-        <Text fontFamily="PoppinsBold" style={styles.t_redemption}>
+        <Text fontFamily="Montserrat-Bold" style={styles.t_redemption}>
           Redemption Requirement
         </Text>
         <Text style={styles.t_hello}>
-          Hello, <Text fontFamily="PoppinsMedium">{displayName}</Text>
+          Hello, <Text fontFamily="Montserrat-Medium">{displayName}</Text>
         </Text>
         <Text style={styles.t_available}>Available Sweepcoins for redemption:</Text>
         <View borderColor="borderColor" style={styles.v_sweeps_balance}>
           <SVGIcon name="sc-coin" width={19} height={19} />
-          <Text fontFamily="PoppinsBold" style={styles.t_redemption}>
+          <Text fontFamily="Montserrat-Bold" style={styles.t_redemption}>
             {numeral(balance.GOLD).format("0,000")}
           </Text>
         </View>
@@ -168,7 +168,7 @@ export default function RedeemYourRewards() {
           {isPending || instantLink.isPending ? (
             <ActivityIndicator animating size={"small"} color="textDark" />
           ) : (
-            <Text color="textDark" fontFamily="PoppinsSemiBold" style={styles.button_label}>
+            <Text color="textDark" fontFamily="Montserrat-SemiBold" style={styles.button_label}>
               Redeem
             </Text>
           )}

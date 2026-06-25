@@ -95,7 +95,7 @@ export default function TakeAPhoto(props: Props) {
               color={"text"}
               style={styles.button_container}
             />
-            <Text fontFamily="PoppinsBold" style={styles.text} dataSet={{ media: ids.text }}>
+            <Text fontFamily="Montserrat-Bold" style={styles.text} dataSet={{ media: ids.text }}>
               {props.title}
             </Text>
           </View>
@@ -124,7 +124,7 @@ export default function TakeAPhoto(props: Props) {
             >
               <Text
                 color="yellowThick"
-                fontFamily="PoppinsBold"
+                fontFamily="Montserrat-Bold"
                 style={styles.t_title}
                 dataSet={{ media: ids.t_title }}
               >
@@ -141,7 +141,7 @@ export default function TakeAPhoto(props: Props) {
                   dataSet={{ media: ids.button_style }}
                 >
                   <Text
-                    fontFamily="PoppinsSemiBold"
+                    fontFamily="Montserrat-SemiBold"
                     style={styles.button_label}
                     dataSet={{ media: ids.button_label }}
                   >
@@ -157,7 +157,7 @@ export default function TakeAPhoto(props: Props) {
                 >
                   <Text
                     color="textDark"
-                    fontFamily="PoppinsSemiBold"
+                    fontFamily="Montserrat-SemiBold"
                     style={styles.button_label}
                     dataSet={{ media: ids.button_label }}
                   >

@@ -7,7 +7,6 @@ import { useRouter } from "expo-router";
 import React from "react";
 import StyleSheet from "react-native-media-query";
 import GotoGambly from "../home/go-to-gambly";
-import ConnectUs from "../home/connect-with-us";
 import Footer from "../home/footer";
 import { ScrollView } from "react-native";
 
@@ -19,7 +18,6 @@ export default function KYCPendingPage() {
 
         <View style={styles.footer} dataSet={{ media: ids.footer }}>
           <GotoGambly />
-          <ConnectUs />
           <Footer />
         </View>
       </View>
@@ -47,11 +45,11 @@ function RequestInProgress() {
   return (
     <View style={styles.v_redeem_container} dataSet={{ media: ids.v_redeem_container }}>
       <SVGIcon name="time" {...size} />
-      <Text fontFamily="PoppinsBold" style={styles.t_verify} dataSet={{ media: ids.t_verify }}>
+      <Text fontFamily="Montserrat-Bold" style={styles.t_verify} dataSet={{ media: ids.t_verify }}>
         KYC Verification Under Review
       </Text>
       <Text
-        fontFamily="PoppinsLight"
+        fontFamily="Montserrat-Light"
         color="closeColor"
         style={styles.t_description}
         dataSet={{ media: ids.t_description }}
@@ -67,7 +65,7 @@ function RequestInProgress() {
       >
         <Text
           color="textDark"
-          fontFamily="PoppinsSemiBold"
+          fontFamily="Montserrat-SemiBold"
           style={styles.button_label}
           dataSet={{ media: ids.button_label }}
         >

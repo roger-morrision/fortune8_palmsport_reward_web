@@ -5,5 +5,27 @@
     "raffles": "RAFFLES",
     "r-raffle-draw": "Raffle Draw",
     "r-draw-result": "Draw Result"
+  },
+  "login": {
+    "username": "Email",
+    "password": "Password",
+    "title": "LOGIN AND PLAY",
+    "no-account": "Don’t have an account?",
+    "c-account": "SIGN UP HERE",
+    "f-password": "forgot password?",
+    "or-continue": "Or continue with",
+    "resend": "RESEND VERIFICATION LINK",
+    "submit": "LOG IN",
+
+    "email-resend-title": "Email Verification Sent!",
+    "email-resend-description": "Please check your email and verify your email address to continue.",
+    "email-resend-button": "Back to Login"
+  },
+  "otp": {
+    "title": "ACCOUNT VERIFICATION",
+    "subtitle": "A 6 digit code has been sent to your email!",
+    "submit": "ENTER",
+    "resend-prefix": "Didn't receive the code?",
+    "resend-link": "Send Again"
   }
 }

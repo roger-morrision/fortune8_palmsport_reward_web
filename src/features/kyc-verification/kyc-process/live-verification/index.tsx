@@ -17,7 +17,7 @@ function LiveVerification() {
     <View style={styles.input_container} dataSet={{ media: ids.input_container }}>
       <Text
         color="yellowThick"
-        fontFamily="PoppinsBold"
+        fontFamily="Montserrat-Bold"
         style={styles.title_style}
         dataSet={{ media: ids.title_style }}
       >
@@ -37,7 +37,7 @@ function LiveVerification() {
       <Text
         style={styles.t_help_style}
         onPress={() => router.push("/(modal)/contact-us")}
-        fontFamily="PoppinsBold"
+        fontFamily="Montserrat-Bold"
         dataSet={{ media: ids.t_help_style }}
       >
         Need Help? Contact Support

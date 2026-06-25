@@ -41,7 +41,7 @@ const { ids, styles } = StyleSheet.create({
   text_title_style: {
     fontSize: 16.33,
     lineHeight: 23,
-    fontFamily: "PoppinsBold",
+    fontFamily: "Montserrat-Bold",
     "@media (min-width: 800px)": {
       fontSize: 18.33,
       lineHeight: 25,
@@ -83,7 +83,7 @@ const { ids, styles } = StyleSheet.create({
     },
   },
   button_label_style: {
-    fontFamily: "ProximaNovaSemiBold",
+    fontFamily: "Montserrat-SemiBold",
     fontSize: 13,
     lineHeight: 15,
     "@media (min-width: 996px)": {
@@ -110,7 +110,7 @@ const { ids, styles } = StyleSheet.create({
   item_t_title_style: {
     fontSize: 14,
     lineHeight: 16,
-    fontFamily: "PoppinsSemiBold",
+    fontFamily: "Montserrat-SemiBold",
     "@media (min-width: 800px)": {
       fontSize: 15,
       lineHeight: 17,
@@ -119,7 +119,7 @@ const { ids, styles } = StyleSheet.create({
   item_t_subtitle_style: {
     fontSize: 13,
     lineHeight: 15,
-    fontFamily: "PoppinsRegular",
+    fontFamily: "Montserrat",
     "@media (min-width: 800px)": {
       fontSize: 14,
       lineHeight: 16,

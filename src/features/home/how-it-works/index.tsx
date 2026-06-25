@@ -23,7 +23,7 @@ export default function HowItWorks() {
       dataSet={{ media: ids.v_howitworks }}
     >
       <Text
-        fontFamily="PoppinsSemiBold"
+        fontFamily="Montserrat-SemiBold"
         color="yellow"
         style={styles.t_howitworks}
         dataSet={{ media: ids.t_howitworks }}
@@ -31,7 +31,7 @@ export default function HowItWorks() {
         HOW IT WORKS
       </Text>
       <Text
-        fontFamily="PoppinsRegular"
+        fontFamily="Montserrat"
         color="text"
         style={styles.t_hiw_description}
         dataSet={{ media: ids.t_hiw_description }}
@@ -55,7 +55,7 @@ export default function HowItWorks() {
           >
             <Text
               color="textDark"
-              fontFamily="PoppinsBold"
+              fontFamily="Montserrat-Bold"
               style={styles.t_claim}
               dataSet={{ media: ids.t_claim }}
             >
@@ -64,7 +64,7 @@ export default function HowItWorks() {
           </Button>
           <Text
             color="text"
-            fontFamily="PoppinsMedium"
+            fontFamily="Montserrat-Medium"
             style={styles.t_notes}
             dataSet={{ media: ids.t_notes }}
           >
@@ -97,7 +97,7 @@ const Item = (props: ItemProps) => {
         colors={["#334F98", "#172C60"]}
       >
         <Text
-          fontFamily="PoppinsBold"
+          fontFamily="Montserrat-Bold"
           style={styles.item_number}
           dataSet={{ media: ids.item_number }}
         >
@@ -106,7 +106,7 @@ const Item = (props: ItemProps) => {
       </LinearGradient>
       <View>
         <Text
-          fontFamily="PoppinsSemiBold"
+          fontFamily="Montserrat-SemiBold"
           color="yellow"
           style={styles.t_title}
           dataSet={{ media: ids.t_title }}
@@ -114,7 +114,7 @@ const Item = (props: ItemProps) => {
           {props.title}
         </Text>
         <Text
-          fontFamily="PoppinsRegular"
+          fontFamily="Montserrat"
           color="text"
           style={styles.t_description}
           dataSet={{ media: ids.t_description }}

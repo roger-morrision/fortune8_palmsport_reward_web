@@ -44,7 +44,7 @@ const { ids, styles } = StyleSheet.create({
     borderRadius: 6,
     alignItems: "center",
     justifyContent: "center",
-    fontFamily: "PoppinsBold",
+    fontFamily: "Montserrat-Bold",
     fontSize: 18,
     lineHeight: 20,
     "@media (min-width: 800px)": {
@@ -55,7 +55,7 @@ const { ids, styles } = StyleSheet.create({
     },
   },
   login_label_style: {
-    fontFamily: "PoppinsMedium",
+    fontFamily: "Montserrat-Medium",
     fontSize: 18,
     lineHeight: 20,
     "@media (min-width: 800px)": {

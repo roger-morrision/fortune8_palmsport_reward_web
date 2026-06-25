@@ -21,10 +21,10 @@ export default function PalmsPlayRewards() {
         resizeMode="stretch"
       />
       <View style={styles.right_wrap}>
-        <Text fontFamily="PoppinsSemiBold" color="yellow" style={styles.t_rewards}>
+        <Text fontFamily="Montserrat-SemiBold" color="yellow" style={styles.t_rewards}>
           Crypto Redemption – Coming Soon
         </Text>
-        <Text fontFamily="PoppinsRegular" color="text" style={styles.t_description}>
+        <Text fontFamily="Montserrat" color="text" style={styles.t_description}>
           Turn your SweepsCoins into crypto and unlock a new way to get rewarded. Exchange your
           coins and watch your crypto balance grow.
         </Text>

@@ -6,7 +6,6 @@ import Categories from "./categories";
 import DisplayItem from "./display-item";
 import GotoGambly from "../home/go-to-gambly";
 import View from "@/src/common/components/View";
-import ConnectUs from "../home/connect-with-us";
 import Text from "@/src/common/components/Text";
 import StyleSheet from "react-native-media-query";
 import Button from "@/src/common/components/Button";

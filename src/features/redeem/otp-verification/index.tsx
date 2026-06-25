@@ -123,11 +123,11 @@ export default function OTPVerification() {
       />
       <View style={styles.v_redeem_container} dataSet={{ media: ids.v_redeem_container }}>
         <SVGIcon name="email-sent" {...size} />
-        <Text fontFamily="PoppinsBold" style={styles.t_verify} dataSet={{ media: ids.t_verify }}>
+        <Text fontFamily="Montserrat-Bold" style={styles.t_verify} dataSet={{ media: ids.t_verify }}>
           Verify your account to continue
         </Text>
         <Text
-          fontFamily="PoppinsLight"
+          fontFamily="Montserrat-Light"
           color="closeColor"
           style={styles.t_description}
           dataSet={{ media: ids.t_description }}
@@ -166,7 +166,7 @@ export default function OTPVerification() {
           ) : (
             <Text
               color="textDark"
-              fontFamily="PoppinsSemiBold"
+              fontFamily="Montserrat-SemiBold"
               style={styles.button_label}
               dataSet={{ media: ids.button_label }}
             >

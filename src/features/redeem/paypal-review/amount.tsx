@@ -11,19 +11,19 @@ export default function AmountDetails() {
 
   return (
     <View style={styles.container} dataSet={{ media: ids.container }}>
-      <Text fontFamily="PoppinsBold" style={styles.t_description}>
+      <Text fontFamily="Montserrat-Bold" style={styles.t_description}>
         Redemption Details:
       </Text>
       <View style={styles.v_divider} />
       <Text color="placeholder" style={styles.t_user}>
         Amount:{"        "}
-        <Text color="text" fontFamily="PoppinsBold" style={{ color: "#FBE18A" }}>
+        <Text color="text" fontFamily="Montserrat-Bold" style={{ color: "#FBE18A" }}>
           SC {numeral(state.goldAmount).format("0,000.00")}
         </Text>
       </Text>
       <Text color="placeholder" style={styles.t_user}>
         Method:{"         "}
-        <Text color="text" fontFamily="PoppinsBold">
+        <Text color="text" fontFamily="Montserrat-Bold">
           {RedeemServiceType[state.serviceType || "INSTANT"]}
         </Text>
       </Text>

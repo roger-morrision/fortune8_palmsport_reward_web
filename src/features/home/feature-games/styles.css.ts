@@ -26,7 +26,7 @@ const { ids, styles } = StyleSheet.create({
   },
 
   header_title_style: {
-    fontFamily: "PoppinsBold",
+    fontFamily: "Montserrat-Bold",
     fontSize: 16,
     lineHeight: 28,
   },
@@ -72,7 +72,7 @@ const { ids, styles } = StyleSheet.create({
     },
   },
   title_style: {
-    fontFamily: "PoppinsBold",
+    fontFamily: "Montserrat-Bold",
     fontSize: 22,
     lineHeight: 25,
     "@media (max-width: 800px)": {
@@ -81,7 +81,7 @@ const { ids, styles } = StyleSheet.create({
     },
   },
   description_style: {
-    fontFamily: "PoppinsRegular",
+    fontFamily: "Montserrat",
     fontSize: 15,
     lineHeight: 20,
     "@media (max-width: 800px)": {

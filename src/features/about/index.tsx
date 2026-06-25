@@ -1,11 +1,10 @@
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import Screen from "@/src/common/components/Screen";
 import View from "@/src/common/components/View";
 import { ABOUT_LIST } from "@/src/constants/Objects";
 import { useLocalSearchParams } from "expo-router";
 import { ScrollView } from "react-native";
 import StyleSheet from "react-native-media-query";
-import ConnectUs from "../home/connect-with-us";
 import Footer from "../home/footer";
 import GotoGambly from "../home/go-to-gambly";
 import Categories from "./categories";
@@ -38,7 +37,6 @@ function AboutPage() {
         </Screen>
         <View style={styles.footer} dataSet={{ media: ids.footer }}>
           <GotoGambly />
-          <ConnectUs />
           <Footer />
         </View>
       </ScrollView>

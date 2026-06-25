@@ -73,7 +73,7 @@ function KYCSection() {
         <View>
           <Text
             color="text"
-            fontFamily="PoppinsSemiBold"
+            fontFamily="Montserrat-SemiBold"
             style={styles.text_title}
             dataSet={{ media: ids.text_title }}
           >
@@ -92,7 +92,7 @@ function KYCSection() {
         >
           <Text
             color={"textDark"}
-            fontFamily="PoppinsSemiBold"
+            fontFamily="Montserrat-SemiBold"
             style={styles.text_style}
             dataSet={{ media: ids.text_style }}
           >

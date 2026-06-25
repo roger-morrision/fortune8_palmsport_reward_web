@@ -48,7 +48,7 @@ const { ids, styles } = StyleSheet.create({
     height: 56,
   },
   name_style: {
-    fontFamily: "PoppinsMedium",
+    fontFamily: "Montserrat-Medium",
     fontSize: 14,
     lineHeight: 16,
   },

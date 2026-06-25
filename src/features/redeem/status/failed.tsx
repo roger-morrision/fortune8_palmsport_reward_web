@@ -19,11 +19,11 @@ export default function RequestFailed() {
   return (
     <View style={styles.v_redeem_container} dataSet={{ media: ids.v_redeem_container }}>
       <SVGIcon name="failed" {...size} />
-      <Text fontFamily="PoppinsBold" style={styles.t_verify} dataSet={{ media: ids.t_verify }}>
+      <Text fontFamily="Montserrat-Bold" style={styles.t_verify} dataSet={{ media: ids.t_verify }}>
         Uh oh! Something is not right!
       </Text>
       <Text
-        fontFamily="PoppinsLight"
+        fontFamily="Montserrat-Light"
         color="closeColor"
         style={styles.t_description}
         dataSet={{ media: ids.t_description }}
@@ -39,7 +39,7 @@ export default function RequestFailed() {
       >
         <Text
           color="textDark"
-          fontFamily="PoppinsSemiBold"
+          fontFamily="Montserrat-SemiBold"
           style={styles.button_label}
           dataSet={{ media: ids.button_label }}
         >
@@ -52,7 +52,7 @@ export default function RequestFailed() {
         dataSet={{ media: ids.button_home_style }}
       >
         <Text
-          fontFamily="PoppinsSemiBold"
+          fontFamily="Montserrat-SemiBold"
           style={styles.button_label}
           dataSet={{ media: ids.button_label }}
         >

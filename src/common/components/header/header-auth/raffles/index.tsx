@@ -55,7 +55,7 @@ const Raffles = () => {
         <View style={styles.v_country}>
           <Text color={isActive ? "button" : "text"}
             suppressHighlighting
-            fontFamily="PoppinsMedium"
+            fontFamily="Montserrat-Medium"
             style={styles.t_label}
             >
             {t("header.raffles")}

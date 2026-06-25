@@ -66,7 +66,7 @@ export default function BankReview() {
             {isPending ? (
               <ActivityIndicator animating size={"small"} color="textDark" />
             ) : (
-              <Text fontFamily="PoppinsSemiBold" color="textDark" style={styles.button_label}>
+              <Text fontFamily="Montserrat-SemiBold" color="textDark" style={styles.button_label}>
                 Confirm and Continue
               </Text>
             )}
@@ -77,7 +77,7 @@ export default function BankReview() {
             borderColor={"goldFlatBorder"}
             style={styles.button_back}
           >
-            <Text fontFamily="PoppinsSemiBold" color="text" style={styles.button_label}>
+            <Text fontFamily="Montserrat-SemiBold" color="text" style={styles.button_label}>
               Back to Edit
             </Text>
           </Button>

@@ -114,7 +114,7 @@ const { ids, styles } = StyleSheet.create({
   },
   label_style: {
     textTransform: "capitalize",
-    fontFamily: "PoppinsRegular",
+    fontFamily: "Montserrat",
     fontSize: 12,
     lineHeight: 15,
     color: "#98A7B5",

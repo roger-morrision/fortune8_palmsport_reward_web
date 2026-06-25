@@ -68,7 +68,7 @@ export default function CancelRequestConfirmation(props: Props) {
           <View style={styles.v_redeem_container} dataSet={{ media: ids.v_redeem_container }}>
             <SVGIcon name="warning" />
             <Text
-              fontFamily="PoppinsBold"
+              fontFamily="Montserrat-Bold"
               color="yellowThick"
               style={styles.t_verify}
               dataSet={{ media: ids.t_verify }}
@@ -76,7 +76,7 @@ export default function CancelRequestConfirmation(props: Props) {
               Cancel Request
             </Text>
             <Text
-              fontFamily="PoppinsLight"
+              fontFamily="Montserrat-Light"
               style={styles.t_description}
               dataSet={{ media: ids.t_description }}
             >
@@ -93,7 +93,7 @@ export default function CancelRequestConfirmation(props: Props) {
               ) : (
                 <Text
                   color="textDark"
-                  fontFamily="PoppinsSemiBold"
+                  fontFamily="Montserrat-SemiBold"
                   style={styles.button_label}
                   dataSet={{ media: ids.button_label }}
                 >
@@ -107,7 +107,7 @@ export default function CancelRequestConfirmation(props: Props) {
               dataSet={{ media: ids.button_cancel_style }}
             >
               <Text
-                fontFamily="PoppinsSemiBold"
+                fontFamily="Montserrat-SemiBold"
                 style={styles.button_label}
                 dataSet={{ media: ids.button_label }}
               >

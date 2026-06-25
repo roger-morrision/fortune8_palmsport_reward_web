@@ -1,4 +1,3 @@
-import Colors from "@/src/constants/Colors";
 import StyleSheet from "react-native-media-query";
 
 const { ids, styles } = StyleSheet.create({
@@ -14,6 +13,7 @@ const { ids, styles } = StyleSheet.create({
     },
   },
 
+  // Desktop: horizontal table row
   r_style: {
     gap: 4,
     minHeight: 60,
@@ -27,6 +27,54 @@ const { ids, styles } = StyleSheet.create({
     flex: 1,
     alignItems: "center",
   },
+  text_style: {
+    fontSize: 16,
+    lineHeight: 20,
+    color: "#D6D6D6",
+    "@media (max-width: 1600px) and (min-width: 992px)": {
+      fontSize: 14,
+      lineHeight: 18,
+    },
+    "@media (max-width: 850px)": {
+      fontSize: 14,
+      lineHeight: 18,
+    },
+  },
+
+  // Mobile: card layout
+  card: {
+    backgroundColor: "#0D1A4A",
+    borderWidth: 1,
+    borderColor: "#1C3470",
+    borderRadius: 10,
+    padding: 16,
+    marginBottom: 10,
+  },
+  card_row: {
+    flexDirection: "row",
+    marginTop: 10,
+  },
+  card_cell: {
+    flex: 1,
+    flexDirection: "row",
+    flexWrap: "wrap",
+    alignItems: "center",
+    gap: 4,
+  },
+  card_label: {
+    fontSize: 13,
+    lineHeight: 18,
+    color: "#7791BA",
+    fontFamily: "Montserrat",
+  },
+  card_value: {
+    fontSize: 13,
+    lineHeight: 18,
+    color: "#FFFFFF",
+    fontFamily: "Montserrat-SemiBold",
+  },
+
+  // Kept for reference — unused
   pending_status: {
     paddingVertical: 1,
     paddingHorizontal: 5,
@@ -42,48 +90,16 @@ const { ids, styles } = StyleSheet.create({
     paddingHorizontal: 5,
     borderRadius: 4,
   },
-  c_text_style: {
-    fontSize: 14,
-    fontFamily: "IBMPlexSans",
-    "@media (max-width: 768px)": {
-      fontSize: 11,
-      lineHeight: 12,
-    },
-  },
   v_center: {
     flex: 1,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
   },
-  actions_icon: {
-    height: 18,
-    width: 18,
-    marginRight: 8,
-    "@media (max-width: 768px)": {
-      height: 12,
-      width: 12,
-    },
-  },
   row_last: {
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10,
     zIndex: 5,
-  },
-
-
-  text_style: {
-    fontSize: 16,
-    lineHeight: 20,
-    color: "#D6D6D6",
-    "@media (max-width: 1600px) and (min-width: 992px)": {
-      fontSize: 14,
-      lineHeight: 18,
-    },
-    "@media (max-width: 850px)": {
-      fontSize: 14,
-      lineHeight: 18,
-    },
   },
 });
 

@@ -54,7 +54,7 @@ export default function KYCVerification(props: Props) {
     <View style={styles.v_redeem_container} dataSet={{ media: ids.v_redeem_container }}>
       <Image style={{ ...size }} source={{ uri: images?.["kyc-icon"].uri }} resizeMode="contain" />
       <Text
-        fontFamily="PoppinsBold"
+        fontFamily="Montserrat-Bold"
         color="yellowThick"
         style={styles.t_verify}
         dataSet={{ media: ids.t_verify }}
@@ -62,7 +62,7 @@ export default function KYCVerification(props: Props) {
         KYC Verification Required
       </Text>
       <Text
-        fontFamily="PoppinsLight"
+        fontFamily="Montserrat-Light"
         style={styles.t_description}
         dataSet={{ media: ids.t_description }}
       >
@@ -99,7 +99,7 @@ export default function KYCVerification(props: Props) {
       >
         <Text
           color="textDark"
-          fontFamily="PoppinsSemiBold"
+          fontFamily="Montserrat-SemiBold"
           style={styles.button_label}
           dataSet={{ media: ids.button_label }}
         >
@@ -112,7 +112,7 @@ export default function KYCVerification(props: Props) {
         dataSet={{ media: ids.button_home_style }}
       >
         <Text
-          fontFamily="PoppinsSemiBold"
+          fontFamily="Montserrat-SemiBold"
           style={styles.button_label}
           dataSet={{ media: ids.button_label }}
         >

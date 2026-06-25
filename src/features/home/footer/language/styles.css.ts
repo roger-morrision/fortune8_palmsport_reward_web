@@ -3,10 +3,11 @@ import { StyleSheet } from "react-native";
 const useStyles = StyleSheet.create(
   {
     v_fbandsound: {
-      zIndex: 5,
+      zIndex: 555,
       alignItems: "center",
       flexDirection: "row",
       justifyContent: "space-between",
+      // overflow: "hidden"
     },
     row_container: {
       flexDirection: "row", marginLeft: "4%", gap: "9%", 

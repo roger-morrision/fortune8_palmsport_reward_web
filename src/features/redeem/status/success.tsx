@@ -20,7 +20,7 @@ function Success() {
         color={"text"}
         style={styles.title_style}
         dataSet={{ media: ids.title_style }}
-        fontFamily="PoppinsMedium"
+        fontFamily="Montserrat-Medium"
       >
         Purchase Successful!
       </Text>
@@ -28,7 +28,7 @@ function Success() {
         color={"closeColor"}
         style={styles.text_style}
         dataSet={{ media: ids.text_style }}
-        fontFamily="PoppinsRegular"
+        fontFamily="Montserrat"
       >
         Thank you for your purchase. Your package has been added to your account.
       </Text>
@@ -48,7 +48,7 @@ function Success() {
           color={"textDark"}
           style={styles.login_label_style}
           dataSet={{ media: ids.login_label_style }}
-          fontFamily="PoppinsMedium"
+          fontFamily="Montserrat-Medium"
         >
           Back to Lobby
         </Text>

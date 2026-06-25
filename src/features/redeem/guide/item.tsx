@@ -48,7 +48,7 @@ function Item(props: Props) {
         dataSet={{ media: ids.steps_style }}
         strokeWidth={config.stroke}
         fontSize={config.fontSize}
-        fontFamily="PoppinsBoldItalic"
+        fontFamily="Montserrat-Bold"
         strokeColors={["#102268", "#102268"]}
         fillColors={["#FFEEB8", "#CCA016"]}
         offsetFillColors={[0, 1]}
@@ -59,7 +59,7 @@ function Item(props: Props) {
           style={[styles.linear_container]}
         />
         <Text
-          fontFamily="PoppinsBold"
+          fontFamily="Montserrat-Bold"
           style={[
             styles.tier_style,
             { fontSize: FONT_SIZE, lineHeight: LINE_HEIGHT, bottom: ITEM_HEIGHT * 0.1 },

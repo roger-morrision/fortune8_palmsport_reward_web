@@ -18,7 +18,6 @@ import _ from "lodash";
 import React, { useEffect, useState } from "react";
 import { ScrollView } from "react-native";
 import validator from "validator";
-import ConnectUs from "../home/connect-with-us";
 import Footer from "../home/footer";
 import GotoGambly from "../home/go-to-gambly";
 import { ids, styles } from "./styles.css";
@@ -145,7 +144,7 @@ function ContactUsPage() {
               {isPending ? (
                 <ActivityIndicator animating size={"small"} color="textDark" />
               ) : (
-                <Text color="textDark" fontFamily="PoppinsSemiBold" style={styles.button_label}>
+                <Text color="textDark" fontFamily="Montserrat-SemiBold" style={styles.button_label}>
                   Submit
                 </Text>
               )}
@@ -154,7 +153,6 @@ function ContactUsPage() {
 
           <View style={styles.footer} dataSet={{ media: ids.footer }}>
             <GotoGambly />
-            <ConnectUs />
             <Footer />
           </View>
         </View>

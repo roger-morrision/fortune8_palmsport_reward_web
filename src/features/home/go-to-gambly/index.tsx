@@ -23,7 +23,7 @@ export default function GotoGambly() {
         />
         <View style={styles.right_wrap}>
           <Text
-            fontFamily="PoppinsSemiBold"
+            fontFamily="Montserrat-SemiBold"
             color="text"
             style={styles.t_title}
             dataSet={{ media: ids.t_title }}
@@ -31,7 +31,7 @@ export default function GotoGambly() {
             Go to Gambly
           </Text>
           <Text
-            fontFamily="PoppinsLight"
+            fontFamily="Montserrat-Light"
             color="text"
             style={styles.t_description}
             dataSet={{ media: ids.t_description }}
@@ -48,7 +48,7 @@ export default function GotoGambly() {
           >
             <Text
               color="textDark"
-              fontFamily="PoppinsBold"
+              fontFamily="Montserrat-Bold"
               style={styles.t_claim}
               dataSet={{ media: ids.t_claim }}
             >
