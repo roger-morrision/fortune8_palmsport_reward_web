@@ -43,7 +43,7 @@ const SignLandingPage = () => {
   }, [email, password]);
   
 
-  if (!showOTP) {
+  if (showOTP) {
     return (
       <BGSplash>
         <OTPVerification

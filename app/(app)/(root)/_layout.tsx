@@ -1,6 +1,6 @@
 import HeaderAuthScreen from "@/src/common/components/header/header-auth";
-import Colors from "@/src/constants/Colors";
 import { NativeStackNavigationOptions, Stack } from "expo-router";
+import Colors from "@/src/constants/Colors";
 
 export default function RootLayout() {
   return (
