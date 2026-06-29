@@ -1,7 +1,5 @@
-// components/CustomTabBar.tsx
 import { filterTabRoutes } from "@/src/common/utils/transform-helper";
 import SVGIcon from "@/src/constants/SVGIcon";
-import React from "react";
 import { TouchableOpacity } from "react-native";
 import StyleSheet from "react-native-media-query";
 import Text from "../Text";
@@ -43,28 +41,6 @@ export default function CustomTabBar({ state, descriptors, navigation }: CustomT
             navigation.navigate(route.name);
           }
         };
-
-        if (route.name === "index") {
-          return (
-            <TouchableOpacity key={route.key} onPress={onPress} style={styles.tab_home}>
-              <View>
-                <SVGIcon
-                  name={iconName}
-                  fill={isFocused ? options.tabBarActiveTintColor : "#98A7B5"}
-                  {...{ width: 62, height: 62 }}
-                />
-              </View>
-              <Text
-                style={[
-                  styles.label_style,
-                  { color: isFocused ? options.tabBarActiveTintColor : "#98A7B5" },
-                ]}
-              >
-                {label}
-              </Text>
-            </TouchableOpacity>
-          );
-        }
 
         return (
           <TouchableOpacity key={route.key} onPress={onPress} style={styles.tab}>

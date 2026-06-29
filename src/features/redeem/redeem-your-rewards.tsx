@@ -177,7 +177,7 @@ export default function RedeemYourRewards() {
           Fees and charges apply.{"\n"}Read our{" "}
           <Text
             style={{ color: "#FBE18A" }}
-            onPress={() => router.push("/(stack)/about/terms-and-conditions")}
+            onPress={() => router.push("/(tabs)/about/terms-and-conditions")}
           >
             Terms and Conditions
           </Text>{" "}

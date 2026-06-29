@@ -12,6 +12,17 @@ const { ids, styles } = StyleSheet.create({
       marginTop: 20,
     },
   },
+  t_title: {
+    fontSize: 24,
+    lineHeight: 30,
+    marginBottom: 21,
+  },
+  v_seperator: {
+    height: 0,
+    "@media (max-width: 768px)": {
+      height: 21,
+    },
+  },
 
   // Desktop: horizontal table row
   r_style: {
@@ -48,7 +59,6 @@ const { ids, styles } = StyleSheet.create({
     borderColor: "#1C3470",
     borderRadius: 10,
     padding: 16,
-    marginBottom: 10,
   },
   card_row: {
     flexDirection: "row",
@@ -100,6 +110,19 @@ const { ids, styles } = StyleSheet.create({
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10,
     zIndex: 5,
+  },
+
+  t_label: {
+    fontSize: 14,
+    lineHeight: 16,
+  },
+  t_status: {
+    fontSize: 12,
+    lineHeight: 12,
+    "@media (max-width: 800px)": {
+      fontSize: 12,
+      lineHeight: 14,
+    },
   },
 });
 

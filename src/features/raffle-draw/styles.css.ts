@@ -17,6 +17,7 @@ const { ids, styles } = StyleSheet.create({
 
   // Two-column row: countdown + ticket select
   v_panels: {
+    zIndex: 2,
     flexDirection: "row",
     gap: 16,
     marginTop: 40,
@@ -25,7 +26,7 @@ const { ids, styles } = StyleSheet.create({
     maxWidth: 1084,
     "@media (max-width: 800px)": {
       flexDirection: "column",
-      gap: 12,
+      gap: 24,
       marginTop: 20,
     },
   },
@@ -38,7 +39,7 @@ const { ids, styles } = StyleSheet.create({
     height: 55,
     "@media (max-width: 800px)": {
       width: "100%",
-      marginTop: 20,
+      marginTop: 24,
       height: 55,
     },
   },

@@ -50,39 +50,38 @@ function AccountDetails() {
         </View>
       </View>
       <View style={styles.divider_containera} />
-        <View style={{ flexDirection: "row" }}>
-          <View style={{ gap: 15, width: "45%" }}>
+        <View style={{ flexDirection: "row", marginTop: 10 }}>
+          <View style={{ gap: 15, flex: 1 }}>
             <Item
-              label="First Name"
+              label="First Name:"
               disabled
               error={""}
               value={state.firstName}
               onChangeText={onDispatch("firstName")}
             />
             <Item
-              label="Last Name"
+              label="Player Name:"
               disabled
-              value={state.lastName}
+              value={state.displayName}
               error={""}
-              onChangeText={onDispatch("lastName")}
+              onChangeText={onDispatch("displayName")}
             />
           </View>
-          <View style={{ gap: 15, width: "55%" }}>
+          <View style={{ gap: 15, flex: 1 }}>
             <Item
-              label="First Name"
-              disabled
-              value={state.firstName}
-              error={""}
-              onChangeText={onDispatch("firstName")}
-            />
-            <Item
-              label="Last Name"
+              label="Last Name:"
               disabled
               value={state.lastName}
               error={""}
               onChangeText={onDispatch("lastName")}
             />
-            
+            <Item
+              label="Player ID:"
+              disabled
+              value={state.id}
+              error={""}
+              onChangeText={onDispatch("id")}
+            />
           </View>
         </View>
     </View>

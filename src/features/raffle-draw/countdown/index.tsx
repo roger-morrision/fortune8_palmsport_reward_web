@@ -36,7 +36,7 @@ export default function Countdown({ targetDate, totalEntries = 0 }: Props) {
   }, []);
 
   return (
-    <View style={styles.container as any} dataSet={{ media: ids.container }}>
+    <View style={styles.container} dataSet={{ media: ids.container }}>
       <Text
         fontFamily="Montserrat-Bold"
         style={styles.t_title}
@@ -90,17 +90,20 @@ export default function Countdown({ targetDate, totalEntries = 0 }: Props) {
 
 const { ids, styles } = StyleSheet.create({
   container: {
-    flex: 1,
-    borderRadius: 10,
-    overflow: "hidden",
+    width: "50%",
     padding: 24,
     borderWidth: 2,
+    borderRadius: 10,
+    overflow: "hidden",
     alignItems: "center",
     borderColor: "#1C3470",
     backgroundColor: "#09183B",
     "@media (max-width: 800px)": {
       borderRadius: 8,
-      padding: 20,
+      paddingLeft: 20,
+      paddingRight: 20,
+      paddingTop: 21,
+      paddingBottom: 31,
       width: "100%",
     },
   },

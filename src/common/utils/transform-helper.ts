@@ -91,7 +91,8 @@ export const compareMissionsBeforeAndAfter = (incompleteArray: any, completedArr
 
 // UPDATE CATEGORIES
 export const filterTabRoutes = (routes: any[]) => {
-  const allowedNames = ["menu", "redeem", "index", "tier-level", "account"];
+  const allowedNames = ["index", "raffle-draw", "draw-result", "account"];
+  console.log("routesroutes", routes)
   return routes.filter((item) => allowedNames.includes(item.name));
 };
 

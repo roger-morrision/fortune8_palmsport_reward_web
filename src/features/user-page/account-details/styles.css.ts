@@ -41,7 +41,7 @@ const { ids, styles } = StyleSheet.create({
     justifyContent: "flex-start",
   },
   text_label: {
-    width: "40%",
+    width: "50%",
     fontFamily: "Montserrat",
     fontSize: 14,
     lineHeight: 16,
@@ -52,7 +52,7 @@ const { ids, styles } = StyleSheet.create({
     },
   },
   text_value: {
-    width: "35%",
+    width: "45%",
     fontFamily: "Montserrat",
     fontSize: 12,
     lineHeight: 16,

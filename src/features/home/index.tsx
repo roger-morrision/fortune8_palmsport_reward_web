@@ -7,7 +7,6 @@ import { ScrollView } from "react-native";
 import CashBack from "./cash-back";
 import HotDeals from "./feature-games";
 import Footer from "./footer";
-import PalmsPlayRewards from "./palmsplay-rewards";
 import GotoGambly from "./go-to-gambly";
 import HowItWorks from "./how-it-works";
 import { ids, styles } from "./styles.css";

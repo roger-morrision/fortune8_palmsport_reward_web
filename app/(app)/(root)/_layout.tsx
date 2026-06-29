@@ -14,7 +14,7 @@ export default function RootLayout() {
         header: () => <HeaderAuthScreen />,
       }}
     >
-      <Stack.Screen name="(drawer)" options={{ headerShown: false }} />
+      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       <Stack.Screen name="(auth)/sign-in" options={{ headerShown: false }} />
       <Stack.Screen name="(modal)/auth/login" options={getTransitionModalOptions()} />
       <Stack.Screen name="(modal)/inbox" options={getTransitionModalOptions()} />

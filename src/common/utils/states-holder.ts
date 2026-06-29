@@ -37,6 +37,7 @@ export const SEND_MESSAGE = {
 };
 
 export const CHANGE_USER_DETAILS_STATES = {
+  id: "",
   dropdownKey: "",
   // "countryId": null as any,
   // "countryId": 0,

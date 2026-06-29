@@ -73,10 +73,10 @@ function HeaderAuthScreen() {
           <Text
             suppressHighlighting
             fontFamily="Montserrat-Medium"
-            onPress={() => router.navigate("/(stack)/user-profile")}
+            onPress={() => router.navigate("/(tabs)/account")}
             style={[styles.t_center_menu]}
             dataSet={{ media: ids.t_center_menu }}
-            color={routeToPathname("/(stack)/user-profile") === pathname ? "button" : "text"}
+            color={routeToPathname("/(tabs)/account") === pathname ? "button" : "text"}
           >
             {t("header.myaccount")}
           </Text>

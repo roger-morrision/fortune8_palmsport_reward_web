@@ -60,12 +60,14 @@ const { ids, styles } = StyleSheet.create({
     width: "100%",
     maxWidth: 1084,
     marginTop: 24,
+    marginBottom: 25,
     borderWidth: 2,
     borderColor: "#1C3470",
     backgroundColor: "#051338",
     "@media (max-width: 800px)": {
       borderRadius: 8,
-      marginTop: 16,
+      marginTop: 48,
+      marginBottom: 40,
     },
   },
   gradient: {

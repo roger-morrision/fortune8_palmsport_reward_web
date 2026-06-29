@@ -5,6 +5,8 @@ import { ids, styles } from "./styles.css";
 import { DataRowItem, HeaderItem } from "./types";
 import { FlatList, ListRenderItemInfo } from "react-native";
 import { useBreakpoint } from "@/src/constants/BreakPoint";
+import View from "@/src/common/components/View";
+import Text from "@/src/common/components/Text";
 
 export const TABLE_HEAD_DASHBOARD_DOCUMENTS: HeaderItem[] = [
   { id: "name",             label: "Promotion",      sortable: false, cellStyle: { flex: 1 } },
@@ -33,8 +35,9 @@ const DataTableRow = () => {
       ListHeaderComponent={
         !isMobile ? (
           <DataTableHeader headers={TABLE_HEAD_DASHBOARD_DOCUMENTS} />
-        ) : null
+        ) : <Text fontFamily="Montserrat-SemiBold" style={styles.t_title} dataSet={{ media: ids.t_title }}>Promo Entries</Text>
       }
+      ItemSeparatorComponent={<View style={styles.v_seperator} dataSet={{ media: ids.v_seperator }}/>}
       keyExtractor={(_item, index) => `r_index${index}`}
       renderItem={({ item, index }: ListRenderItemInfo<DataRowItem>) => (
         <DataItem

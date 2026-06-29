@@ -8,17 +8,17 @@ export const Settings: CategoriesValues = [
   {
     svg: "account-how-to-play",
     name: "Sweepstakes Rules",
-    route: "/(stack)/about/sweepstakes-rules",
+    route: "/(tabs)/about/sweepstakes-rules",
   },
   {
     svg: "account-terms",
     name: "Terms & Conditions",
-    route: "/(stack)/about/terms-and-conditions",
+    route: "/(tabs)/about/terms-and-conditions",
   },
   {
     svg: "account-privacy",
     name: "Privacy Policy",
-    route: "/(stack)/about/privacy-policy",
+    route: "/(tabs)/about/privacy-policy",
   },
   {
     svg: "account-support",
@@ -54,11 +54,11 @@ export type RaffleValue = {
 export const Raffles: RaffleValue[] = [
   {
     name: "r-raffle-draw",
-    route: "/(stack)/raffle-draw",
+    route: "/(tabs)/raffle-draw",
   },
   {
     name: "r-draw-result",
-    route: "/(stack)/draw-result",
+    route: "/(tabs)/draw-result",
   }
 ];
 
@@ -66,37 +66,37 @@ export const AUTHSettings: CategoriesValues = [
   {
     svg: "account-redeem",
     name: "Redeem",
-    route: "/(stack)/redeem",
+    route: "/(tabs)/redeem",
   },
   {
     svg: "account-me",
     name: "My Account",
-    route: "/(stack)/user-profile",
+    route: "/(tabs)/user-profile",
   },
   {
     svg: "account-transactions",
     name: "Transactions",
-    route: "/(stack)/transactions",
+    route: "/(tabs)/transactions",
   },
   {
     svg: "account-how-to-play",
     name: "Sweepstakes Rules",
-    route: "/(stack)/about/sweepstakes-rules",
+    route: "/(tabs)/about/sweepstakes-rules",
   },
   {
     svg: "account-terms",
     name: "Terms & Conditions",
-    route: "/(stack)/about/terms-and-conditions",
+    route: "/(tabs)/about/terms-and-conditions",
   },
   {
     svg: "account-privacy",
     name: "Privacy Policy",
-    route: "/(stack)/about/privacy-policy",
+    route: "/(tabs)/about/privacy-policy",
   },
   {
     svg: "account-terms",
     name: "Terms & Conditions",
-    route: "/(stack)/about/terms-and-conditions",
+    route: "/(tabs)/about/terms-and-conditions",
   },
   // {
   //   svg: "account-faq",
@@ -106,7 +106,7 @@ export const AUTHSettings: CategoriesValues = [
   {
     svg: "account-support",
     name: "Contact Support",
-    route: "/(stack)/contact-support",
+    route: "/(tabs)/contact-support",
   },
 ];
 

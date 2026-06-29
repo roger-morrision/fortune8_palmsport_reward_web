@@ -6,6 +6,7 @@ import { Pressable } from "react-native";
 import { MaterialIcon } from "@/src/common/components/Icon";
 import StyleSheet from "react-native-media-query";
 import useThemeColor from "@/src/common/hooks/useThemeColor";
+import Select from "@/src/common/components/select";
 
 const TICKET_OPTIONS = [1, 2, 3, 4, 5, 10, 20, 50];
 
@@ -26,41 +27,44 @@ export default function TicketSelect({ pgPerTicket = 0, onConfirm }: Props) {
     <View style={styles.container as any} dataSet={{ media: ids.container }}>
       {/* Ticket selector row */}
       <View style={styles.v_row} dataSet={{ media: ids.v_row }}>
-        <View style={styles.v_col} dataSet={{ media: ids.v_col }}>
-          <Text fontFamily="Montserrat-SemiBold" color="text" style={styles.t_label} dataSet={{ media: ids.t_label }}>
-            Select No. Of Tickets
-          </Text>
-
-          <Pressable
-            style={styles.dropdown_btn}
-            dataSet={{ media: ids.dropdown_btn }}
-            onPress={() => setOpen((v) => !v)}
-          >
-            <Text fontFamily="Montserrat" color="text" style={styles.t_dropdown_val}>
-              {tickets ?? "-"}
-            </Text>
-            <MaterialIcon 
-              disabled name={open ? "expand-less" : "expand-more"}
-              style={styles.dropdown_arrow}
-              size={22} color="closeColor" />
-          </Pressable>
-
-          {open && (
-            <View style={styles.v_options}>
-              {TICKET_OPTIONS.map((n) => (
+        <Select
+          ids={2}
+          keys={"country"}
+          selectedKey={"dropdownKey"}
+          options={TICKET_OPTIONS}
+          value={tickets ?? "-"}
+          labelKey="name"
+          // inputStyle={[error.state && styles.input_error_style]}
+          onSelected={setTickets}
+          onSelectedKeys={() => {}}
+          renderBase={(props) => {
+            return (
+              <View style={styles.v_col} dataSet={{ media: ids.v_col }}>
+                <Text fontFamily="Montserrat-SemiBold" color="text" style={styles.t_label} dataSet={{ media: ids.t_label }}>
+                  Select No. Of Tickets
+                </Text>
                 <Pressable
-                  key={n}
-                  style={[styles.option_item, tickets === n && styles.option_selected]}
-                  onPress={() => { setTickets(n); setOpen(false); }}
+                  style={styles.dropdown_btn}
+                  dataSet={{ media: ids.dropdown_btn }}
+                  // onPress={() => setOpen((v) => !v)}
+                  onPress={() => {
+                    props.setVisible(!props.isVisible);
+                    props.setFocus(false);
+                  }}
                 >
-                  <Text fontFamily="Montserrat" color={tickets === n ? "button" : "text"} style={styles.t_option}>
-                    {n}
+                  <Text fontFamily="Montserrat" color="text" style={styles.t_dropdown_val}>
+                    {tickets ?? "-"}
                   </Text>
+                  <MaterialIcon 
+                    disabled name={open ? "expand-less" : "expand-more"}
+                    style={styles.dropdown_arrow}
+                    size={22} color="closeColor" />
                 </Pressable>
-              ))}
-            </View>
-          )}
-        </View>
+              </View>
+            )
+          }}
+        />
+        
 
         <View style={styles.v_col} dataSet={{ media: ids.v_col }}>
           <Text fontFamily="Montserrat-SemiBold" color="text" style={styles.t_label} dataSet={{ media: ids.t_label }}>
@@ -111,18 +115,20 @@ const { ids, styles } = StyleSheet.create({
     borderRadius: 10,
   },
   v_row: {
-    zIndex: 1,
-    flexDirection: "row",
     gap: 16,
+    zIndex: 11,
+    flexDirection: "row",
     "@media (max-width: 800px)": {
       flexDirection: "column",
       gap: 0,
+      width: "50%",
+      alignSelf: "center",
     },
   },
   v_col: {
     flex: 1,
     "@media (max-width: 800px)": {
-      flex: 0,
+      // flex: 0,
       marginTop: 16,
     },
   },

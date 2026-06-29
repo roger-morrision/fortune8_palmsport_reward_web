@@ -116,11 +116,12 @@ type KYC =
 
 type REDEEM = "redeem-bank" | "redeem-paypal" | "redeem-instant-pay";
 
+type TABS = "home" | "raffle-draw" | "draw-result" | "account";
+
 export type SVGName =
+  TABS 
   | "menu"
   | "redeem"
-  | "home"
-  | "account"
   | "tier-level"
   | "gift"
   | "upload"
@@ -163,16 +164,22 @@ export interface IconProps extends SvgProps {
 const SVGIcon = (props: IconProps) => {
   const { name, width, height } = props;
   switch (name) {
+    // TABS
     case "home":
-      return <Home width={width || 62} height={height || 63} {...props} />;
+      return <Home width={width || 19} height={height || 20} {...props} />;
     case "menu":
       return <Menu width={width || 26} height={height || 26} {...props} />;
-    case "redeem":
-      return <Redeem width={width || 24} height={height || 23} {...props} />;
-    case "tier-level":
-      return <TierLevel width={width || 25} height={height || 25} {...props} />;
+    case "raffle-draw":
+      return <Redeem width={width || 24} height={height || 24} {...props} />;
+    case "draw-result":
+      return <Redeem width={width || 24} height={height || 24} {...props} />;
     case "account":
       return <Account width={width || 21} height={height || 26} {...props} />;
+
+    case "redeem":
+      return <Redeem width={width || 23} height={height || 23} {...props} />;
+    case "tier-level":
+      return <TierLevel width={width || 25} height={height || 25} {...props} />;
     case "logo-name":
       return <LogoName width={width || 72} height={height || 43} {...props} />;
     case "logo":
