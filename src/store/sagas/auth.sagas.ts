@@ -1,10 +1,10 @@
 import { SagaIterator } from "@redux-saga/core";
 import { router } from "expo-router";
 import * as Location from "expo-location";
-import { call, put, takeEvery } from "redux-saga/effects";
-import { authActions } from "../slices/auth.slice";
+import { call, put, select, takeEvery } from "redux-saga/effects";
+import { authActions, selectAuthSession } from "../slices/auth.slice";
 import { forgotActions } from "../slices/forgot.slice";
-import { userActions } from "../slices/user.slice";
+import { selectedUserSession, userActions } from "../slices/user.slice";
 import { AuthService } from "@/src/api/services/auth.service";
 import * as Types from "@/src/store/types";
 import { UserService } from "@/src/api/services/user.service";
@@ -26,7 +26,20 @@ function* handleSignin(action: { type: string; payload: Types.Login }): SagaIter
     }
     const session = yield call(AuthService.login, payload);
 
-    yield put(authActions.loginSuccess(session));
+    yield put(authActions.otpRequest(session));
+  } catch (error: any) {
+    yield put(authActions.loginFailure(error));
+  }
+}
+
+function* handleOTPVerify(action: { type: string; payload: string }): SagaIterator {
+  try {
+    const payload = action.payload;
+    const auth = yield select(selectAuthSession);
+
+    const session = yield call(AuthService.otpVerify, { email: auth?.email, otpCode: payload});
+
+    yield put(authActions.loginRequest(session));
   } catch (error: any) {
     yield put(authActions.loginFailure(error));
   }
@@ -139,6 +152,7 @@ function* handleLogout(): SagaIterator {
 // Watcher Saga
 function* authWatcherSaga(): SagaIterator {
   yield takeEvery(authActions.loginRequest.type, handleSignin);
+  yield takeEvery(authActions.otpVerify.type, handleOTPVerify);
   yield takeEvery(authActions.loginGoogleRequest.type, handleSignInWithGoogle);
   yield takeEvery(authActions.loginFBRequest.type, handleSignInWithFacebook);
   yield takeEvery(forgotActions.forgotRequest.type, handleForgotpassword);

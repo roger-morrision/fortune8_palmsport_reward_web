@@ -101,7 +101,7 @@ function Footer({ onLayout }: any) {
             </Text>
             <Text
               selectable={false}
-              onPress={() => onScroll("howItWorks")}
+              onPress={() => router.navigate("/contact-support")}
               style={styles.t_note_subtitle}
               dataSet={{ media: ids.t_note_subtitle }}
             >

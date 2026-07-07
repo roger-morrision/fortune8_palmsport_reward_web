@@ -10,6 +10,8 @@ import StyleSheet from "react-native-media-query";
 import Text from "@/src/common/components/Text";
 import View from "@/src/common/components/View";
 import { useTranslation } from "react-i18next";
+import { selectAuthLoggingIn } from "@/src/store/slices/auth.slice";
+import useAppSelector from "@/src/common/hooks/useAppSelector";
 
 const OTP_LENGTH = 6;
 
@@ -18,13 +20,14 @@ type Props = {
   onSubmit?: (code: string) => void;
   onResend?: () => void;
   onBack?: () => void;
-  isLoading?: boolean;
 };
 
-const OTPVerification = ({ images, onSubmit, onResend, isLoading }: Props) => {
+const OTPVerification = ({ images, onSubmit, onResend }: Props) => {
   const { t } = useTranslation();
   const textDark = useThemeColor("textDark");
   const refs = useRef<(TextInput | null)[]>([]);
+  const [error, setError] = useState<string>("");
+  const isLoading = useAppSelector(selectAuthLoggingIn);
   const [digits, setDigits] = useState<string[]>(Array(OTP_LENGTH).fill(""));
 
   const fontSize = useBreakpoint({
@@ -78,6 +81,7 @@ const OTPVerification = ({ images, onSubmit, onResend, isLoading }: Props) => {
 
   const onEnter = () => {
     const code = digits.join("");
+    if(code.length < 6) setError("error");
     if (code.length === OTP_LENGTH) onSubmit?.(code);
   };
 
@@ -130,7 +134,7 @@ const OTPVerification = ({ images, onSubmit, onResend, isLoading }: Props) => {
                 onKeyPress={({ nativeEvent }) => onKeyPress(nativeEvent.key, i)}
                 keyboardType="number-pad"
                 maxLength={1}
-                style={[styles.digit_input, { color: textDark }]}
+                style={[styles.digit_input, { color: textDark }, error && { borderColor: "red"}]}
                 dataSet={{ media: ids.digit_input }}
               />
             ))}

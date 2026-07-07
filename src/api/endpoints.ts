@@ -4,7 +4,8 @@ import * as Types from "@/src/store/types";
 export const API_ENDPOINTS = {
   AUTH: {
     TOKEN: "/authenticate",
-    LOGIN: "/api/v1/user/authenticate",
+    LOGIN: "/api/v1/user/authenticate/otp",
+    OTP_VERIFY: "/api/v1/user/authenticate/otp/verify",
     SOCIAL: "/api/v1/user/social/authenticate",
     REGISTER: `/api/v1/user?type=1&partnerId=${PARTNER_ID}`,
     ACCOUNT_VERIFY: "/api/v1/user/verify",

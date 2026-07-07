@@ -5,16 +5,18 @@ import * as Types from "../types";
 
 interface AuthState {
   loading: boolean;
+  otpRequest: boolean;
   isLoggedIn: boolean;
-  session: any;
   error: any;
-  expiresIn: number;
+  session: Types.SessionValue;
+  expiresAt: number; // absolute timestamp (ms) — NOT a countdown
   errorMessage: string | { message: string };
   isFirstLogin: boolean;
 }
 
 export const initialState: AuthState = {
   loading: false,
+  otpRequest: false,
   isLoggedIn: false,
   errorMessage: "",
   isFirstLogin: false,
@@ -36,9 +38,18 @@ export const authSlice = createSlice({
     loginFBRequest: (state) => {
       state.loading = true;
     },
+    otpRequest: (state, action) => {
+      state.loading = false;
+      state.otpRequest = true;
+      state.session = action.payload;
+    },
+    otpVerify: (state, action: PayloadAction<Partial<string>>) => {
+      state.loading = true;
+    },
     loginSuccess: (state, action) => {
       state.session = action.payload;
-      state.expiresIn = action.payload.refreshTokenExpiresIn;
+      const seconds = action.payload.expiresIn ?? 0;
+      state.expiresAt = Date.now() + seconds * 1000;
       state.error = {} as any;
       state.loading = false;
       state.isLoggedIn = true;
@@ -59,10 +70,8 @@ export const authSlice = createSlice({
     },
     refreshToken: (state, action) => {
       state.session = action.payload;
-      state.expiresIn = action.payload.refreshTokenExpiresIn;
-    },
-    tickExpiresIn: (state) => {
-      if (state.expiresIn > 0) state.expiresIn -= 1;
+      const seconds = action.payload.expiresIn ?? 0;
+      state.expiresAt = Date.now() + seconds * 1000;
     },
     setErrorMessage: (state, action) => {
       state.errorMessage = action.payload;
@@ -85,21 +94,23 @@ export const authActions = {
     payload: params,
   })),
   loginSuccess: authSlice.actions.loginSuccess,
+  otpRequest: authSlice.actions.otpRequest,
+  otpVerify: authSlice.actions.otpVerify,
   loginFailure: authSlice.actions.loginFailure,
   logout: authSlice.actions.logout,
   resetFirstLogin: authSlice.actions.resetFirstLogin,
   resetLoading: authSlice.actions.resetLoading,
   setErrorMessage: authSlice.actions.setErrorMessage,
   refreshToken: authSlice.actions.refreshToken,
-  tickExpiresIn: authSlice.actions.tickExpiresIn,
   syncAuthState: authSlice.actions.syncAuthState,
 };
 
 // Selectors
 export const selectAuthLoggingIn = (state: RootState) => state.auth.loading;
 export const selectAuthLoggedIn = (state: RootState) => state.auth.isLoggedIn;
+export const selectAuthOTPRequest = (state: RootState) => state.auth.otpRequest;
 export const selectAuthSession = (state: RootState) => state.auth.session;
-export const selectAuthExpiresIn = (state: RootState) => state.auth.expiresIn;
+export const selectAuthExpiresAt = (state: RootState) => state.auth.expiresAt;
 export const selectAuthError = (state: RootState) => state.auth.error;
 export const selectAuthFirstLogin = (state: RootState) => state.auth.isFirstLogin;
 

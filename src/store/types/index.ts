@@ -22,6 +22,11 @@ export type Login = {
 } & Coordinate &
   ErrorMessage;
 
+export type OTPVerify = {
+  email: string;
+  otpCode: string;
+};
+
 export type Signup = {
   firstName?: string;
   lastName?: string;
@@ -65,6 +70,7 @@ export type SessionValue = {
   tokenType?: string;
   refreshToken?: string;
   sessionId?: string;
+  email?: string;
 };
 
 export type UserDetailValue = {

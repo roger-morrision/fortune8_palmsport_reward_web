@@ -1,10 +1,23 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { sleep } from "@/src/common/utils/validation-helper";
 import { SagaIterator } from "redux-saga";
 import { call, cancel, cancelled, fork, put, select, take } from "redux-saga/effects";
-import { authActions, selectAuthExpiresIn, selectedAuthRefreshToken } from "../slices/auth.slice";
+import {
+  authActions,
+  selectAuthExpiresAt,
+  selectAuthLoggedIn,
+  selectedAuthRefreshToken,
+} from "../slices/auth.slice";
 import { selecedtUserIdle, userActions } from "../slices/user.slice";
 import { AuthService } from "@/src/api/services/auth.service";
+
+// How often the loop wakes up to re-check idle/logged-in state and whether
+// it's time to refresh. Cheap to check, so this can stay short without the
+// per-second Redux dispatch the old tickExpiresIn-based loop used.
+const RECHECK_INTERVAL_MS = 30 * 1000;
+// Refresh proactively once we're within this many ms of the real expiry,
+// computed from the absolute `expiresAt` timestamp rather than a ticking
+// counter so it stays correct across idle periods and app restarts.
+const REFRESH_BUFFER_MS = 10 * 60 * 1000;
 
 function* refreshTokenWorker(): SagaIterator {
   try {
@@ -14,8 +27,8 @@ function* refreshTokenWorker(): SagaIterator {
     const result = yield call(AuthService.refreshToken, refreshtoken);
 
     // Dispatch an action to update the token in the Redux store
-    yield put(authActions.refreshToken(result)); // Replace 'UPDATE_TOKEN' with your actual action type
-  } catch (error: any) {
+    yield put(authActions.refreshToken(result));
+  } catch (error) {
     yield put(authActions.logout());
     yield put(authActions.setErrorMessage("Session Expired"));
   }
@@ -24,23 +37,25 @@ function* refreshTokenWorker(): SagaIterator {
 function* countdownLoop(): SagaIterator {
   try {
     while (true) {
-      const isIdle = yield select(selecedtUserIdle);
-      const expiresIn = yield select(selectAuthExpiresIn);
+      const isLoggedIn = yield select(selectAuthLoggedIn);
       const refreshtoken = yield select(selectedAuthRefreshToken);
 
       // Stop if no session
+      if (!isLoggedIn) break;
       if (!refreshtoken) break;
 
+      const isIdle = yield select(selecedtUserIdle);
+
       if (!isIdle) {
-        if (expiresIn > 600) {
-          yield call(sleep, 1000); // check every minute
-          yield put(authActions.tickExpiresIn());
-        } else {
+        const expiresAt = yield select(selectAuthExpiresAt);
+
+        if (Date.now() >= expiresAt - REFRESH_BUFFER_MS) {
           yield call(refreshTokenWorker);
+          continue;
         }
-      } else {
-        yield call(sleep, 1000); // check every minute
       }
+
+      yield call(sleep, RECHECK_INTERVAL_MS);
     }
   } finally {
     if (yield cancelled()) {

@@ -152,7 +152,6 @@ function ContactUsPage() {
           </View>
 
           <View style={styles.footer} dataSet={{ media: ids.footer }}>
-            <GotoGambly />
             <Footer />
           </View>
         </View>

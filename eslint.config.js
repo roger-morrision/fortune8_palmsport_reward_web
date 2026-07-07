@@ -15,6 +15,9 @@ module.exports = defineConfig([
 
     languageOptions: {
       parser: tseslint.parser,
+      parserOptions: {
+        tsconfigRootDir: __dirname,
+      },
     },
     plugins: {
       react: pluginReact,

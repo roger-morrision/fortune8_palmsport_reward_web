@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { selectAuthLoggingIn } from "@/src/store/slices/auth.slice";
+import { authActions, selectAuthLoggingIn, selectAuthOTPRequest } from "@/src/store/slices/auth.slice";
 import useAppSelector from "@/src/common/hooks/useAppSelector";
 import { useAssetContext } from "@/src/context/AssetContext";
 import useThemeColor from "@/src/common/hooks/useThemeColor";
@@ -13,16 +13,18 @@ import OTPVerification from "./otp-verification";
 import View from "@/src/common/components/View";
 import { useTranslation } from "react-i18next";
 import _ from "lodash";
+import useAppDispatch from "@/src/common/hooks/useAppDispatch";
 
 const SignLandingPage = () => {
   const { t } = useTranslation();
+  const dispatch = useAppDispatch();
   const { login } = useAuthService();
   const { images } = useAssetContext();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const [showOTP, setShowOTP] = useState(false);
   const isLoading = useAppSelector(selectAuthLoggingIn);
+  const otpRequest = useAppSelector(selectAuthOTPRequest);
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState<Record<string, string>>({});
 
   const placeholderColor = useThemeColor("placeholder");
@@ -43,12 +45,16 @@ const SignLandingPage = () => {
   }, [email, password]);
   
 
-  if (showOTP) {
+  if (!otpRequest) {
     return (
       <BGSplash>
         <OTPVerification
           images={images}
-          onBack={() => setShowOTP(false)}
+          onSubmit={(code) => {
+            // alert("code" + code)
+            dispatch(authActions.otpVerify(code))
+          }}
+          onBack={() => dispatch(authActions.logout())}
         />
       </BGSplash>
     );
@@ -75,7 +81,7 @@ const SignLandingPage = () => {
               autoComplete="off"
               textContentType="none"
               importantForAutofill="no"
-              style={[styles.text_input, { color: textColor }]}
+              style={[styles.text_input, { color: textColor }, error.email && { borderWidth: 1, borderColor: "red" }]}
               dataSet={{ media: ids.text_input }}
             />
 
@@ -90,7 +96,7 @@ const SignLandingPage = () => {
                 placeholder={t("login.password")}
                 placeholderTextColor={placeholderColor}
                 secureTextEntry={!showPassword}
-                style={[styles.text_input, styles.text_input_password, { color: textColor }]}
+                style={[styles.text_input, styles.text_input_password, { color: textColor }, error.password && { borderWidth: 1, borderColor: "red" }]}
                 dataSet={{ media: ids.text_input }}
               />
               <Pressable
