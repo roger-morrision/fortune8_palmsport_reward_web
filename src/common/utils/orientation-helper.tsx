@@ -14,7 +14,7 @@ const useOrientationListener = () => {
 
     getOrientation();
 
-    const orientationListener = ScreenOrientation.addOrientationChangeListener((event) => {
+    const orientationListener = ScreenOrientation.addOrientationChangeListener((event: any) => {
       const newOrientation = event.orientationInfo.orientation;
       if (newOrientation === ScreenOrientation.Orientation.PORTRAIT_UP) {
         setOrientation("PORTRAIT");

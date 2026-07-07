@@ -11,6 +11,5 @@ export default function useColorScheme() {
   // Use the original useColorScheme to get the device's color scheme
   const colorScheme = _useColorScheme() ?? "dark";
 
-  // Determine the effective color scheme based on the app's theme setting
-  return theme === "auto" ? colorScheme : theme;
+  return theme ?? colorScheme;
 }

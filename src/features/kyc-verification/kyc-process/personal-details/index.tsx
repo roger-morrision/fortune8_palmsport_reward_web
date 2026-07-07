@@ -87,7 +87,7 @@ function PersonalDetails() {
         middleName: input.middleName,
         phoneNumber: input.phoneNumber,
         ssn: input.ssn,
-        state: input.state?.name ?? input.state,
+        state: (input.state as any)?.name ?? input.state,
         street: input.street,
         zipCode: input.zipCode,
       } as any;
@@ -200,7 +200,7 @@ function PersonalDetails() {
           ids={2}
           keys={"country"}
           selectedKey={input?.dropdownKey}
-          options={lookupApi?.data?.data ?? []}
+          options={(lookupApi?.data as any)?.data ?? []}
           placeholder="State *"
           value={input?.state}
           labelKey="name"

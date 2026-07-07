@@ -16,7 +16,7 @@ function* playSoundSaga(): SagaIterator {
     if (soundEnabled) {
       if (!bgSoundObject) {
         bgSoundObject = new Audio.Sound();
-        yield bgSoundObject.loadAsync(audio["lobby-sound"], {
+        yield bgSoundObject.loadAsync((audio as any)["lobby-sound"], {
           isLooping: true,
         });
       }

@@ -75,7 +75,6 @@ function Contents() {
               </View>
               <View style={styles.footer} dataSet={{ media: ids.footer }}>
                 <GotoGambly />
-                <ConnectUs />
                 <Footer />
               </View>
             </>

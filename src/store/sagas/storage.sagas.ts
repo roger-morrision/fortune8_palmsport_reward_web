@@ -58,7 +58,7 @@ function* watchPersistSync() {
 
     const changed = !isEqual(previousAuth?.isLoggedIn, newAuth?.isLoggedIn);
     if (changed) {
-      yield put(authActions.syncAuthState(newAuth));
+      yield put(authActions.syncAuthState(newAuth as any));
       previousAuth = newAuth;
     }
   }

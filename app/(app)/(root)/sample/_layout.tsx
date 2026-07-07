@@ -26,7 +26,7 @@ export default function DrawerLayout() {
       <Drawer
         drawerContent={(props) => <DrawerComponent {...props} />}
         screenOptions={{
-          header: (params) => <HeaderScreen {...params} />,
+          header: () => <HeaderScreen />,
           drawerType: "front",
           drawerPosition: "right",
           swipeEnabled: false, // also disables swipe open

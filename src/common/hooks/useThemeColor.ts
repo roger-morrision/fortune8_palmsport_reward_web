@@ -8,6 +8,6 @@ export default function useThemeColor(
   // Retrieve the current color scheme from the app
   const theme = useColorScheme();
 
-  // Return the corresponding color based on the provided color name and current color scheme
-  return Colors[theme][colorName];
+  const safeTheme: "dark" | "light" = theme === "dark" || theme === "light" ? theme : "dark";
+  return Colors[safeTheme][colorName];
 }

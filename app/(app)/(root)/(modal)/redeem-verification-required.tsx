@@ -1,11 +1,13 @@
 import View from "@/src/common/components/View";
 import RedeemVerificationRequirePage from "@/src/features/kyc-verification/kyc-verification-require";
+import { useRouter } from "expo-router";
 import StyleSheet from "react-native-media-query";
 
 function RedeemVerificationRequireScreen() {
+  const router = useRouter();
   return (
     <View style={styles.main}>
-      <RedeemVerificationRequirePage />
+      <RedeemVerificationRequirePage visible={true} onClose={() => router.back()} />
     </View>
   );
 }

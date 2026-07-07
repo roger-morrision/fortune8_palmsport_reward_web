@@ -109,20 +109,20 @@ const DataItem = (props: DataItemProps) => {
           <Text style={styles.t_label} color="textGray">
             Promo:{" "}
             <Text color="text" fontFamily="Montserrat-Medium">
-              {item.name}
+              {item.name as any}
             </Text>
           </Text>
           <Text style={styles.t_label} color="textGray">
             Description:{" "}
             <Text color="text" fontFamily="Montserrat-Medium">
-              {item.description}
+              {item.description as any}
             </Text>
           </Text>
         </View>
         <View style={{ width: "100%", height: 1, marginVertical: 10, backgroundColor: "#1C3470" }} />
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
           <Text style={styles.t_label} color="textGray">
-            {moment(item.date).format("YYYY-MM-DD | hh:mm:ss")}
+            {moment(item.date as any).format("YYYY-MM-DD | hh:mm:ss")}
           </Text>
           {renderStatus}
         </View>

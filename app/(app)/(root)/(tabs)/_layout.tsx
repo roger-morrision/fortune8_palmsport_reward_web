@@ -121,7 +121,7 @@ function TabScreens() {
           headerStyle: {
             backgroundColor: primaryColor,
           },
-          header: (params) => <HeaderScreen {...params} />,
+          header: () => <HeaderScreen />,
         }}
       >
         <Tabs.Screen name="index" options={{ tabBarLabel: "Home" }} />
