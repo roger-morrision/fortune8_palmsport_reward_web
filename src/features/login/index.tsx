@@ -60,7 +60,7 @@ function Login() {
     setError(Err);
 
     if (_.isEmpty(Err)) {
-      login(state as Types.Login);
+      login();
     }
   };
 
