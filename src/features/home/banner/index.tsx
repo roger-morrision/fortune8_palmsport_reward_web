@@ -6,7 +6,26 @@ import { Image } from "react-native";
 import StyleSheet from "react-native-media-query";
 import { LinearGradient } from "expo-linear-gradient";
 
-export default function Banner() {
+type Props = {
+  mainBlock: {
+    description: string;
+    image: string;
+  },
+  subBlock1: {
+    description: string;
+    image: string;
+  },
+  subBlock2: {
+    description: string;
+    image: string;
+  },
+  subBlock3: {
+    description: string;
+    image: string;
+  },
+}
+
+export default function Banner({ mainBlock }: Props) {
   const { images } = useAssetContext();
 
   return (
@@ -17,12 +36,12 @@ export default function Banner() {
       />
       <Image
         style={styles.image_style}
-        source={{ uri: images?.["banner-1"].uri }}
+        source={{ uri: mainBlock?.image }}
         resizeMode="contain"
       />
       <View style={styles.right_wrap}>
         <Text fontFamily="Montserrat" color="text" style={styles.t_description}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          {mainBlock?.description}
         </Text>
       </View>
     </View>

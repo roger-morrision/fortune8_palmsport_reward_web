@@ -6,12 +6,12 @@ import StyleSheet from "react-native-media-query";
 
 function UserProfileScreen() {
   return (
-    // <ProtectedScreen>
+    <ProtectedScreen>
       <Screen style={styles.container} dataSet={{ media: ids.container }}>
         <ScreenTitle options={{ title: "My Account" }} />
         <UserProfilePage />
       </Screen>
-    // </ProtectedScreen>
+    </ProtectedScreen>
   );
 }
 

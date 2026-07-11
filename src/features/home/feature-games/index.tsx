@@ -9,26 +9,32 @@ import numeral from "numeral";
 import React, { useMemo, useRef, useState } from "react";
 import { FlatList, Image, Linking } from "react-native";
 import { ids, styles } from "./styles.css";
-import { useQueryApi } from "@/src/common/hooks/useQueryApi";
-import { PurchaseService } from "@/src/api/services/purchase.service";
-import { Product } from "@/src/store/types";
-import { getAvailableHotDealsProducts } from "@/src/common/utils/transform-helper";
 
-function FeatureGames() {
+type Props = {
+  mainBlock: {
+    description: string;
+    image: string;
+  },
+  subBlock1: {
+    description: string;
+    image: string;
+  },
+  subBlock2: {
+    description: string;
+    image: string;
+  },
+  subBlock3: {
+    description: string;
+    image: string;
+  },
+}
+
+function FeatureGames(props: Props) {
   const flatlist = useRef<any>(null);
   const contentOffset = useRef<any>(null);
   const [contentWidth, setContentWidth] = useState(0);
   const [isEndReached, setIsEndReached] = useState(false);
   const [isStartReached, setIsStartReached] = useState(true);
-
-  const { data } = useQueryApi(["products"], PurchaseService.products, null, {
-    refetchOnMount: false,
-    refetchOnWindowFocus: false,
-  });
-
-  const products: Product[] = React.useMemo(() => {
-    return getAvailableHotDealsProducts(data);
-  }, [data]);
 
   const onPageClick = React.useCallback(
     (value: number) => {
@@ -68,83 +74,20 @@ function FeatureGames() {
 
   return (
     <View style={styles.categories_container} dataSet={{ media: ids.categories_container }}>
-      <View style={styles.v_controller} dataSet={{ media: ids.v_controller }}>
-        <View
-          style={{ flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 10 }}
-        >
-          <SVGIcon name="gift" />
-          <Text style={styles.header_title_style}>Hot Deals</Text>
-        </View>
-        <View style={styles.v_row}>
-          <MaterialIcon
-            onPress={() => onPageClick(-1)}
-            asButton
-            size={30}
-            borderRadius={6}
-            style={styles.btn_arrow_style}
-            backgroundColor={isStartReached ? "backgroundDark" : "secondary"}
-            name="chevron-left"
-          />
-          <MaterialIcon
-            onPress={() => onPageClick(1)}
-            asButton
-            size={30}
-            borderRadius={6}
-            backgroundColor={isEndReached ? "backgroundDark" : "secondary"}
-            style={styles.btn_arrow_style}
-            name="chevron-right"
-          />
-        </View>
+      <View style={styles.category_row} dataSet={{ media: ids.category_row }}>
+        <RenderItem item={props.subBlock1} />
+        <RenderItem item={props.subBlock2} />
+        <RenderItem item={props.subBlock3} />
       </View>
-      <FlatList
-        horizontal
-        data={products}
-        ref={flatlist}
-        onScroll={onScroll}
-        style={styles.flatlist}
-        dataSet={{ media: ids.flatlist }}
-        removeClippedSubviews={true}
-        onEndReachedThreshold={0.9}
-        onContentSizeChange={setContentWidth}
-        showsHorizontalScrollIndicator={false}
-        ItemSeparatorComponent={() => <View style={{ width: 13 }} />}
-        keyExtractor={(_, key) => key.toString()}
-        renderItem={({ item, index }) => <RenderItem key={index.toString()} item={item} />}
-      />
       <View style={{ height: 50 }} />
     </View>
   );
 }
 
 function RenderItem({ item }: any) {
-  const { images } = useAssetContext();
-
-  const handleClickItem = () => {
-    Linking.openURL(GAMBLY_URL + "/hot-deals-page");
-  };
-
-  const URI = useMemo(() => {
-    switch (item.name) {
-      case "gwz_3.00_3m_silv":
-        return "product-starter-pack";
-      case "gwz_4.00_4m_silv":
-        return "product-cheap-tuesday";
-      case "gwz_7.00_8m_silv":
-        return "product-weekly-booster";
-      case "gwz_11.00_13m_silv":
-        return "product-high-roller";
-      case "gwz_7.00_7m_silv":
-        return "product-tgif";
-      case "gwz_20.00_25m_silv":
-        return "product-dragon-roller";
-      default:
-        return "product-dragon-roller";
-    }
-  }, [item.name]);
 
   return (
-    <Button
-      onPress={handleClickItem}
+    <View
       backgroundColor="secondary"
       style={styles.category_item_container}
       dataSet={{ media: ids.category_item_container }}
@@ -152,18 +95,15 @@ function RenderItem({ item }: any) {
       <Image
         style={styles.image_banner}
         dataSet={{ media: ids.image_banner }}
-        source={{ uri: images?.[URI]?.uri }}
+        source={{ uri: item?.image }}
         resizeMode="stretch"
       />
       <View style={{ gap: 10 }}>
         <Text style={styles.title_style} dataSet={{ media: ids.title_style }}>
-          {item.description}
-        </Text>
-        <Text style={styles.description_style} dataSet={{ media: ids.description_style }}>
-          {numeral(item.value).format("0,000")} Sil Coins with free {item.goldBonus} Bonus Gold
+          {item?.description}
         </Text>
       </View>
-    </Button>
+    </View>
   );
 }
 

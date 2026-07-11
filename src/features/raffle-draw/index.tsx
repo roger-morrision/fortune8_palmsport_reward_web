@@ -9,9 +9,10 @@ import TicketSelect from "./ticket-select";
 import { ids, styles } from "./styles.css";
 import { useQueryApi } from "@/src/common/hooks/useQueryApi";
 import { RaffleService } from "@/src/api/services/raffles.service";
+import { RewardService } from "@/src/api/services/rewards.service";
 
 export default function RaffleDrawPage() {
-  const { data } = useQueryApi(["ongoing-raffle"], RaffleService.ongoing, {}, {
+  const { data } = useQueryApi(["ongoing-raffle"], RewardService.rafflePage, {}, {
     // refetchOnMount: false,
     // refetchOnWindowFocus: false,
   });
@@ -22,7 +23,11 @@ export default function RaffleDrawPage() {
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.container} dataSet={{ media: ids.container }}>
         {/* Giveaway banner + description + prize */}
-        <Banner />
+        <Banner  
+          image={data?.image}
+          description={data?.description} 
+          prize={data?.prize} 
+        />
 
         {/* Countdown timer + ticket selection side by side (stacked on mobile) */}
         <View style={styles.v_panels} dataSet={{ media: ids.v_panels }}>
@@ -40,7 +45,7 @@ export default function RaffleDrawPage() {
         />
 
         {/* Collapsible draw terms */}
-        <DrawTerms />
+        <DrawTerms content={data?.tnc} />
 
         <View style={styles.footer} dataSet={{ media: ids.footer }}>
           <Footer />

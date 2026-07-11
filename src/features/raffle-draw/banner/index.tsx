@@ -1,22 +1,22 @@
+import { Image } from "react-native";
 import Text from "@/src/common/components/Text";
 import View from "@/src/common/components/View";
-import { useAssetContext } from "@/src/context/AssetContext";
 import { LinearGradient } from "expo-linear-gradient";
-import { Image } from "react-native";
 import StyleSheet from "react-native-media-query";
 
 type Props = {
+  image: string;
   description?: string;
   prizeLabel?: string;
-  prizeName?: string;
+  prize?: string;
 };
 
 export default function Banner({
-  description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+  image,
+  description,
   prizeLabel = "This Week's prize",
-  prizeName = "iphone 17 pro max 512 gb orange and magsafe",
+  prize,
 }: Props) {
-  const { images } = useAssetContext();
 
   return (
     <View backgroundColor="blueDark" style={styles.container} dataSet={{ media: ids.container }}>
@@ -29,7 +29,7 @@ export default function Banner({
       <Image
         style={styles.i_banner}
         dataSet={{ media: ids.i_banner }}
-        source={{ uri: images?.["banner-1"]?.uri }}
+        source={{ uri: image }}
         resizeMode="stretch"
       />
 
@@ -59,7 +59,7 @@ export default function Banner({
           style={styles.t_prize_name}
           dataSet={{ media: ids.t_prize_name }}
         >
-          {prizeName}
+          {prize}
         </Text>
       </View>
     </View>

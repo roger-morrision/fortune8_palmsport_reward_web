@@ -51,11 +51,10 @@ export default function Countdown({ targetDate, totalEntries = 0 }: Props) {
           [pad(time.hours), "Hours"],
           [pad(time.minutes), "Minutes"],
           [pad(time.seconds), "Seconds"],
-        ] as [string, string][]).map(([value, label], i) => (
-          <>
-            {i > 0 && (
+        ] as [string, string][]).map(([value, label], index) => (
+          <View key={`${label}-${index}`} style={{ flexDirection: "row", alignItems: "flex-start" }}>
+            {index > 0 && (
               <Text
-                key={`colon-${i}`}
                 fontFamily="Montserrat-Bold"
                 color="text"
                 style={styles.t_colon}
@@ -64,7 +63,7 @@ export default function Countdown({ targetDate, totalEntries = 0 }: Props) {
                 {" : "}
               </Text>
             )}
-            <View key={label} style={styles.v_segment}>
+            <View style={styles.v_segment}>
               <Text fontFamily="Montserrat" color="closeColor" style={styles.t_label} dataSet={{ media: ids.t_label }}>
                 {label}
               </Text>
@@ -72,14 +71,14 @@ export default function Countdown({ targetDate, totalEntries = 0 }: Props) {
                 {value}
               </Text>
             </View>
-          </>
+          </View>
         ))}
       </View>
 
       <View style={styles.v_entries} dataSet={{ media: ids.v_entries }}>
         <Text fontFamily="Montserrat-SemiBold" color="button" style={styles.t_entries} dataSet={{ media: ids.t_entries }}>
           Total No. of Entries:{" "}
-          <Text fontFamily="Montserrat-Bold" color="button" style={styles.t_entries}>
+          <Text fontFamily="Montserrat-Bold" color="text" style={styles.t_entries}>
             {totalEntries}
           </Text>
         </Text>

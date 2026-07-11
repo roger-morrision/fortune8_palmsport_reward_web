@@ -11,10 +11,11 @@ const { ids, styles } = StyleSheet.create({
     //   maxWidth: "80%",
     // },
   },
+
   category_row: {
-    gap: 9,
-    "@media (max-width: 1920px) and (min-width: 800px)": {
-      height: 11,
+    flexDirection: "row", justifyContent: "space-between",
+    "@media (max-width: 800px)": {
+      flexDirection: "column"
     },
   },
 
@@ -46,8 +47,8 @@ const { ids, styles } = StyleSheet.create({
   v_row: { flexDirection: "row", alignItems: "center", gap: 10 },
 
   category_item_container: {
-    width: 312,
-    height: 287,
+    width: "32%",
+    minHeight: 287,
     gap: 16,
     padding: 12,
     borderWidth: 1,
@@ -55,8 +56,8 @@ const { ids, styles } = StyleSheet.create({
     flexDirection: "column",
     alignItems: "flex-start",
     "@media (max-width: 800px)": {
-      width: 292,
-      height: 269,
+      width: "100%",
+      minHeight: 269,
       gap: 20,
       padding: 10,
       borderRadius: 9.23,
@@ -72,12 +73,12 @@ const { ids, styles } = StyleSheet.create({
     },
   },
   title_style: {
-    fontFamily: "Montserrat-Bold",
-    fontSize: 22,
-    lineHeight: 25,
+    fontSize: 12,
+    lineHeight: 15,
+    textAlign: "center",
     "@media (max-width: 800px)": {
-      fontSize: 18.5,
-      lineHeight: 20,
+      // fontSize: 18.5,
+      // lineHeight: 20,
     },
   },
   description_style: {

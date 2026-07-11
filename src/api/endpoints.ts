@@ -101,5 +101,10 @@ export const API_ENDPOINTS = {
     REDEMPTIONS: "/api/v1/raffles/redemptions",
     ONGOING: "/api/v1/raffles/ongoing",
     RESULTS: "/api/v1/raffles/results",
+  },
+  REWARDS: {
+    HOME_PAGE: "/api/v1/rewards/home-page",
+    RAFFLE_PAGE: "/api/v1/rewards/raffle-page",
+    RESULT_PAGE: "/api/v1/rewards/result-page",
   }
 };

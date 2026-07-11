@@ -76,9 +76,9 @@ export const ABOUT_LIST: ABOUTLISTTYPES[] = [
     description: Privacy,
   },
   {
-    title: "Sweepstakes Rules",
-    route: "sweepstakes-rules",
-    pageTitle: "Gambly Sweepstakes Official Rules",
+    title: "FAQs",
+    route: "faqs",
+    pageTitle: "FAQ's",
     description: Sweepstakes,
   },
 ];
