@@ -4,19 +4,13 @@ import Text from "@/src/common/components/Text";
 import TextInput from "@/src/common/components/TextInput";
 import View from "@/src/common/components/View";
 import useAppSelector from "@/src/common/hooks/useAppSelector";
-import { Gender } from "@/src/common/utils/options-holder";
-import { CHANGE_USER_DETAILS_STATES } from "@/src/common/utils/states-holder";
-import { useInputHelper } from "@/src/common/utils/useInputHelper";
 import { getDateMinus21Years } from "@/src/common/utils/validation-helper";
-import { selectUserSession } from "@/src/store/slices/user.slice";
+import { selectedUserCoins } from "@/src/store/slices/user.slice";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import _ from "lodash";
-import moment from "moment";
-import React, { useEffect } from "react";
 import { DateType } from "react-native-ui-datepicker";
 import { ids, styles } from "./styles.css";
-import SVGIcon from "@/src/constants/SVGIcon";
 import numeral from "numeral";
 import { Image } from "react-native";
 import { useAssetContext } from "@/src/context/AssetContext";
@@ -26,23 +20,7 @@ export type Props = { handleClose: () => void };
 
 function PalmsGold() {
   const { images } = useAssetContext();
-  const user = useAppSelector(selectUserSession);
-  const { state, onDispatch, onSetInitial } = useInputHelper(CHANGE_USER_DETAILS_STATES);
-
-  useEffect(() => {
-    if (!_.isEmpty(user)) {
-      onSetInitial({
-        firstName: user.firstName,
-        lastName: user.lastName,
-        displayName: user.displayName,
-        dateOfBirth: user.dateOfBirth
-          ? dayjs(user.dateOfBirth, "DD-MM-YYYY").format("YYYY-MM-DD")
-          : null,
-        countryId: user?.userDetail?.province,
-        genderId: user?.userDetail?.gender?.name,
-      } as typeof CHANGE_USER_DETAILS_STATES);
-    }
-  }, [user]);
+  const balance = useAppSelector(selectedUserCoins);
 
   return (
     <View style={styles.container} dataSet={{ media: ids.container }}>
@@ -67,7 +45,7 @@ function PalmsGold() {
 
           <View borderColor="borderColor" style={styles.v_sweeps_balance}>
             <Text fontFamily="Montserrat-Bold" style={styles.t_redemption}>
-              {numeral(1241).format("0,000")}
+              {numeral(balance.GOLD).format("0,000.00")}
             </Text>
           </View>
         </View>

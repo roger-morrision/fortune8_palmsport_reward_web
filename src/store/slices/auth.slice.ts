@@ -8,6 +8,7 @@ interface AuthState {
   otpRequest: boolean;
   isLoggedIn: boolean;
   error: any;
+  loginInput: Types.loginInputValue;
   session: Types.SessionValue;
   expiresAt: number; // absolute timestamp (ms) — NOT a countdown
   errorMessage: string | { message: string };
@@ -20,6 +21,7 @@ export const initialState: AuthState = {
   isLoggedIn: false,
   errorMessage: "",
   isFirstLogin: false,
+  loginInput: {} as Types.loginInputValue
 } as AuthState;
 
 // Slice
@@ -27,6 +29,13 @@ export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
+    setLoginInput: (state, action) => {
+      if (action.payload.type === "email") {
+        state.loginInput.email = action.payload.value;
+      } else if (action.payload.type === "password") {
+        state.loginInput.password = action.payload.value;
+      }
+    },
     loginRequest: (state) => {
       state.loading = true;
       state.errorMessage = "";
@@ -54,6 +63,7 @@ export const authSlice = createSlice({
       state.loading = false;
       state.isLoggedIn = true;
       state.isFirstLogin = true;
+      state.loginInput = {} as Types.loginInputValue;
     },
     loginFailure: (state, action) => {
       state.error = action.payload;
@@ -84,9 +94,8 @@ export const authSlice = createSlice({
 
 // Actions
 export const authActions = {
-  loginRequest: createAction(`${authSlice.name}/loginRequest`, (params: Types.Login) => ({
-    payload: params,
-  })),
+  setLoginInput: authSlice.actions.setLoginInput,
+  loginRequest: createAction(`${authSlice.name}/loginRequest`),
   loginGoogleRequest: createAction(`${authSlice.name}/loginGoogleRequest`, (params: string) => ({
     payload: params,
   })),
@@ -106,6 +115,7 @@ export const authActions = {
 };
 
 // Selectors
+export const selectAuthLoginInput = (state: RootState) => state.auth.loginInput;
 export const selectAuthLoggingIn = (state: RootState) => state.auth.loading;
 export const selectAuthLoggedIn = (state: RootState) => state.auth.isLoggedIn;
 export const selectAuthOTPRequest = (state: RootState) => state.auth.otpRequest;

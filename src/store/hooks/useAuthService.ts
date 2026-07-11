@@ -7,7 +7,7 @@ import { signupActions } from "../slices/signup.slice";
 import * as Types from "@/src/store/types";
 
 type AuthServiceOperators = {
-  login: (params: Types.Login) => void;
+  login: () => void;
   signup: (params: Types.Signup) => void;
   logout: () => void;
   signWithGoogle: (params: string) => void;
@@ -19,7 +19,7 @@ export const useAuthService = (): Readonly<AuthServiceOperators> => {
   const dispatch = useAppDispatch();
 
   return {
-    login: useCallback((params: any) => dispatch(authActions.loginRequest(params)), [dispatch]),
+    login: useCallback(() => dispatch(authActions.loginRequest()), [dispatch]),
     signup: useCallback((params) => dispatch(signupActions.signupRequest(params)), [dispatch]),
     signWithGoogle: useCallback(
       (params) => dispatch(authActions.loginGoogleRequest(params)),

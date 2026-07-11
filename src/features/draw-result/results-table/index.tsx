@@ -3,14 +3,19 @@ import View from "@/src/common/components/View";
 import { DrawTableColumn } from "./types";
 import DataTableRow from "./data-row";
 import StyleSheet from "react-native-media-query";
+import { Raffle, Winners } from "@/src/store/types";
 
 export type { DrawTableColumn };
 
 type Props = {
   title: string;
   columns: DrawTableColumn[];
-  data: Record<string, unknown>[];
+  data: {
+    raffle: Raffle;
+    winners: Winners[];
+  };
 };
+
 
 export default function ResultsTable({ title, columns, data }: Props) {
   return (
@@ -24,7 +29,7 @@ export default function ResultsTable({ title, columns, data }: Props) {
         {title}
       </Text>
 
-      <DataTableRow columns={columns} data={data} />
+      <DataTableRow columns={columns} data={data?.winners ?? []} raffle={data?.raffle} />
     </View>
   );
 }

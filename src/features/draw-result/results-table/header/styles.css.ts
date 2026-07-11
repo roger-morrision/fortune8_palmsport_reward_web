@@ -9,6 +9,9 @@ const { ids, styles } = StyleSheet.create({
     borderBottomColor: "#1C3470",
     paddingHorizontal: 16,
     minHeight: 48,
+    "@media (max-width: 599px)": {
+      display: "none",
+    },
   },
   cell: {
     flex: 1,

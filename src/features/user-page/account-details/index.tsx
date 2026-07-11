@@ -25,6 +25,7 @@ function AccountDetails() {
   useEffect(() => {
     if (!_.isEmpty(user)) {
       onSetInitial({
+        id: user.id,
         firstName: user.firstName,
         lastName: user.lastName,
         displayName: user.displayName,

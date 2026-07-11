@@ -47,6 +47,34 @@ const { ids, styles } = StyleSheet.create({
       lineHeight: 16,
     },
   },
+
+  // Mobile card layout
+  card: {
+    backgroundColor: "#07122E",
+    borderBottomWidth: 1,
+    borderBottomColor: "#1C3470",
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    gap: 6,
+  },
+  card_row: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    alignItems: "center",
+    gap: 4,
+  },
+  card_label: {
+    fontSize: 13,
+    lineHeight: 18,
+    color: "#7791BA",
+    fontFamily: "Montserrat",
+  },
+  card_value: {
+    fontSize: 13,
+    lineHeight: 18,
+    color: "#FFFFFF",
+    fontFamily: "Montserrat-SemiBold",
+  },
 });
 
 export { ids, styles };

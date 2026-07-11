@@ -2,18 +2,22 @@ import { SagaIterator } from "@redux-saga/core";
 import { router } from "expo-router";
 import * as Location from "expo-location";
 import { call, put, select, takeEvery } from "redux-saga/effects";
-import { authActions, selectAuthSession } from "../slices/auth.slice";
+import { authActions, selectAuthLoginInput, selectAuthSession } from "../slices/auth.slice";
 import { forgotActions } from "../slices/forgot.slice";
-import { selectedUserSession, userActions } from "../slices/user.slice";
+import { userActions } from "../slices/user.slice";
 import { AuthService } from "@/src/api/services/auth.service";
 import * as Types from "@/src/store/types";
 import { UserService } from "@/src/api/services/user.service";
 import { lobbyActions } from "../slices/lobby.slice";
 
-function* handleSignin(action: { type: string; payload: Types.Login }): SagaIterator {
+function* handleSignin(): SagaIterator {
   try {
+    const loginInput = yield select(selectAuthLoginInput);
     const { status } = yield call(Location.requestForegroundPermissionsAsync);
-    const payload = action.payload;
+    const payload = {
+      username: loginInput.email,
+      password: loginInput.password,
+    } as Types.Login;
 
     if (status === "granted") {
       const location = yield call(Location.getCurrentPositionAsync, {
@@ -24,11 +28,12 @@ function* handleSignin(action: { type: string; payload: Types.Login }): SagaIter
       payload.longitude = location.coords.longitude;
       payload.accuracy = location.coords.accuracy;
     }
-    const session = yield call(AuthService.login, payload);
+    yield call(AuthService.login, {params: payload});
 
-    yield put(authActions.otpRequest(session));
+    yield put(authActions.otpRequest({email: loginInput.email}));
   } catch (error: any) {
     yield put(authActions.loginFailure(error));
+    yield put(authActions.setErrorMessage(error?.message));
   }
 }
 
@@ -39,9 +44,10 @@ function* handleOTPVerify(action: { type: string; payload: string }): SagaIterat
 
     const session = yield call(AuthService.otpVerify, { email: auth?.email, otpCode: payload});
 
-    yield put(authActions.loginRequest(session));
+    yield put(authActions.loginSuccess(session));
   } catch (error: any) {
     yield put(authActions.loginFailure(error));
+    yield put(authActions.setErrorMessage(error?.message));
   }
 }
 

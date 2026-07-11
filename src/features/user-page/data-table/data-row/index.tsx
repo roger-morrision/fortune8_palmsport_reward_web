@@ -7,6 +7,8 @@ import { FlatList, ListRenderItemInfo } from "react-native";
 import { useBreakpoint } from "@/src/constants/BreakPoint";
 import View from "@/src/common/components/View";
 import Text from "@/src/common/components/Text";
+import { useQueryApi } from "@/src/common/hooks/useQueryApi";
+import { RaffleService } from "@/src/api/services/raffles.service";
 
 export const TABLE_HEAD_DASHBOARD_DOCUMENTS: HeaderItem[] = [
   { id: "name",             label: "Promotion",      sortable: false, cellStyle: { flex: 1 } },
@@ -24,6 +26,13 @@ export const Promotion: DataRowItem[] = [
 
 const DataTableRow = () => {
   const isMobile = useBreakpoint({ mobile: true, default: false });
+
+  const { data } = useQueryApi(["my-redemptions"], RaffleService.redemptions, {}, {
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
+  });
+
+  console.log("datadata", data)
 
   return (
     <FlatList

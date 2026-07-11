@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Image, ImageURISource, Pressable, TextInput } from "react-native";
 import useThemeColor from "@/src/common/hooks/useThemeColor";
 import { useBreakpoint } from "@/src/constants/BreakPoint";
@@ -10,8 +10,12 @@ import StyleSheet from "react-native-media-query";
 import Text from "@/src/common/components/Text";
 import View from "@/src/common/components/View";
 import { useTranslation } from "react-i18next";
-import { selectAuthLoggingIn } from "@/src/store/slices/auth.slice";
+import { selectAuthLoggingIn, selectAuthLogInFailed, selectAuthLoginInput } from "@/src/store/slices/auth.slice";
 import useAppSelector from "@/src/common/hooks/useAppSelector";
+import { useMutationApi } from "@/src/common/hooks/useMutationApi";
+import { AuthService } from "@/src/api/services/auth.service";
+import { useRootContext } from "@/src/context/RootContext";
+import { Login } from "@/src/store/types";
 
 const OTP_LENGTH = 6;
 
@@ -24,11 +28,26 @@ type Props = {
 
 const OTPVerification = ({ images, onSubmit, onResend }: Props) => {
   const { t } = useTranslation();
+  const timerId = useRef<any>(null);
+  const [timer, setTimer] = useState(180);
   const textDark = useThemeColor("textDark");
+  const { setErrorMessage } = useRootContext();
   const refs = useRef<(TextInput | null)[]>([]);
   const [error, setError] = useState<string>("");
   const isLoading = useAppSelector(selectAuthLoggingIn);
+  const loginInput = useAppSelector(selectAuthLoginInput);
   const [digits, setDigits] = useState<string[]>(Array(OTP_LENGTH).fill(""));
+
+  const { mutate, isPending } = useMutationApi(AuthService.login, {
+    onSuccess: () => {
+      // setSuccessMessage("Message successfully sent.");
+      setTimer(180);
+    },
+    onError: (error) => {
+      setErrorMessage(error?.message ?? "Something went wrong.");
+    },
+  });
+  
 
   const fontSize = useBreakpoint({
     default: 22,
@@ -50,13 +69,26 @@ const OTPVerification = ({ images, onSubmit, onResend }: Props) => {
   };
 
   const onChangeDigit = (value: string, index: number) => {
-    const digit = value.replace(/[^0-9]/g, "").slice(-1);
+    const cleaned = value.replace(/[^0-9]/g, "");
+
+    if (cleaned.length > 1) {
+      const pasted = cleaned.slice(0, OTP_LENGTH);
+      const next = Array(OTP_LENGTH).fill("");
+      for (let i = 0; i < pasted.length; i++) next[i] = pasted[i];
+      setDigits(next);
+      refs.current[Math.min(pasted.length, OTP_LENGTH - 1)]?.focus();
+      return;
+    }
+
+    const isComplete = digits.every((d) => d !== "");
+    if (isComplete) return;
+
+    const digit = cleaned.slice(-1);
     const next = [...digits];
     next[index] = digit;
     setDigits(next);
 
     if (digit) {
-      // Advance to the next box, or stay at the last one
       const nextIndex = Math.min(index + 1, OTP_LENGTH - 1);
       refs.current[nextIndex]?.focus();
     }
@@ -84,6 +116,29 @@ const OTPVerification = ({ images, onSubmit, onResend }: Props) => {
     if(code.length < 6) setError("error");
     if (code.length === OTP_LENGTH) onSubmit?.(code);
   };
+
+  const onResendCode = () => {
+    mutate({
+      username: loginInput.email,
+      password: loginInput.password
+    } as  Login);
+  }
+
+
+  useEffect(() => {
+    if (!timer) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      timerId.current && clearInterval(timerId.current);
+      setTimer(0);
+      return;
+    }
+
+    timerId.current = setInterval(() => {
+      setTimer((lastTimerCount) => lastTimerCount - 1);
+    }, 1000);
+
+    return () => clearInterval(timerId.current);
+  }, [timer]);
 
   return (
     <View style={styles.screen} dataSet={{ media: ids.screen }}>
@@ -133,7 +188,7 @@ const OTPVerification = ({ images, onSubmit, onResend }: Props) => {
                 onChangeText={(v) => onChangeDigit(v, i)}
                 onKeyPress={({ nativeEvent }) => onKeyPress(nativeEvent.key, i)}
                 keyboardType="number-pad"
-                maxLength={1}
+                maxLength={OTP_LENGTH}
                 style={[styles.digit_input, { color: textDark }, error && { borderColor: "red"}]}
                 dataSet={{ media: ids.digit_input }}
               />
@@ -143,7 +198,7 @@ const OTPVerification = ({ images, onSubmit, onResend }: Props) => {
           <BGButton
             label={t("otp.submit")}
             onPress={onEnter}
-            isLoading={isLoading}
+            isLoading={isLoading || isPending}
             style={styles.btn_submit}
             dataSet={{ media: ids.btn_submit }}
             fontFamily="Montserrat-SemiBold"
@@ -154,11 +209,18 @@ const OTPVerification = ({ images, onSubmit, onResend }: Props) => {
             <Text fontFamily="Montserrat" style={styles.t_resend}>
               {t("otp.resend-prefix")}{" "}
             </Text>
-            <Pressable onPress={onResend}>
+            {timer > 0 ? 
+            <Text disabled={timer > 0}
+              fontFamily="Montserrat-SemiBold"
+              color="blue"
+              style={styles.t_resend}>
+              {"Resend in " + timer}
+            </Text> : 
+            <Pressable onPress={onResendCode} disabled={isPending}>
               <Text fontFamily="Montserrat-SemiBold" color="blue" style={styles.t_resend}>
                 {t("otp.resend-link")}
               </Text>
-            </Pressable>
+            </Pressable>}
           </View>
         </View>
       </LinearGradient>

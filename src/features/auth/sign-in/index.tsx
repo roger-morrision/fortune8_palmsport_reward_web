@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { authActions, selectAuthLoggingIn, selectAuthOTPRequest } from "@/src/store/slices/auth.slice";
+import { authActions, selectAuthLoggingIn, selectAuthLoginInput, selectAuthOTPRequest } from "@/src/store/slices/auth.slice";
 import useAppSelector from "@/src/common/hooks/useAppSelector";
 import { useAssetContext } from "@/src/context/AssetContext";
 import useThemeColor from "@/src/common/hooks/useThemeColor";
@@ -20,9 +20,8 @@ const SignLandingPage = () => {
   const dispatch = useAppDispatch();
   const { login } = useAuthService();
   const { images } = useAssetContext();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const isLoading = useAppSelector(selectAuthLoggingIn);
+  const loginInput = useAppSelector(selectAuthLoginInput);
   const otpRequest = useAppSelector(selectAuthOTPRequest);
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState<Record<string, string>>({});
@@ -32,20 +31,24 @@ const SignLandingPage = () => {
 
   const onLogin = () => {
     const Err: Record<string, string> = {};
-    if (!email) Err.email = " ";
-    else if (!password) Err.password = " ";
+    if (!loginInput.email) Err.email = " ";
+    else if (!loginInput.password) Err.password = " ";
     setError(Err);
     if (_.isEmpty(Err)) {
-      login({ username: email, password } as any);
+      login();
     }
+  };
+
+  const updateField = (type: 'email' | 'password') => (value: string) => {
+    dispatch(authActions.setLoginInput({ type, value }));
   };
 
   useEffect(() => {
     setError({});
-  }, [email, password]);
+  }, [loginInput]);
   
 
-  if (!otpRequest) {
+  if (otpRequest) {
     return (
       <BGSplash>
         <OTPVerification
@@ -74,8 +77,8 @@ const SignLandingPage = () => {
           <View style={styles.v_inputs} dataSet={{ media: ids.v_inputs }}>
             {/* Username */}
             <TextInput
-              value={email}
-              onChangeText={setEmail}
+              value={loginInput.email}
+              onChangeText={updateField("email")}
               placeholder={t("login.username")}
               placeholderTextColor={placeholderColor}
               autoComplete="off"
@@ -91,8 +94,8 @@ const SignLandingPage = () => {
               dataSet={{ media: ids.input_wrap }}
             >
               <TextInput
-                value={password}
-                onChangeText={setPassword}
+                value={loginInput.password}
+                onChangeText={updateField("password")}
                 placeholder={t("login.password")}
                 placeholderTextColor={placeholderColor}
                 secureTextEntry={!showPassword}

@@ -1,0 +1,142 @@
+name: Version Bump & CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  # ── Job 1: bump the patch version on every push to main ───────────────────
+  bump-version:
+    name: Bump patch version
+    runs-on: ubuntu-latest
+    # Only bump on direct pushes, not on pull requests.
+    if: github.event_name == 'push'
+
+    permissions:
+      contents: write
+
+    outputs:
+      new_version: ${{ steps.bump.outputs.new }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Bump patch version
+        id: bump
+        run: |
+          OLD=$(node -p "require('./package.json').version")
+          npm version patch --no-git-tag-version
+          NEW=$(node -p "require('./package.json').version")
+          echo "old=$OLD" >> $GITHUB_OUTPUT
+          echo "new=$NEW" >> $GITHUB_OUTPUT
+
+      - name: Commit and push
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add package.json
+          git commit -m "chore: bump version ${{ steps.bump.outputs.old }} → ${{ steps.bump.outputs.new }} [skip ci]"
+          git push
+
+  # ── Job 2: type-check, test, build ────────────────────────────────────────
+  ci:
+    name: Type-check · Test · Build
+    runs-on: ubuntu-latest
+    # On push: wait for the bump to finish. On PRs: run directly.
+    needs: [bump-version]
+    if: always() && (needs.bump-version.result == 'success' || github.event_name == 'pull_request')
+
+    env:
+      EXPO_PUBLIC_ENVIRONMENT: ${{ secrets.EXPO_PUBLIC_ENVIRONMENT }}
+      EXPO_PUBLIC_API_URL: ${{ secrets.EXPO_PUBLIC_API_URL }}
+      EXPO_PUBLIC_API_WEBSOCKET_URL: ${{ secrets.EXPO_PUBLIC_API_WEBSOCKET_URL }}
+      EXPO_PUBLIC_AUTH_USERNAME: ${{ secrets.EXPO_PUBLIC_AUTH_USERNAME }}
+      EXPO_PUBLIC_AUTH_PASSWORD: ${{ secrets.EXPO_PUBLIC_AUTH_PASSWORD }}
+      EXPO_PUBLIC_PARTNER_ID: ${{ secrets.EXPO_PUBLIC_PARTNER_ID }}
+      EXPO_PUBLIC_CDN_URL: ${{ secrets.EXPO_PUBLIC_CDN_URL }}
+      EXPO_PUBLIC_REWARDS_URL: ${{ secrets.EXPO_PUBLIC_REWARDS_URL }}
+      EXPO_PUBLIC_FB_APP_ID: ${{ secrets.EXPO_PUBLIC_FB_APP_ID }}
+      EXPO_PUBLIC_EXPO_CLIENT_ID: ${{ secrets.EXPO_PUBLIC_EXPO_CLIENT_ID }}
+      EXPO_PUBLIC_IOS_CLIENT_ID: ${{ secrets.EXPO_PUBLIC_IOS_CLIENT_ID }}
+      EXPO_PUBLIC_ANDROID_CLIENT_ID: ${{ secrets.EXPO_PUBLIC_ANDROID_CLIENT_ID }}
+      EXPO_PUBLIC_WEB_CLIENT_ID: ${{ secrets.EXPO_PUBLIC_WEB_CLIENT_ID }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.2.2
+        with:
+          # Pull the latest commit so CI sees the bumped package.json.
+          ref: ${{ github.ref }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v4.4.0
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Create .env
+        run: |
+          printf '%s\n' \
+            "EXPO_PUBLIC_ENVIRONMENT=${EXPO_PUBLIC_ENVIRONMENT}" \
+            "EXPO_PUBLIC_API_URL=${EXPO_PUBLIC_API_URL}" \
+            "EXPO_PUBLIC_API_WEBSOCKET_URL=${EXPO_PUBLIC_API_WEBSOCKET_URL}" \
+            "EXPO_PUBLIC_AUTH_USERNAME=${EXPO_PUBLIC_AUTH_USERNAME}" \
+            "EXPO_PUBLIC_AUTH_PASSWORD=${EXPO_PUBLIC_AUTH_PASSWORD}" \
+            "EXPO_PUBLIC_PARTNER_ID=${EXPO_PUBLIC_PARTNER_ID}" \
+            "EXPO_PUBLIC_CDN_URL=${EXPO_PUBLIC_CDN_URL}" \
+            "EXPO_PUBLIC_REWARDS_URL=${EXPO_PUBLIC_REWARDS_URL}" \
+            "EXPO_PUBLIC_FB_APP_ID=${EXPO_PUBLIC_FB_APP_ID}" \
+            "EXPO_PUBLIC_EXPO_CLIENT_ID=${EXPO_PUBLIC_EXPO_CLIENT_ID}" \
+            "EXPO_PUBLIC_IOS_CLIENT_ID=${EXPO_PUBLIC_IOS_CLIENT_ID}" \
+            "EXPO_PUBLIC_ANDROID_CLIENT_ID=${EXPO_PUBLIC_ANDROID_CLIENT_ID}" \
+            "EXPO_PUBLIC_WEB_CLIENT_ID=${EXPO_PUBLIC_WEB_CLIENT_ID}" \
+            > .env
+
+      - name: Type-check
+        run: npx tsc --noEmit
+
+      - name: Build web (expo export)
+        run: npx expo export --platform web
+
+      # ── Deploy to server via SSH ───────────────────────────────────────────
+      # Required secrets (Settings → Secrets and variables → Actions):
+      #   DEPLOY_SSH_KEY     — private SSH key whose public key is in ~/.ssh/authorized_keys on the server
+      #   DEPLOY_HOST        — server IP or hostname, e.g. "123.45.67.89"
+      #   DEPLOY_USER        — SSH user, e.g. "deploy" or "root"
+      #   DEPLOY_PATH        — nginx web root on the server, e.g. "/var/www/staging"
+      - name: Deploy to server via SSH
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        env:
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "$DEPLOY_SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H "$DEPLOY_HOST" >> ~/.ssh/known_hosts
+
+          rsync -az --delete \
+            -e "ssh -i ~/.ssh/deploy_key" \
+            dist/ \
+            "$DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH/"
+
+          ssh -i ~/.ssh/deploy_key "$DEPLOY_USER@$DEPLOY_HOST" \
+            "sudo systemctl reload nginx"

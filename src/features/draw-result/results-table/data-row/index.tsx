@@ -5,13 +5,15 @@ import { DrawTableColumn } from "../types";
 import DrawTableHeader from "../header";
 import DataItem from "./data-item";
 import { ids, styles } from "./styles.css";
+import { Raffle } from "@/src/store/types";
 
 type Props = {
   columns: DrawTableColumn[];
+  raffle: Raffle;
   data: Record<string, unknown>[];
 };
 
-export default function DataTableRow({ columns, data }: Props) {
+export default function DataTableRow({ columns, raffle, data }: Props) {
   return (
     // <ScrollView horizontal showsHorizontalScrollIndicator={false}>
       <View style={styles.wrapper as any} dataSet={{ media: ids.wrapper }}>
@@ -30,7 +32,11 @@ export default function DataTableRow({ columns, data }: Props) {
           keyExtractor={(_item, index) => `row_${index}`}
           renderItem={({ item, index }: ListRenderItemInfo<Record<string, unknown>>) => (
             <DataItem
-              item={item}
+              item={{
+                ...raffle,
+                ...item,
+              }}
+              raffle={raffle}
               columns={columns}
               isEven={index % 2 !== 0}
             />

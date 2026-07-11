@@ -5,7 +5,13 @@ import { API_ENDPOINTS } from "../endpoints";
 export const AuthService = {
   token: (payload: { username: string; password: string }) =>
     apiClient.post(API_ENDPOINTS.AUTH.TOKEN, payload),
-  login: (payload: Types.Login) => apiClient.post(API_ENDPOINTS.AUTH.LOGIN, payload),
+  login: ({
+    params,
+    signal,
+  }: {
+    params?: Types.Login;
+    signal?: AbortSignal;
+  }) => apiClient.post(API_ENDPOINTS.AUTH.LOGIN, params, { signal }),
   otpVerify: (payload: Types.OTPVerify) => apiClient.post(API_ENDPOINTS.AUTH.OTP_VERIFY, payload),
   social: (payload: Types.Login) => apiClient.post(API_ENDPOINTS.AUTH.SOCIAL, payload),
   signOut: () => apiClient.post(API_ENDPOINTS.AUTH.SIGN_OUT),

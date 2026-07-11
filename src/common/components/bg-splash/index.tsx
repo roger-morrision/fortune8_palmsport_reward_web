@@ -1,10 +1,12 @@
 import React from "react";
 import { useAssetContext } from "@/src/context/AssetContext";
+import { useBreakpoint } from "@/src/constants/BreakPoint";
 import { LinearGradient } from "expo-linear-gradient";
 import View from "@/src/common/components/View";
 import { ids, styles } from "./styles.css";
-import { Image } from "react-native";
-import { useBreakpoint } from "@/src/constants/BreakPoint";
+import { Image, useWindowDimensions } from "react-native";
+import PackegeJson from "@/package.json";
+import Text from "../Text";
 
 interface BGSplashProps {
   children: React.ReactElement;
@@ -12,6 +14,7 @@ interface BGSplashProps {
 
 const BGSplash = (props: BGSplashProps) => {
   const { images } = useAssetContext();
+  const { width } = useWindowDimensions();
 
   const colors = useBreakpoint({
     default: ["rgba(0, 4, 122, 0)", "rgba(0, 34, 96, 1)"],
@@ -52,6 +55,9 @@ const BGSplash = (props: BGSplashProps) => {
         <View style={styles.bodyStyle} dataSet={{media: ids.bodyStyle}}>
           {props.children}
         </View>
+      <Text color='placeholder' style={{position: "absolute", bottom: width * 0.02, right: width * 0.03, fontSize: width * 0.009 }}>
+        Version {PackegeJson.version}
+      </Text>
     </View>
   );
 };

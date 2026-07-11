@@ -6,70 +6,68 @@ import { ids, styles } from "./styles.css";
 import Banner from "./banner";
 import ResultsTable, { DrawTableColumn } from "./results-table";
 import Footer from "../home/footer";
-import React from "react";
+import moment from "moment";
+import { useQueryApi } from "@/src/common/hooks/useQueryApi";
+import { RaffleService } from "@/src/api/services/raffles.service";
+import { useRouter } from "expo-router";
+import { useTranslation } from "react-i18next";
 
-const PLACE_COLORS: Record<string, string> = {
-  "1ST PLACE": "#D4AF37",
-  "2ND PLACE": "#B0BEC5",
-  "3RD PLACE": "#CD7F32",
-  "4TH PLACE": "#5195FF",
-  "5TH PLACE": "#5195FF",
+const PLACES: Record<number, string> = {
+  1: "1ST PLACE",
+  2: "2ND PLACE",
+  3: "3RD PLACE",
+  4: "4TH PLACE",
+  5: "5TH PLACE",
 };
 
 const DRAW_COLUMNS: DrawTableColumn[] = [
-  { id: "drawNo",       label: "Draw No.",     flex: 1 },
-  { id: "date",         label: "Date of Draw", flex: 1 },
-  { id: "promotion",    label: "Promotion",    flex: 1 },
-  { id: "totalEntries", label: "Total Entries",flex: 1, align: "center" },
+  { id: "code", label: "draw-no",     flex: 1 },
+  { id: "drawAt", label: "draw-date", flex: 1, renderCell: (value) => (
+    <Text fontFamily="Montserrat" style={{ fontSize: 13, lineHeight: 18, color: "#D6D6D6" }}>
+      {value ? moment(value as string).format("DD-MM-YYYY") : "—"}
+    </Text>
+  )},
+  { id: "promotion",    label: "promotion",    flex: 1 },
+  { id: "totalRedeemedTickets", label: "entries", flex: 1, align: "center" },
   {
     id: "place",
-    label: "Place",
+    label: "place",
     flex: 1,
     renderCell: (value) => {
-      const place = String(value ?? "");
-      const color = PLACE_COLORS[place] ?? "#5195FF";
       return (
-        <View style={{ borderWidth: 1, borderColor: color, borderRadius: 4, paddingVertical: 3, paddingHorizontal: 8, alignSelf: "flex-start" }}>
-          <Text fontFamily="Montserrat-Bold" style={{ fontSize: 11, lineHeight: 15, letterSpacing: 0.3, color }}>
-            {place}
-          </Text>
-        </View>
+        <Text >
+          {PLACES[value as number]}
+        </Text>
       );
     },
   },
-  { id: "winnerId", label: "Winner ID", flex: 1, align: "center" },
-];
-
-const CURRENT_RESULTS = [
-  { drawNo: "RD-1245", date: "11-03-2025", promotion: "PROMO", totalEntries: 422,  place: "1ST PLACE", winnerId: "987624" },
-  { drawNo: "RD-1245", date: "11-03-2025", promotion: "PROMO", totalEntries: 7924, place: "2ND PLACE", winnerId: "321456" },
-  { drawNo: "RD-1245", date: "11-03-2025", promotion: "PROMO", totalEntries: 1234, place: "3RD PLACE", winnerId: "654321" },
-  { drawNo: "RD-1245", date: "11-03-2025", promotion: "PROMO", totalEntries: 8993, place: "4TH PLACE", winnerId: "456789" },
-  { drawNo: "RD-1245", date: "11-03-2025", promotion: "PROMO", totalEntries: 112,  place: "5TH PLACE", winnerId: "789012" },
-];
-
-const PREVIOUS_RESULTS = [
-  { drawNo: "RD-2340", date: "11-10-2025", promotion: "PROMO", totalEntries: 422,  place: "1ST PLACE", winnerId: "987624" },
-  { drawNo: "RD-2340", date: "11-10-2025", promotion: "PROMO", totalEntries: 7924, place: "2ND PLACE", winnerId: "321456" },
-  { drawNo: "RD-2340", date: "11-10-2025", promotion: "PROMO", totalEntries: 1234, place: "3RD PLACE", winnerId: "654321" },
-  { drawNo: "RD-2340", date: "11-10-2025", promotion: "PROMO", totalEntries: 8993, place: "4TH PLACE", winnerId: "456789" },
-  { drawNo: "RD-2340", date: "11-10-2025", promotion: "PROMO", totalEntries: 112,  place: "5TH PLACE", winnerId: "789012" },
+  { id: "user.id", label: "user-id", flex: 1, align: "center" },
 ];
 
 export default function DrawResult() {
+  const router = useRouter();
+  const { t } = useTranslation();
+  const { data } = useQueryApi(["raffle-results"], RaffleService.results, {}, {
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
+  });
+
+  const CURRENT_RESULTS = data?.results[0] ?? [];
+  const PREVIOUS_RESULTS = data?.results[1] ?? [];
+
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.container} dataSet={{ media: ids.container }}>
         <Banner />
 
         <ResultsTable
-          title="RESULTS FROM THE DRAW"
+          title={t("draw-result.current")}
           columns={DRAW_COLUMNS}
           data={CURRENT_RESULTS}
         />
 
         <ResultsTable
-          title="RESULTS FROM PREVIOUS DRAWS"
+          title={t("draw-result.previous")}
           columns={DRAW_COLUMNS}
           data={PREVIOUS_RESULTS}
         />
@@ -77,6 +75,7 @@ export default function DrawResult() {
         <BGButton
           label="PARTICIPATE IN NEXT DRAW"
           style={styles.btn_cta}
+          onPress={() => router.push("/(tabs)/raffle-draw")}
           dataSet={{ media: ids.btn_cta }}
           labelStyle={styles.label_cta}
           fontFamily="Montserrat-Bold"

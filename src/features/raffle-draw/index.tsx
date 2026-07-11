@@ -7,8 +7,17 @@ import Countdown from "./countdown";
 import DrawTerms from "./terms";
 import TicketSelect from "./ticket-select";
 import { ids, styles } from "./styles.css";
+import { useQueryApi } from "@/src/common/hooks/useQueryApi";
+import { RaffleService } from "@/src/api/services/raffles.service";
 
 export default function RaffleDrawPage() {
+  const { data } = useQueryApi(["ongoing-raffle"], RaffleService.ongoing, {}, {
+    // refetchOnMount: false,
+    // refetchOnWindowFocus: false,
+  });
+
+  console.log("data", data)
+
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.container} dataSet={{ media: ids.container }}>

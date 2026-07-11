@@ -16,6 +16,7 @@ import { routeToPathname } from "@/src/common/utils/transform-helper";
 import { useTranslation } from "react-i18next";
 import SVGIcon from "@/src/constants/SVGIcon";
 import numeral from "numeral";
+import { selectedUserCoins } from "@/src/store/slices/user.slice";
 
 function HeaderAuthScreen() {
   const router = useRouter();
@@ -24,7 +25,7 @@ function HeaderAuthScreen() {
   const navigation = useNavigation();
   const { images } = useAssetContext();
   const { scrollToSection } = useHomeContext();
-  const isLoggedIn = useAppSelector(selectAuthLoggedIn);
+  const balance = useAppSelector(selectedUserCoins);
   const unreadCount = useAppSelector(selectNotificationUnreadCount);
 
   const onScroll = (view: any) => {
@@ -97,7 +98,7 @@ function HeaderAuthScreen() {
           />
           <View>
             <Text fontFamily="Montserrat-Bold" style={styles.t_balance}>
-              {numeral(12312).format("0,000")}
+              {numeral(balance.GOLD).format("0,000.00")}
             </Text>
             <Text fontFamily="Montserrat-Bold" style={styles.t_balance_label}>
               PALMS GOLD

@@ -2,6 +2,11 @@ export type Token = {
   token?: string;
 };
 
+export type loginInputValue = {
+  email: string;
+  password: string;
+};
+
 export type partnerId = string;
 
 export type ErrorMessage = {
@@ -371,3 +376,35 @@ export type FeedBack = {
   fullName: string;
   message: string;
 };
+
+export type Redemption = {
+  offset?: number;
+  paged?: boolean;
+  pageNumber?: number;
+  pageSize?: number
+};
+
+export type Raffle = {
+    "id": number;
+    "code": string;
+    "name": string;
+    "description": string;
+    "thumbnail": string;
+    "startAt": string;
+    "drawAt": string;
+    "status": string;
+    "totalRedeemedTickets": number;
+    "isResultPublished": boolean;
+}
+
+export type Winners = {
+  "place": number;
+  "user": {
+      "id": number;
+      "firstName": string;
+      "lastName": string;
+      "emailAddress": string;
+      "displayName": string;
+  },
+  "totalRedeemedTickets": number;
+}

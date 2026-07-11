@@ -96,4 +96,10 @@ export const API_ENDPOINTS = {
     PAYOUT_TRANSACTIONS: "/api/v1/payment/masspay/payout-transactions",
     PAYOUT_TRANSACTIONS_SEARCH: "/api/v1/payment/masspay/payout-transactions/search",
   },
+  RAFFLES: {
+    REDEEM: (id: number) => `/api/v1/raffles/${id}/redeem`,
+    REDEMPTIONS: "/api/v1/raffles/redemptions",
+    ONGOING: "/api/v1/raffles/ongoing",
+    RESULTS: "/api/v1/raffles/results",
+  }
 };

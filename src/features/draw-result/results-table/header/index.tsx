@@ -2,12 +2,15 @@ import Text from "@/src/common/components/Text";
 import View from "@/src/common/components/View";
 import { DrawTableColumn } from "../types";
 import { ids, styles } from "./styles.css";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   columns: DrawTableColumn[];
 };
 
 export default function DrawTableHeader({ columns }: Props) {
+  const { t } = useTranslation();
+  
   return (
     <View style={styles.container} dataSet={{ media: ids.container }}>
       {columns.map((col, i) => (
@@ -24,7 +27,7 @@ export default function DrawTableHeader({ columns }: Props) {
             fontFamily="Montserrat-SemiBold"
             style={[styles.t_label, { textAlign: col.align ?? "left" }, col.labelStyle]}
           >
-            {col.label}
+            {t(`draw-result.${col.label}`)}
           </Text>
         </View>
       ))}

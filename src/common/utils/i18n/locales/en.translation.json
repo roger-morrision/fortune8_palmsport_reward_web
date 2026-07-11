@@ -27,5 +27,19 @@
     "submit": "ENTER",
     "resend-prefix": "Didn't receive the code?",
     "resend-link": "Send Again"
+  },
+  "draw-result": {
+    "title": "Draw Result",
+    "current": "RESULTS FROM THE DRAW",
+    "previous": "RESULTS FROM PREVIOUS DRAWS",
+    "draw-no": "Draw No.",
+    "draw-date": "Draw Date",
+    "promotion": "Promotion",
+    "entries": "Total Entries",
+    "place": "Place",
+    "user-id": "Winner User ID"
+  },
+  "raffle-draw": {
+    "title": "RAFFLE DRAW"
   }
 }
