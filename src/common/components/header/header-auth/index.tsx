@@ -101,7 +101,7 @@ function HeaderAuthScreen() {
               {numeral(balance.GOLD).format("0,000.00")}
             </Text>
             <Text fontFamily="Montserrat-Bold" style={styles.t_balance_label}>
-              PALMS GOLD
+              {t("header.palms-gold")}
             </Text>
           </View>
         </View>

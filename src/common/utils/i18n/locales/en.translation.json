@@ -4,7 +4,8 @@
     "myaccount": "MY ACCOUNT",
     "raffles": "RAFFLES",
     "r-raffle-draw": "Raffle Draw",
-    "r-draw-result": "Draw Result"
+    "r-draw-result": "Draw Result",
+    "palms-gold": "PALMS GOLD"
   },
   "login": {
     "username": "Email",
@@ -27,6 +28,23 @@
     "submit": "ENTER",
     "resend-prefix": "Didn't receive the code?",
     "resend-link": "Send Again"
+  },
+  "account": {
+    "title": "MY ACCOUNT",
+    "details": "Account Details",
+    "details-desc": "Manage details of your account on palmsplay.com",
+    "details-fn": "First Name:",
+    "details-ln": "Last Name:",
+    "details-pn": "Player Name:",
+    "details-pid": "Player ID:",
+    "palms-gold": "Palms Gold",
+    "palms-desc": "Amount of qualified golds",
+    "table-1": "Promotion",
+    "table-2": "Description",
+    "table-3": "No. of Entries",
+    "table-4": "Amount PG",
+    "table-5": "Date",
+    "table-6": "Result"
   },
   "draw-result": {
     "title": "Draw Result",

@@ -4,7 +4,8 @@
     "myaccount": "Моят профил",
     "raffles": "Томболи",
     "r-raffle-draw": "Теглене на томбола",
-    "r-draw-result": "Резултат от тегленето"
+    "r-draw-result": "Резултат от тегленето",
+    "palms-gold": "Palms злато"
   },
   "login": {
     "choose": "Language",
@@ -28,6 +29,23 @@
     "submit": "Въведи",
     "resend-prefix": "Не получихте кода?",
     "resend-link": "Прати пак"
+  },
+  "account": {
+    "title": "Моят профил",
+    "details": "Детайли на профила",
+    "details-desc": "Управлявайте данните на своя акаунт на palmsplay.com",
+    "details-fn": "Първо име:",
+    "details-ln": "Фамилия:",
+    "details-pn": "Име на играча:",
+    "details-pid": "Идентификационен номер на играча:",
+    "palms-gold": "Palms злато",
+    "palms-desc": "Размер квалифицирано злато",
+    "table-1": "Промоция",
+    "table-2": "Описание",
+    "table-3": "Номер на участията",
+    "table-4": "Сума PG",
+    "table-5": "Дата",
+    "table-6": "Резултат"
   },
   "draw-result": {
     "title": "Резултат от тегленето",

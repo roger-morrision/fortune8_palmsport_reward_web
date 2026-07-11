@@ -14,11 +14,13 @@ import { ids, styles } from "./styles.css";
 import numeral from "numeral";
 import { Image } from "react-native";
 import { useAssetContext } from "@/src/context/AssetContext";
+import { useTranslation } from "react-i18next";
 
 dayjs.extend(customParseFormat);
 export type Props = { handleClose: () => void };
 
 function PalmsGold() {
+  const { t } = useTranslation();
   const { images } = useAssetContext();
   const balance = useAppSelector(selectedUserCoins);
 
@@ -27,10 +29,10 @@ function PalmsGold() {
       <View style={[styles.row_container, { justifyContent: "space-between" }]}>
         <View>
           <Text color="text" style={styles.text_title} dataSet={{ media: ids.text_title }}>
-            Palms Gold
+            {t("account.palms-gold")}
           </Text>
           <Text style={styles.text_description} dataSet={{ media: ids.text_description }}>
-            Amount of qualified golds
+            {t("account.palms-desc")}
           </Text>
         </View>
       </View>

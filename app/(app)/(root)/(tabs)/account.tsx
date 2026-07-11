@@ -2,13 +2,16 @@ import ScreenTitle from "@/src/common/components/header/screen-title";
 import ProtectedScreen from "@/src/common/components/ProtectedScreen";
 import Screen from "@/src/common/components/Screen";
 import UserProfilePage from "@/src/features/user-page";
+import { useTranslation } from "react-i18next";
 import StyleSheet from "react-native-media-query";
 
 function UserProfileScreen() {
+  const { t } = useTranslation();
+
   return (
     <ProtectedScreen>
       <Screen style={styles.container} dataSet={{ media: ids.container }}>
-        <ScreenTitle options={{ title: "My Account" }} />
+        <ScreenTitle options={{ title: t("account.title") }} />
         <UserProfilePage />
       </Screen>
     </ProtectedScreen>

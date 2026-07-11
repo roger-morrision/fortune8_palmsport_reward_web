@@ -14,9 +14,6 @@ const { ids, styles } = StyleSheet.create({
   },
   h_style: {
     flex: 1,
-    flexDirection: "row-reverse",
-    justifyContent: "center",
-    alignItems: "center",
   },
   t_style: {
     marginLeft: 0,
@@ -24,15 +21,17 @@ const { ids, styles } = StyleSheet.create({
     fontSize: 16,
     lineHeight: 19,
     color: "#7791BA",
-    textAlign: "left",
+    textAlign: "center",
     "@media (max-width: 768px)": {
       fontSize: 15,
       lineHeight: 18,
     },
   },
   t_with_icon: {
+    flex: 1,
     flexDirection: "row",
     alignItems: "center",
+    justifyContent: "center",
     gap: 75,
   },
 });

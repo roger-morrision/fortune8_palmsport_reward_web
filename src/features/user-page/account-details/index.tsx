@@ -14,11 +14,13 @@ import customParseFormat from "dayjs/plugin/customParseFormat";
 import _ from "lodash";
 import { DateType } from "react-native-ui-datepicker";
 import { ids, styles } from "./styles.css";
+import { useTranslation } from "react-i18next";
 
 dayjs.extend(customParseFormat);
 export type Props = { handleClose: () => void };
 
 function AccountDetails() {
+  const { t } = useTranslation();
   const user = useAppSelector(selectUserSession);
   const { state, onDispatch, onSetInitial } = useInputHelper(CHANGE_USER_DETAILS_STATES);
 
@@ -43,10 +45,10 @@ function AccountDetails() {
       <View style={[styles.row_container, { justifyContent: "space-between" }]}>
         <View>
           <Text color="text" style={styles.text_title} dataSet={{ media: ids.text_title }}>
-            Account Details
+            {t("account.details")}
           </Text>
           <Text style={styles.text_description} dataSet={{ media: ids.text_description }}>
-            To update your details, go back to Gambly Casino.
+            {t("account.details-desc")}
           </Text>
         </View>
       </View>
@@ -54,14 +56,14 @@ function AccountDetails() {
         <View style={{ flexDirection: "row", marginTop: 10 }}>
           <View style={{ gap: 15, flex: 1 }}>
             <Item
-              label="First Name:"
+              label={t("account.details-fn")}
               disabled
               error={""}
               value={state.firstName}
               onChangeText={onDispatch("firstName")}
             />
             <Item
-              label="Player Name:"
+              label={t("account.details-pn")}
               disabled
               value={state.displayName}
               error={""}
@@ -70,14 +72,14 @@ function AccountDetails() {
           </View>
           <View style={{ gap: 15, flex: 1 }}>
             <Item
-              label="Last Name:"
+              label={t("account.details-ln")}
               disabled
               value={state.lastName}
               error={""}
               onChangeText={onDispatch("lastName")}
             />
             <Item
-              label="Player ID:"
+              label={t("account.details-pid")}
               disabled
               value={state.id}
               error={""}

@@ -12,12 +12,12 @@ import { RaffleService } from "@/src/api/services/raffles.service";
 import { RewardService } from "@/src/api/services/rewards.service";
 
 export const TABLE_HEAD_DASHBOARD_DOCUMENTS: HeaderItem[] = [
-  { id: "name",             label: "Promotion",      sortable: false, cellStyle: { flex: 1 } },
-  { id: "description",      label: "Description",    sortable: false, cellStyle: { flex: 0.6 } },
-  { id: "numberOfEntries",  label: "No. of Entries", sortable: false, cellStyle: { flex: 0.6 } },
-  { id: "amount",           label: "Amount PG",      sortable: false, cellStyle: { flex: 0.6 } },
-  { id: "date",             label: "Date",           sortable: false, cellStyle: { flex: 0.6 } },
-  { id: "result",           label: "Result",         sortable: false, cellStyle: { flex: 0.6 } },
+  { id: "name",             label: "table-1",      sortable: false, cellStyle: { flex: 1, alignItems: "center" } },
+  { id: "description",      label: "table-2",    sortable: false, cellStyle: { flex: 0.6, alignItems: "center" } },
+  { id: "numberOfEntries",  label: "table-3", sortable: false, cellStyle: { flex: 0.6, alignItems: "center" } },
+  { id: "amount",           label: "table-4",      sortable: false, cellStyle: { flex: 0.6, alignItems: "center" } },
+  { id: "date",             label: "table-5",           sortable: false, cellStyle: { flex: 0.6, alignItems: "center" } },
+  { id: "result",           label: "table-6",         sortable: false, cellStyle: { flex: 0.6, alignItems: "center" } },
 ];
 
 export const Promotion: DataRowItem[] = [

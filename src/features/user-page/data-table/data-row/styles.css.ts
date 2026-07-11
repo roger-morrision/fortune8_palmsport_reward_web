@@ -36,7 +36,6 @@ const { ids, styles } = StyleSheet.create({
   },
   c_style: {
     flex: 1,
-    alignItems: "center",
   },
   text_style: {
     fontSize: 16,

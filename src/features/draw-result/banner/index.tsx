@@ -5,9 +5,17 @@ import React from "react";
 import { Image } from "react-native";
 import StyleSheet from "react-native-media-query";
 import { LinearGradient } from "expo-linear-gradient";
+import { useQueryApi } from "@/src/common/hooks/useQueryApi";
+import { RewardService } from "@/src/api/services/rewards.service";
 
 export default function Banner() {
   const { images } = useAssetContext();
+  const { data } = useQueryApi(["draw-result"], RewardService.resultPage, {}, {
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
+  });
+
+  console.log("datadata", data)
 
   return (
     <View backgroundColor="blueDark" style={styles.v_rewards} dataSet={{ media: ids.v_rewards }}>
@@ -17,12 +25,12 @@ export default function Banner() {
       />
       <Image
         style={styles.image_style}
-        source={{ uri: images?.["banner-1"].uri }}
+        source={{ uri: data?.image }}
         resizeMode="contain"
       />
       <View style={styles.right_wrap}>
         <Text fontFamily="Montserrat" color="text" style={styles.t_description}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          {data?.description}
         </Text>
       </View>
     </View>
@@ -32,6 +40,7 @@ export default function Banner() {
 const { ids, styles } = StyleSheet.create({
   v_rewards: {
     marginTop: 34,
+    width: "100%",
     alignItems: "center",
     justifyContent: "center",
     maxWidth: 1084,
