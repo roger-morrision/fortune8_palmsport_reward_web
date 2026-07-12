@@ -7,6 +7,7 @@ import * as Types from "@/src/store/types";
 // Slice
 import { uriToBlob } from "@/src/common/utils/transform-helper";
 import { router } from "expo-router";
+import { apiClient } from "@/src/api/client";
 import { lobbyActions, selectKYCInputs } from "../slices/lobby.slice";
 import { notificationActions } from "../slices/notification.slice";
 import { selectedUserUserID, userActions } from "../slices/user.slice";
@@ -47,9 +48,14 @@ function* handleRehydrate(action: {
 }): SagaIterator {
   try {
     const lang = action.payload?.settings?.lang;
-
     if (lang) {
       yield call(i18n.changeLanguage, lang);
+    }
+
+    const accessToken = action.payload?.auth?.session?.accessToken;
+    const refreshToken = action.payload?.auth?.session?.refreshToken;
+    if (accessToken) {
+      apiClient.setTokens(accessToken, refreshToken);
     }
   } catch (error) {
   }

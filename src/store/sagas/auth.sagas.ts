@@ -5,6 +5,7 @@ import { call, put, select, takeEvery } from "redux-saga/effects";
 import { authActions, selectAuthLoginInput, selectAuthSession } from "../slices/auth.slice";
 import { forgotActions } from "../slices/forgot.slice";
 import { userActions } from "../slices/user.slice";
+import { apiClient } from "@/src/api/client";
 import { AuthService } from "@/src/api/services/auth.service";
 import * as Types from "@/src/store/types";
 import { UserService } from "@/src/api/services/user.service";
@@ -155,8 +156,17 @@ function* handleLogout(): SagaIterator {
   yield put(lobbyActions.logout());
 }
 
+function* handleLoginSuccess(action: { type: string; payload: any }): SagaIterator {
+  const { accessToken, refreshToken } = action.payload ?? {};
+  if (accessToken) {
+    apiClient.setTokens(accessToken, refreshToken);
+  }
+}
+
 // Watcher Saga
 function* authWatcherSaga(): SagaIterator {
+  yield takeEvery(authActions.loginSuccess.type, handleLoginSuccess);
+  yield takeEvery(authActions.refreshToken.type, handleLoginSuccess);
   yield takeEvery(authActions.loginRequest.type, handleSignin);
   yield takeEvery(authActions.otpVerify.type, handleOTPVerify);
   yield takeEvery(authActions.loginGoogleRequest.type, handleSignInWithGoogle);

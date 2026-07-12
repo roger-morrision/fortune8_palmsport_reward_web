@@ -408,3 +408,20 @@ export type Winners = {
   },
   "totalRedeemedTickets": number;
 }
+
+export type OngoingRaffle = {
+  "id": number;
+  "createdAt": string;
+  "updatedAt": string;
+  "code": string;
+  "name": string;
+  "description": string;
+  "thumbnail": string;
+  "startAt": string;
+  "drawAt": string;
+  "ticketPrice": number;
+  "ticketLimit": number;
+  "numWinners": number;
+  "status": string;
+  "totalRedeemedTickets": number;
+}

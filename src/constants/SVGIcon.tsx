@@ -209,7 +209,7 @@ const SVGIcon = (props: IconProps) => {
     case "g-settings":
       return <GSettings width={width || 37} height={height || 38} {...props} />;
     case "warning":
-      return <Warning width={width || 95} height={height || 87} {...props} />;
+      return <Warning width={width || 95} height={height || 87} {...props} fill={props.fill ?? "#EBCD75"} />;
 
     // CATEGORIES
     case "new":

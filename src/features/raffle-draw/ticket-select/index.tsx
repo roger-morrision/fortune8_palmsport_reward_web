@@ -1,52 +1,57 @@
 import BGButton from "@/src/common/components/BGButton";
 import Text from "@/src/common/components/Text";
 import View from "@/src/common/components/View";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Pressable } from "react-native";
 import { MaterialIcon } from "@/src/common/components/Icon";
 import StyleSheet from "react-native-media-query";
-import useThemeColor from "@/src/common/hooks/useThemeColor";
 import Select from "@/src/common/components/select";
-
-const TICKET_OPTIONS = [1, 2, 3, 4, 5, 10, 20, 50];
+import ConfirmTicketModal from "./confirm-modal";
 
 type Props = {
-  pgPerTicket?: number;
-  onConfirm?: (tickets: number) => void;
+  raffleId?: number;
+  ticketLimit?: number;
+  ticketPrice?: number;
 };
 
-export default function TicketSelect({ pgPerTicket = 0, onConfirm }: Props) {
+export default function TicketSelect({ raffleId = 0, ticketLimit = 0, ticketPrice = 0 }: Props) {
   const [tickets, setTickets] = useState<number | null>(null);
-  const [open, setOpen] = useState(false);
-  const textColor = useThemeColor("text");
-  const placeholderColor = useThemeColor("closeColor");
+  const [showConfirm, setShowConfirm] = useState(false);
 
-  const pgRequired = tickets != null ? tickets * pgPerTicket : null;
+  const ticketOptions = useMemo(
+    () => Array.from({ length: ticketLimit }, (_, i) => i + 1),
+    [ticketLimit],
+  );
+
+  const pgRequired = tickets != null ? tickets * ticketPrice : null;
+
 
   return (
-    <View style={styles.container as any} dataSet={{ media: ids.container }}>
-      {/* Ticket selector row */}
-      <View style={styles.v_row} dataSet={{ media: ids.v_row }}>
-        <Select
-          ids={2}
-          keys={"country"}
-          selectedKey={"dropdownKey"}
-          options={TICKET_OPTIONS}
-          value={tickets ?? "-"}
-          labelKey="name"
-          // inputStyle={[error.state && styles.input_error_style]}
-          onSelected={setTickets}
-          onSelectedKeys={() => {}}
-          renderBase={(props) => {
-            return (
+    <>
+      <View style={styles.container as any} dataSet={{ media: ids.container }}>
+        <View style={styles.v_row} dataSet={{ media: ids.v_row }}>
+          <Select
+            ids={2}
+            keys={"ticket"}
+            selectedKey={"dropdownKey"}
+            options={ticketOptions}
+            value={tickets ?? "-"}
+            labelKey="name"
+            onSelected={setTickets}
+            onSelectedKeys={() => {}}
+            renderBase={(props) => (
               <View style={styles.v_col} dataSet={{ media: ids.v_col }}>
-                <Text fontFamily="Montserrat-SemiBold" color="text" style={styles.t_label} dataSet={{ media: ids.t_label }}>
+                <Text
+                  fontFamily="Montserrat-SemiBold"
+                  color="text"
+                  style={styles.t_label}
+                  dataSet={{ media: ids.t_label }}
+                >
                   Select No. Of Tickets
                 </Text>
                 <Pressable
                   style={styles.dropdown_btn}
                   dataSet={{ media: ids.dropdown_btn }}
-                  // onPress={() => setOpen((v) => !v)}
                   onPress={() => {
                     props.setVisible(!props.isVisible);
                     props.setFocus(false);
@@ -55,41 +60,62 @@ export default function TicketSelect({ pgPerTicket = 0, onConfirm }: Props) {
                   <Text fontFamily="Montserrat" color="text" style={styles.t_dropdown_val}>
                     {tickets ?? "-"}
                   </Text>
-                  <MaterialIcon 
-                    disabled name={open ? "expand-less" : "expand-more"}
+                  <MaterialIcon
+                    disabled
+                    name={props.isVisible ? "expand-less" : "expand-more"}
                     style={styles.dropdown_arrow}
-                    size={22} color="closeColor" />
+                    size={22}
+                    color="closeColor"
+                  />
                 </Pressable>
               </View>
-            )
-          }}
-        />
-        
+            )}
+          />
 
-        <View style={styles.v_col} dataSet={{ media: ids.v_col }}>
-          <Text fontFamily="Montserrat-SemiBold" color="text" style={styles.t_label} dataSet={{ media: ids.t_label }}>
-            No. Of PG Required
-          </Text>
-          <View style={styles.pg_input} dataSet={{ media: ids.pg_input }}>
-            <Text fontFamily="Montserrat" color="closeColor" style={styles.t_dropdown_val}>
-              {pgRequired ?? "-"}
+          <View style={styles.v_col} dataSet={{ media: ids.v_col }}>
+            <Text
+              fontFamily="Montserrat-SemiBold"
+              color="text"
+              style={styles.t_label}
+              dataSet={{ media: ids.t_label }}
+            >
+              No. Of PG Required
             </Text>
+            <View style={styles.pg_input} dataSet={{ media: ids.pg_input }}>
+              <Text fontFamily="Montserrat" color="closeColor" style={styles.t_dropdown_val}>
+                {pgRequired ?? "-"}
+              </Text>
+            </View>
           </View>
         </View>
+
+        <BGButton
+          label="CONFIRM"
+          disabled={tickets == null}
+          onPress={() => tickets != null && setShowConfirm(true)}
+          style={styles.btn_confirm}
+          dataSet={{ media: ids.btn_confirm }}
+          fontFamily="Montserrat-SemiBold"
+          labelStyle={styles.label_confirm}
+          bgColors={tickets != null ? ["#DF7B0B", "#E5D33D"] : ["#3A3A3A", "#3A3A3A"]}
+          strokeColors={
+            tickets != null
+              ? ["#E4C234", "#FFFFAAE3", "#E08A14"]
+              : ["#555", "#555", "#555"]
+          }
+        />
       </View>
 
-      <BGButton
-        label="CONFIRM"
-        disabled={tickets == null}
-        onPress={() => tickets != null && onConfirm?.(tickets)}
-        style={styles.btn_confirm}
-        dataSet={{ media: ids.btn_confirm }}
-        fontFamily="Montserrat-SemiBold"
-        labelStyle={styles.label_confirm}
-        bgColors={tickets != null ? ["#DF7B0B", "#E5D33D"] : ["#3A3A3A", "#3A3A3A"]}
-        strokeColors={tickets != null ? ["#E4C234", "#FFFFAAE3", "#E08A14"] : ["#555", "#555", "#555"]}
-      />
-    </View>
+      {tickets != null && pgRequired != null && (
+        <ConfirmTicketModal
+          visible={showConfirm}
+          raffleId={raffleId}
+          tickets={tickets}
+          pgRequired={pgRequired}
+          onClose={() => setShowConfirm(false)}
+        />
+      )}
+    </>
   );
 }
 
@@ -128,7 +154,6 @@ const { ids, styles } = StyleSheet.create({
   v_col: {
     flex: 1,
     "@media (max-width: 800px)": {
-      // flex: 0,
       marginTop: 16,
     },
   },
@@ -151,47 +176,22 @@ const { ids, styles } = StyleSheet.create({
     borderRadius: 6,
     paddingLeft: 14,
     backgroundColor: "#0D1A3F",
-    "@media (max-width: 800px)": {
-    },
   },
   dropdown_arrow: {
-    width: 50, borderRadius: 6, 
+    width: 50,
+    borderRadius: 6,
     borderWidth: 1,
-    height: "100%", 
+    height: "100%",
     borderColor: "#1C3470",
-    backgroundColor: "#0B1053", 
-    alignItems: 'center', 
-    justifyContent: "center"
+    backgroundColor: "#0B1053",
+    alignItems: "center",
+    justifyContent: "center",
   },
   t_dropdown_val: {
-    // flex: 1,
     width: "70%",
     textAlign: "center",
     fontSize: 15,
     lineHeight: 20,
-  },
-  v_options: {
-    position: "absolute",
-    top: "100%",
-    left: 0,
-    right: 0,
-    backgroundColor: "#0D1A3F",
-    borderWidth: 1,
-    borderColor: "#21366E",
-    borderRadius: 6,
-    zIndex: 99,
-    marginTop: 4,
-  },
-  option_item: {
-    paddingHorizontal: 14,
-    paddingVertical: 10,
-  },
-  option_selected: {
-    backgroundColor: "#162045",
-  },
-  t_option: {
-    fontSize: 14,
-    lineHeight: 18,
   },
   pg_input: {
     height: 50,

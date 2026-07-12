@@ -1,7 +1,12 @@
 import Text from "@/src/common/components/Text";
 import View from "@/src/common/components/View";
+import { OngoingRaffle } from "@/src/store/types";
 import { useEffect, useRef, useState } from "react";
 import StyleSheet from "react-native-media-query";
+
+type Props = {
+  raffle: OngoingRaffle;
+};
 
 type TimeLeft = { days: number; hours: number; minutes: number; seconds: number };
 
@@ -19,19 +24,17 @@ function pad(n: number) {
   return String(n).padStart(2, "0");
 }
 
-type Props = {
-  targetDate?: Date;
-  totalEntries?: number;
-};
-
-export default function Countdown({ targetDate, totalEntries = 0 }: Props) {
-  const targetRef = useRef<Date>(
-    targetDate ?? new Date(Date.now() + 8 * 3600000 + 12 * 60000 + 44000 + 28000)
-  );
-  const [time, setTime] = useState<TimeLeft>(getTimeLeft(targetRef.current.getTime()));
+export default function Countdown({ raffle }: Props) {
+  const targetRef = useRef<number>(new Date(raffle.drawAt).getTime());
+  const [time, setTime] = useState<TimeLeft>(getTimeLeft(targetRef.current));
 
   useEffect(() => {
-    const id = setInterval(() => setTime(getTimeLeft(targetRef.current.getTime())), 1000);
+    targetRef.current = new Date(raffle.drawAt).getTime();
+    setTime(getTimeLeft(targetRef.current));
+  }, [raffle.drawAt]);
+
+  useEffect(() => {
+    const id = setInterval(() => setTime(getTimeLeft(targetRef.current)), 1000);
     return () => clearInterval(id);
   }, []);
 
@@ -79,7 +82,7 @@ export default function Countdown({ targetDate, totalEntries = 0 }: Props) {
         <Text fontFamily="Montserrat-SemiBold" color="button" style={styles.t_entries} dataSet={{ media: ids.t_entries }}>
           Total No. of Entries:{" "}
           <Text fontFamily="Montserrat-Bold" color="text" style={styles.t_entries}>
-            {totalEntries}
+            {raffle.totalRedeemedTickets}
           </Text>
         </Text>
       </View>

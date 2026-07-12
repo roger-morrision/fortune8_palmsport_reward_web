@@ -1,5 +1,9 @@
+import ActivityIndicator from "@/src/common/components/ActivityIndicator";
 import BGButton from "@/src/common/components/BGButton";
 import View from "@/src/common/components/View";
+import { RaffleService } from "@/src/api/services/raffles.service";
+import { RewardService } from "@/src/api/services/rewards.service";
+import { useQueries } from "@tanstack/react-query";
 import { ScrollView } from "react-native";
 import Footer from "../home/footer";
 import Banner from "./banner";
@@ -7,35 +11,51 @@ import Countdown from "./countdown";
 import DrawTerms from "./terms";
 import TicketSelect from "./ticket-select";
 import { ids, styles } from "./styles.css";
-import { useQueryApi } from "@/src/common/hooks/useQueryApi";
-import { RaffleService } from "@/src/api/services/raffles.service";
-import { RewardService } from "@/src/api/services/rewards.service";
 
 export default function RaffleDrawPage() {
-  const { data } = useQueryApi(["ongoing-raffle"], RewardService.rafflePage, {}, {
-    // refetchOnMount: false,
-    // refetchOnWindowFocus: false,
+  const [rafflePageQuery, ongoingQuery] = useQueries({
+    queries: [
+      {
+        queryKey: ["raffle-page-description"],
+        queryFn: () => RewardService.rafflePage(),
+      },
+      {
+        queryKey: ["ongoing-raffle"],
+        queryFn: () => RaffleService.ongoing(),
+      },
+    ],
   });
 
-  console.log("data", data)
+  const data = rafflePageQuery.data;
+  const ongoing = ongoingQuery.data;
+  const isLoading = rafflePageQuery.isLoading || ongoingQuery.isLoading;
+
+  if(isLoading){
+    return (
+      <View style={{ flex: 1, alignItems: "center", justifyContent: "center", minHeight: 180 }}>
+        <ActivityIndicator animating size="large" color="button" />
+      </View>
+    );
+  }
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.container} dataSet={{ media: ids.container }}>
-        {/* Giveaway banner + description + prize */}
-        <Banner  
+        <Banner
           image={data?.image}
-          description={data?.description} 
-          prize={data?.prize} 
+          description={data?.description}
+          prize={data?.prize}
         />
 
-        {/* Countdown timer + ticket selection side by side (stacked on mobile) */}
         <View style={styles.v_panels} dataSet={{ media: ids.v_panels }}>
-          <Countdown totalEntries={100} />
-          <TicketSelect pgPerTicket={10} />
+          {ongoing && <Countdown raffle={ongoing} />}
+          <TicketSelect
+            raffleId={ongoing?.id}
+            ticketLimit={ongoing?.ticketLimit ?? 0}
+            ticketPrice={ongoing?.ticketPrice ?? 0}
+          />
         </View>
 
-        {/* Enter Now CTA */}
         <BGButton
           label="ENTER NOW"
           style={styles.btn_enter}
@@ -44,7 +64,6 @@ export default function RaffleDrawPage() {
           fontFamily="Montserrat-Bold"
         />
 
-        {/* Collapsible draw terms */}
         <DrawTerms content={data?.tnc} />
 
         <View style={styles.footer} dataSet={{ media: ids.footer }}>
