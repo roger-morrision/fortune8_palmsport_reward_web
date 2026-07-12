@@ -11,6 +11,9 @@ import { useQueryApi } from "@/src/common/hooks/useQueryApi";
 import { RaffleService } from "@/src/api/services/raffles.service";
 import { useRouter } from "expo-router";
 import { useTranslation } from "react-i18next";
+import { useQueries } from "@tanstack/react-query";
+import { RewardService } from "@/src/api/services/rewards.service";
+import ActivityIndicator from "@/src/common/components/ActivityIndicator";
 
 const PLACES: Record<number, string> = {
   1: "1ST PLACE",
@@ -47,18 +50,37 @@ const DRAW_COLUMNS: DrawTableColumn[] = [
 export default function DrawResult() {
   const router = useRouter();
   const { t } = useTranslation();
-  const { data } = useQueryApi(["raffle-results"], RaffleService.results, {}, {
-    refetchOnMount: false,
-    refetchOnWindowFocus: false,
+    const [resultPageQuery, resultsQuery] = useQueries({
+    queries: [
+      {
+        queryKey: ["draw-result-description"],
+        queryFn: () => RewardService.resultPage(),
+      },
+      {
+        queryKey: ["raffle-results"],
+        queryFn: () => RaffleService.results(),
+      },
+    ],
   });
 
-  const CURRENT_RESULTS = data?.results[0] ?? [];
-  const PREVIOUS_RESULTS = data?.results[1] ?? [];
+  const isLoading = resultPageQuery.isLoading || resultsQuery.isLoading;
+  const page = resultPageQuery.data;
+  const CURRENT_RESULTS = resultsQuery?.data?.results[0] ?? [];
+  const PREVIOUS_RESULTS = resultsQuery?.data?.results[1] ?? [];
+
+
+  if(isLoading){
+    return (
+      <View style={{ flex: 1, alignItems: "center", justifyContent: "center", minHeight: 180 }}>
+        <ActivityIndicator animating size="large" color="button" />
+      </View>
+    );
+  }
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.container} dataSet={{ media: ids.container }}>
-        <Banner />
+        <Banner image={page?.image} description={page?.description} />
 
         <ResultsTable
           title={t("draw-result.current")}

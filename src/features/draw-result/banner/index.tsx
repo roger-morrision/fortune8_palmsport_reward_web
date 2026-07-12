@@ -1,21 +1,15 @@
 import Text from "@/src/common/components/Text";
 import View from "@/src/common/components/View";
-import { useAssetContext } from "@/src/context/AssetContext";
-import React from "react";
 import { Image } from "react-native";
 import StyleSheet from "react-native-media-query";
 import { LinearGradient } from "expo-linear-gradient";
-import { useQueryApi } from "@/src/common/hooks/useQueryApi";
-import { RewardService } from "@/src/api/services/rewards.service";
 
-export default function Banner() {
-  const { images } = useAssetContext();
-  const { data } = useQueryApi(["draw-result"], RewardService.resultPage, {}, {
-    refetchOnMount: false,
-    refetchOnWindowFocus: false,
-  });
+type Props = {
+  image: string;
+  description: string;
+}
 
-  console.log("datadata", data)
+export default function Banner({ image, description }: Props) {
 
   return (
     <View backgroundColor="blueDark" style={styles.v_rewards} dataSet={{ media: ids.v_rewards }}>
@@ -25,12 +19,12 @@ export default function Banner() {
       />
       <Image
         style={styles.image_style}
-        source={{ uri: data?.image }}
+        source={{ uri: image }}
         resizeMode="contain"
       />
       <View style={styles.right_wrap}>
         <Text fontFamily="Montserrat" color="text" style={styles.t_description}>
-          {data?.description}
+          {description}
         </Text>
       </View>
     </View>

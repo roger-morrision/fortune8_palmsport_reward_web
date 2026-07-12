@@ -4,6 +4,14 @@ const { ids, styles } = StyleSheet.create({
   container: {
     flex: 1,
     width: "100%",
+    "@media (max-width: 800px)": {
+      paddingLeft: 12,
+      paddingRight: 12,
+    },
+  },
+  body_wrapper: {
+    flex: 1,
+    width: "100%",
     paddingHorizontal: 20,
     "@media (min-width: 996px)": {
       alignSelf: "center",
