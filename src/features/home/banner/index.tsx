@@ -61,7 +61,7 @@ const { ids, styles } = StyleSheet.create({
     },
   },
   linear_gradient: { width: "100%", height: "100%", position: "absolute", borderRadius: 10, },
-  image_style: { width: "100%", height: 300 },
+  image_style: { width: "100%", height: 300, borderTopLeftRadius: 10, borderTopRightRadius: 10},
   right_wrap: { flex: 1, alignItems: "center", padding: 25 },
   t_description: {
     fontSize: 13.44,

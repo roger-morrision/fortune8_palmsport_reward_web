@@ -59,5 +59,14 @@
   },
   "raffle-draw": {
     "title": "RAFFLE DRAW"
+  },
+  "footer": {
+    "policies": "POLICIES",
+    "terms": "Terms & Conditions",
+    "privacy": "Privacy Policy",
+    "support": "SUPPORT",
+    "contact": "Contact Support",
+    "faqs": "FAQ's",
+    "copyright": "Copyright © 2025 Palms Play Rewards"
   }
 }

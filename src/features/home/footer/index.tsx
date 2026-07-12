@@ -10,9 +10,11 @@ import { Image, Pressable } from "react-native";
 import { ids, styles } from "./styles.css";
 import moment from "moment";
 import Lang from "./language";
+import { useTranslation } from "react-i18next";
 
 function Footer({ onLayout }: any) {
   const router = useRouter();
+  const { t } = useTranslation();
   const { images } = useAssetContext();
   const { scrollToSection } = useHomeContext();
   const isLoggedIn = useAppSelector(selectAuthLoggedIn);
@@ -53,7 +55,7 @@ function Footer({ onLayout }: any) {
               style={styles.t_note_title}
               dataSet={{ media: ids.t_note_title }}
             >
-              POLICIES
+              {t("footer.policies")}
             </Text>
             <Text
               selectable={false}
@@ -61,7 +63,7 @@ function Footer({ onLayout }: any) {
               style={styles.t_note_subtitle}
               dataSet={{ media: ids.t_note_subtitle }}
             >
-              Terms & Conditions
+              {t("footer.terms")}
             </Text>
             <Text
               selectable={false}
@@ -69,7 +71,7 @@ function Footer({ onLayout }: any) {
               style={styles.t_note_subtitle}
               dataSet={{ media: ids.t_note_subtitle }}
             >
-              Privacy Policy
+              {t("footer.privacy")}
             </Text>
             
           </View>
@@ -97,7 +99,7 @@ function Footer({ onLayout }: any) {
               style={styles.t_note_title}
               dataSet={{ media: ids.t_note_title }}
             >
-              SUPPORT
+              {t("footer.support")}
             </Text>
             <Text
               selectable={false}
@@ -105,11 +107,11 @@ function Footer({ onLayout }: any) {
               style={styles.t_note_subtitle}
               dataSet={{ media: ids.t_note_subtitle }}
             >
-              Contact Support
+              {t("footer.contact")}
             </Text>
             <Text selectable={false} onPress={() => router.navigate("/about/faqs")}
               style={styles.t_note_subtitle} dataSet={{media: ids.t_note_subtitle}}>
-              FAQ’s
+              {t("footer.faqs")}
             </Text>
           </View>
           
@@ -125,7 +127,7 @@ function Footer({ onLayout }: any) {
           />
         </Pressable>
         <Text style={styles.t_copyright} dataSet={{ media: ids.t_copyright }}>
-          Copyright © {moment().format("YYYY")} Palms Play Rewards
+          {t("footer.copyright")?.replace("2025", moment().format("YYYY"))}
         </Text>
       </View>
     </View>

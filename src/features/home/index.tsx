@@ -5,7 +5,7 @@ import { selectAuthLoggedIn } from "@/src/store/slices/auth.slice";
 import React from "react";
 import { Linking, ScrollView } from "react-native";
 import CashBack from "./cash-back";
-import HotDeals from "./feature-games";
+import HotDeals from "./containers";
 import Footer from "./footer";
 import GotoGambly from "./go-to-gambly";
 import HowItWorks from "./how-it-works";

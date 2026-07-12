@@ -60,5 +60,14 @@
   },
   "raffle-draw": {
     "title": "Теглене на томбола"
+  },
+  "footer": {
+    "policies": "Политики",
+    "terms": "Общи условия",
+    "privacy": "Политики за сигурност",
+    "support": "SUPPORT",
+    "contact": "Contact Support",
+    "faqs": "FAQ's",
+    "copyright": "Авторски права © 2025 Palms Play Награди"
   }
 }

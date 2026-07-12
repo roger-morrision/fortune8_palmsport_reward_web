@@ -8,6 +8,10 @@ const { ids, styles } = StyleSheet.create({
     "@media (min-width: 996px)": {
       alignSelf: "center",
     },
+    "@media (max-width: 800px)": {
+      paddingLeft: 15,
+      paddingRight: 15,
+    },
   },
 
   v_cashback_rewards: {
