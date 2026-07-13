@@ -31,8 +31,8 @@ const SignLandingPage = () => {
 
   const onLogin = () => {
     const Err: Record<string, string> = {};
-    if (!loginInput.email) Err.email = " ";
-    else if (!loginInput.password) Err.password = " ";
+    if (!loginInput?.email) Err.email = " ";
+    else if (!loginInput?.password) Err.password = " ";
     setError(Err);
     if (_.isEmpty(Err)) {
       login();
@@ -77,7 +77,7 @@ const SignLandingPage = () => {
           <View style={styles.v_inputs} dataSet={{ media: ids.v_inputs }}>
             {/* Username */}
             <TextInput
-              value={loginInput.email}
+              value={loginInput?.email}
               onChangeText={updateField("email")}
               placeholder={t("login.username")}
               placeholderTextColor={placeholderColor}
@@ -94,7 +94,7 @@ const SignLandingPage = () => {
               dataSet={{ media: ids.input_wrap }}
             >
               <TextInput
-                value={loginInput.password}
+                value={loginInput?.password}
                 onChangeText={updateField("password")}
                 placeholder={t("login.password")}
                 placeholderTextColor={placeholderColor}
