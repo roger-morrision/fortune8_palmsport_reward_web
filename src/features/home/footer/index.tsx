@@ -11,10 +11,13 @@ import { ids, styles } from "./styles.css";
 import moment from "moment";
 import Lang from "./language";
 import { useTranslation } from "react-i18next";
+import { useAuthRequest } from "expo-auth-session/providers/google";
+import { useAuthService } from "@/src/store/hooks";
 
 function Footer({ onLayout }: any) {
   const router = useRouter();
   const { t } = useTranslation();
+  const { logout } = useAuthService();
   const { images } = useAssetContext();
   const { scrollToSection } = useHomeContext();
   const isLoggedIn = useAppSelector(selectAuthLoggedIn);
@@ -39,7 +42,10 @@ function Footer({ onLayout }: any) {
       onLayout={onLayout}
     >
       <View style={styles.v_center} dataSet={{ media: ids.v_center }}>
-        <Pressable onPress={() => router.navigate(isLoggedIn ? "Home" : "Welcome")}>
+        <Pressable 
+          // onPress={() => router.navigate(isLoggedIn ? "Home" : "Welcome")}
+          onPress={() => logout()}
+          >
           <Image
             style={styles.reward_logo}
             dataSet={{ media: ids.reward_logo }}

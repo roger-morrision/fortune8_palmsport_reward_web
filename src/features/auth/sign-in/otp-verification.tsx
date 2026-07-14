@@ -10,7 +10,7 @@ import StyleSheet from "react-native-media-query";
 import Text from "@/src/common/components/Text";
 import View from "@/src/common/components/View";
 import { useTranslation } from "react-i18next";
-import { selectAuthLoggingIn, selectAuthLogInFailed, selectAuthLoginInput } from "@/src/store/slices/auth.slice";
+import { selectAuthLoggingIn, selectAuthLoginInput } from "@/src/store/slices/auth.slice";
 import useAppSelector from "@/src/common/hooks/useAppSelector";
 import { useMutationApi } from "@/src/common/hooks/useMutationApi";
 import { AuthService } from "@/src/api/services/auth.service";

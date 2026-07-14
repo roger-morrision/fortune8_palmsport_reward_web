@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { authActions, selectAuthLoggingIn, selectAuthLoginInput, selectAuthOTPRequest } from "@/src/store/slices/auth.slice";
 import useAppSelector from "@/src/common/hooks/useAppSelector";
+import useAppDispatch from "@/src/common/hooks/useAppDispatch";
 import { useAssetContext } from "@/src/context/AssetContext";
 import useThemeColor from "@/src/common/hooks/useThemeColor";
 import { MaterialIcon } from "@/src/common/components/Icon";
@@ -13,21 +14,20 @@ import OTPVerification from "./otp-verification";
 import View from "@/src/common/components/View";
 import { useTranslation } from "react-i18next";
 import _ from "lodash";
-import useAppDispatch from "@/src/common/hooks/useAppDispatch";
 
 const SignLandingPage = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const { login } = useAuthService();
   const { images } = useAssetContext();
+  const textColor = useThemeColor("textDark");
+  const placeholderColor = useThemeColor("placeholder");
   const isLoading = useAppSelector(selectAuthLoggingIn);
   const loginInput = useAppSelector(selectAuthLoginInput);
   const otpRequest = useAppSelector(selectAuthOTPRequest);
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState<Record<string, string>>({});
 
-  const placeholderColor = useThemeColor("placeholder");
-  const textColor = useThemeColor("textDark");
 
   const onLogin = () => {
     const Err: Record<string, string> = {};
@@ -47,7 +47,6 @@ const SignLandingPage = () => {
     setError({});
   }, [loginInput]);
   
-
   if (otpRequest) {
     return (
       <BGSplash>
@@ -173,15 +172,6 @@ const { ids, styles } = StyleSheet.create({
     flex: 1,
     borderRadius: 5,
     overflow: "visible",
-  },
-  input_wrap_password: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  input_error_wrap: {
-    borderWidth: 1,
-    borderColor: "#FF4444",
-    borderRadius: 8,
   },
   text_input: {
     height: 50,
