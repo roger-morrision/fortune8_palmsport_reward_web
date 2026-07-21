@@ -65,13 +65,17 @@ function RightContent() {
         <View style={styles.v_input_wrap}>
           <MaterialIcon name="email" size={18} color="placeholder" backgroundColor="transparent" style={styles.input_icon} />
           <TextInput
+            nativeID="login-email"
             placeholder={t("login.username")}
             style={[styles.input, (error.username || hasError) && styles.input_error]}
             value={loginInput?.email}
             onChangeText={updateField("email")}
             backgroundColor="secondary"
+            keyboardType="email-address"
             textContentType="emailAddress"
             autoComplete="email"
+            autoCapitalize="none"
+            autoCorrect={false}
             importantForAutofill="yes"
           />
         </View>
@@ -80,12 +84,18 @@ function RightContent() {
         <View style={styles.v_input_wrap}>
           <MaterialIcon name="lock" size={18} color="placeholder" backgroundColor="transparent" style={styles.input_icon} />
           <TextInput
+            nativeID="login-password"
             placeholder={t("login.password")}
             value={loginInput?.password}
             onChangeText={updateField("password")}
             style={[styles.input, (error.password || hasError) && styles.input_error]}
             secureTextEntry={hidePassword}
             backgroundColor="secondary"
+            textContentType="password"
+            autoComplete="current-password"
+            autoCapitalize="none"
+            autoCorrect={false}
+            importantForAutofill="yes"
           />
           <MaterialIcon
             asButton

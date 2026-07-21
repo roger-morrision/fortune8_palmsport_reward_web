@@ -22,6 +22,7 @@ export default function HomeBanner() {
         colors={["#000D3000", "#000D30"]}
         locations={[0, 0.5, 1]}
         style={styles.gradient}
+        dataSet={{ media: ids.gradient }}
       />
       <View style={styles.v_left} dataSet={{ media: ids.v_left }}>
         <Text fontFamily="Montserrat-Bold" color="text" style={styles.t_title} dataSet={{ media: ids.t_title }}>
@@ -73,10 +74,14 @@ const { ids, styles } = StyleSheet.create({
     },
   },
   gradient: {
-    position: "absolute",
+    bottom: 0,
     width: "100%",
     height: "70%",
-    bottom: 0,
+    display: "none",
+    position: "absolute",
+    "@media (max-width: 800px)": {
+      display: "flex",
+    },
   },
   v_left: {
     gap: 14,

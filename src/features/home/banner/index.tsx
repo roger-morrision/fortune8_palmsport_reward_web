@@ -1,7 +1,5 @@
 import Text from "@/src/common/components/Text";
 import View from "@/src/common/components/View";
-import { useAssetContext } from "@/src/context/AssetContext";
-import React from "react";
 import { Image } from "react-native";
 import StyleSheet from "react-native-media-query";
 import { LinearGradient } from "expo-linear-gradient";
@@ -26,8 +24,6 @@ type Props = {
 }
 
 export default function Banner({ mainBlock }: Props) {
-  const { images } = useAssetContext();
-
   return (
     <View backgroundColor="blueDark" style={styles.v_rewards} dataSet={{ media: ids.v_rewards }}>
       <LinearGradient
