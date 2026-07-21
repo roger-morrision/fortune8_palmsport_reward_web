@@ -13,6 +13,7 @@ import Lang from "./language";
 import { useTranslation } from "react-i18next";
 import { useAuthRequest } from "expo-auth-session/providers/google";
 import { useAuthService } from "@/src/store/hooks";
+import PackageJson from "@/package.json";
 
 function Footer({ onLayout }: any) {
   const router = useRouter();
@@ -133,7 +134,7 @@ function Footer({ onLayout }: any) {
           />
         </Pressable>
         <Text style={styles.t_copyright} dataSet={{ media: ids.t_copyright }}>
-          {t("footer.copyright")?.replace("2025", moment().format("YYYY"))}
+          {t("footer.copyright")?.replace("2025", moment().format("YYYY"))}{`\n Version ${PackageJson.version}`} 
         </Text>
       </View>
     </View>

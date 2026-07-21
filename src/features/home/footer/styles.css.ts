@@ -63,6 +63,7 @@ const { ids, styles } = StyleSheet.create({
   t_copyright: {
     fontSize: 14,
     lineHeight: 21,
+    textAlign: "center",
     fontFamily: "Montserrat",
     "@media (max-width: 768px)": {
       fontSize: 10,
