@@ -4,7 +4,7 @@ import Text from "@/src/common/components/Text";
 import View from "@/src/common/components/View";
 import useAppSelector from "@/src/common/hooks/useAppSelector";
 import { Languages } from "@/src/common/utils/options-holder";
-import { ImageKey } from "@/src/constants/Images";
+import { ImageKey, resolveUri } from "@/src/constants/Images";
 import { useSettingService } from "@/src/store/hooks";
 import { selectedLangauge } from "@/src/store/slices/settings.slice";
 import React, { useMemo } from "react";
@@ -41,7 +41,7 @@ const Lang = () => {
 
     return {
       ...result,
-      source: images?.[result?.source as ImageKey]?.uri
+      source: resolveUri(images?.[result?.source as ImageKey])
     }
   },[lang, images, Languages]);
 

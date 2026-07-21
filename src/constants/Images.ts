@@ -86,5 +86,12 @@ const StaticImageAssets = Object.keys(StaticImages).map(
   (key) => StaticImages[key as StaticImageKey]
 );
 
+/** Resolves an Asset or CDN string to a plain URI string. */
+export function resolveUri(value: Asset | string | undefined | null): string | undefined {
+  if (!value) return undefined;
+  if (typeof value === "string") return value;
+  return value.uri ?? undefined;
+}
+
 export { StaticImages, CDNImages };
 export default StaticImageAssets;

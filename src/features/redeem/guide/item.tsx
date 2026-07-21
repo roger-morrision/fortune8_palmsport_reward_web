@@ -2,7 +2,7 @@ import SVGText from "@/src/common/components/SVGText";
 import Text from "@/src/common/components/Text";
 import View from "@/src/common/components/View";
 import { useBreakpoint } from "@/src/constants/BreakPoint";
-import { ImageKey } from "@/src/constants/Images";
+import { ImageKey, resolveUri } from "@/src/constants/Images";
 import { useAssetContext } from "@/src/context/AssetContext";
 import { LinearGradient } from "expo-linear-gradient";
 import React, { useMemo } from "react";
@@ -72,7 +72,7 @@ function Item(props: Props) {
         <Image
           style={styles.i_coin_style}
           dataSet={{ media: ids.i_coin_style }}
-          source={{ uri: images?.[props.source].uri }}
+          source={{ uri: resolveUri(images?.[props.source]) }}
           resizeMode="contain"
         />
       </View>
