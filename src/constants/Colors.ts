@@ -55,7 +55,7 @@ const Colors = {
   dark: {
     background: "#000D30",
     backgroundDark: "#070B3A",
-    primary: "#03225B",
+    primary: "#070D1A",
     secondary: "#0C193A",
     tertiary: "#202534",
     text: "#F5F5F5",
@@ -98,6 +98,12 @@ const Colors = {
  * Type alias for color names, allowing easy access to color keys.
  */
 export type ColorName = keyof typeof Colors.light & keyof typeof Colors.dark;
+
+/**
+ * Accepts both named theme colors (e.g. "button") and raw color values (e.g. "#FF0000", "rgba(…)").
+ * The `string & {}` trick preserves ColorName autocomplete while allowing any raw color string.
+ */
+export type AnyColor = ColorName | (string & {});
 
 /**
  * Export the customizable color palette for use throughout your application.

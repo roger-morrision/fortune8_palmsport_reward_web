@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { StyleProp, TextInputProps, TextStyle, ViewStyle } from "react-native";
 import TextInput from "@/src/common/components/TextInput";
-import { ColorName } from "@/src/constants/Colors";
+import { AnyColor } from "@/src/constants/Colors";
 import { FontFamily } from "@/src/constants/Fonts";
 import StyleSheet from "react-native-media-query";
 import View from "@/src/common/components/View";
@@ -13,8 +13,8 @@ type Props = {
   disabled?: boolean;
   errorPosition?: string;
   isRequired?: boolean;
-  labelColor?: ColorName;
-  inputBackgroundColor?: ColorName;
+  labelColor?: AnyColor;
+  inputBackgroundColor?: AnyColor;
   labelFontFamily?: FontFamily;
   labelStyle?: StyleProp<TextStyle> | undefined;
   labelDataSet?: Record<string, string>;

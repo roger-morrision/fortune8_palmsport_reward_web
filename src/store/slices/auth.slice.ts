@@ -52,6 +52,10 @@ export const authSlice = createSlice({
       state.otpRequest = true;
       state.session = action.payload;
     },
+    resetOTPRequest: (state) => {
+      state.loading = false;
+      state.otpRequest = false;
+    },
     otpVerify: (state, action: PayloadAction<Partial<string>>) => {
       state.loading = true;
     },
@@ -104,6 +108,7 @@ export const authActions = {
   })),
   loginSuccess: authSlice.actions.loginSuccess,
   otpRequest: authSlice.actions.otpRequest,
+  resetOTPRequest: authSlice.actions.resetOTPRequest,
   otpVerify: authSlice.actions.otpVerify,
   loginFailure: authSlice.actions.loginFailure,
   logout: authSlice.actions.logout,

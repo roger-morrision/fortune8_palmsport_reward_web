@@ -15,6 +15,7 @@ export default function RootLayout() {
       }}
     >
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      <Stack.Screen name="(auth)/login" options={{ headerShown: false }} />
       <Stack.Screen name="(auth)/sign-in" options={{ headerShown: false }} />
       <Stack.Screen name="(modal)/auth/login" options={getTransitionModalOptions()} />
       <Stack.Screen name="(modal)/inbox" options={getTransitionModalOptions()} />

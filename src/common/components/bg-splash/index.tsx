@@ -34,19 +34,7 @@ const BGSplash = (props: BGSplashProps) => {
         style={styles.i_background} 
         dataSet={{media: ids.i_background}}
         source={{uri: images?.["bg-authentication"]?.uri}} 
-        resizeMode="stretch" />
-      <Image
-        source={{uri: images?.["bg-trophy"]?.uri}}
-        style={styles.i_elements}
-        dataSet={{media: ids.i_elements}}
-        resizeMode="contain"
-      />
-      <Image
-        source={{uri: images?.["bg-referee"]?.uri}}
-        style={styles.i_referee}
-        dataSet={{media: ids.i_referee}}
-        resizeMode="stretch"
-      />
+        resizeMode="cover" />
       <LinearGradient
         colors={colors}
         locations={locations}
@@ -55,9 +43,6 @@ const BGSplash = (props: BGSplashProps) => {
         <View style={styles.bodyStyle} dataSet={{media: ids.bodyStyle}}>
           {props.children}
         </View>
-      <Text color='placeholder' style={{position: "absolute", bottom: width * 0.02, right: width * 0.03, fontSize: width * 0.009 }}>
-        Version {PackegeJson.version}
-      </Text>
     </View>
   );
 };

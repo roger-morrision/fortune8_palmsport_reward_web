@@ -62,21 +62,20 @@ const { ids, styles } = StyleSheet.create({
 
   button_style: {
     width: 85,
-    height: 30,
+    height: 36,
     borderWidth: 1,
-    borderRadius: 6.27,
+    borderRadius: 4,
     alignItems: "center",
     justifyContent: "center",
     fontFamily: "Montserrat-Medium",
-    fontSize: 14,
-    lineHeight: 16,
-    "@media (min-width: 800px)": {
+    "@media (max-width: 800px)": {
       width: 84,
       height: 37,
-      borderRadius: 7.27,
-      fontSize: 15,
-      lineHeight: 20,
     },
+  },
+  btn_login_label: {
+    fontSize: 14,
+    lineHeight: 18
   },
   button_style_login: {
     color: "white",

@@ -3,14 +3,14 @@
 import { useState } from "react";
 import { TextInput as Input, StyleSheet } from "react-native";
 import { CustomTextProps } from "./Text";
-import { ColorName } from "@/src/constants/Colors";
+import { AnyColor } from "@/src/constants/Colors";
 import useThemeColor from "../hooks/useThemeColor";
 
 export type TextInputProps = Input["props"] &
   CustomTextProps & {
-    backgroundColor?: ColorName;
-    borderColor?: ColorName;
-    placeholderTextColor?: ColorName;
+    backgroundColor?: AnyColor;
+    borderColor?: AnyColor;
+    placeholderTextColor?: AnyColor;
   };
 
 export default function TextInput({
@@ -26,7 +26,7 @@ export default function TextInput({
   value,
   ...props
 }: TextInputProps) {
-  const [key, setKey] = useState<ColorName>(borderColor);
+  const [key, setKey] = useState<AnyColor>(borderColor);
   const _borderColor = useThemeColor(key);
 
   // Retrieve themed colors

@@ -13,6 +13,7 @@ import Warning from "@/assets/svg/warning.svg";
 import EmailSent from "@/assets/svg/email-sent.svg";
 import Email from "@/assets/svg/email.svg";
 import Gift from "@/assets/svg/gift.svg";
+import GameController from "@/assets/svg/game-controller.svg";
 import Heart from "@/assets/svg/heart.svg";
 import GHome from "@/assets/svg/home.svg";
 import GSettings from "@/assets/svg/settings.svg";
@@ -124,6 +125,7 @@ export type SVGName =
   | "redeem"
   | "tier-level"
   | "gift"
+  | "game-controller"
   | "upload"
   | "ach"
   | "bitcoin"
@@ -198,8 +200,10 @@ const SVGIcon = (props: IconProps) => {
       return <Up width={width || 16} height={height || 16} {...props} />;
     case "email":
       return <Email width={width || 40} height={height || 32} {...props} />;
+    case "game-controller":
+      return <GameController width={width || 15} height={height || 11} {...props} />;
     case "gift":
-      return <Gift width={width || 20} height={height || 20} {...props} />;
+      return <Gift width={width || 15} height={height || 14} {...props} />;
     case "trophy":
       return <Trophy width={width || 20} height={height || 20} {...props} />;
     case "email-sent":

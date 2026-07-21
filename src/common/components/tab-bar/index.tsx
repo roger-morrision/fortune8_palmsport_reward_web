@@ -14,7 +14,7 @@ type CustomTabBarProps = {
 export default function CustomTabBar({ state, descriptors, navigation }: CustomTabBarProps) {
   return (
     <View
-      backgroundColor="backgroundDark"
+      backgroundColor="#111D36"
       style={styles.container}
       dataSet={{ media: ids.container }}
     >

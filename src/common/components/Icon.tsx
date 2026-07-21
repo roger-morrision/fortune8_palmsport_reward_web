@@ -1,4 +1,4 @@
-import { ColorName } from "@/src/constants/Colors";
+import { AnyColor } from "@/src/constants/Colors";
 import {
   Feather,
   FontAwesome,
@@ -8,6 +8,7 @@ import {
 } from "@expo/vector-icons";
 import React, { ComponentProps } from "react";
 import {
+  Platform,
   Pressable,
   PressableProps,
   TouchableHighlight,
@@ -18,8 +19,8 @@ import Animated from "react-native-reanimated";
 import useThemeColor from "../hooks/useThemeColor";
 
 export type IconProps = {
-  color?: ColorName;
-  backgroundColor?: ColorName;
+  color?: AnyColor;
+  backgroundColor?: AnyColor;
   size?: number;
   asButton?: boolean;
   borderRadius?: number;
@@ -77,6 +78,30 @@ function createIcon<T extends keyof React.JSX.IntrinsicElements | React.JSXEleme
       </Animated.View>
     );
   };
+}
+
+// Material Symbols (Google CSS font — web only, loaded via <link> in +html.tsx)
+type MaterialSymbolProps = {
+  name: string;
+  size?: number;
+  color?: AnyColor;
+  style?: React.CSSProperties;
+};
+
+export function MaterialSymbol({ name, size = 24, color = "text", style }: MaterialSymbolProps) {
+  const iconColor = useThemeColor(color);
+  if (Platform.OS !== "web") return null;
+  return React.createElement("span", {
+    className: "material-symbols-outlined",
+    style: {
+      fontSize: size,
+      color: iconColor,
+      userSelect: "none",
+      lineHeight: 1,
+      ...style,
+    },
+    children: name,
+  });
 }
 
 // Export various custom icon components with corresponding font families.

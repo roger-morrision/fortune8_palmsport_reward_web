@@ -1,11 +1,6 @@
 import useAppSelector from "@/src/common/hooks/useAppSelector";
 import { useAssetContext } from "@/src/context/AssetContext";
-import { useHomeContext } from "@/src/context/HomeContext";
-import { selectAuthLoggedIn } from "@/src/store/slices/auth.slice";
-import { selectNotificationUnreadCount } from "@/src/store/slices/notification.slice";
-import { MaterialIcons } from "@expo/vector-icons";
-import { useNavigation, usePathname, useRouter } from "expo-router";
-import React from "react";
+import { usePathname, useRouter } from "expo-router";
 import { Image } from "react-native";
 import Button from "../../Button";
 import Text from "../../Text";
@@ -14,31 +9,18 @@ import { ids, styles } from "./styles.css";
 import Raffles from "./raffles";
 import { routeToPathname } from "@/src/common/utils/transform-helper";
 import { useTranslation } from "react-i18next";
-import SVGIcon from "@/src/constants/SVGIcon";
 import numeral from "numeral";
 import { selectedUserCoins } from "@/src/store/slices/user.slice";
+import BGButton from "../../BGButton";
+import { selectAuthLoggedIn } from "@/src/store/slices/auth.slice";
 
 function HeaderAuthScreen() {
   const router = useRouter();
   const { t } = useTranslation();
   const pathname = usePathname();
-  const navigation = useNavigation();
   const { images } = useAssetContext();
-  const { scrollToSection } = useHomeContext();
   const balance = useAppSelector(selectedUserCoins);
-  const unreadCount = useAppSelector(selectNotificationUnreadCount);
-
-  const onScroll = (view: any) => {
-    if (view === "howItWorks") {
-      router.push("/(modal)/how-it-works");
-    } else {
-      router.replace("/");
-    }
-
-    setTimeout(() => {
-      scrollToSection(view);
-    }, 10);
-  };
+  const isLoggedIn = useAppSelector(selectAuthLoggedIn);
 
   return (
     <View
@@ -89,7 +71,7 @@ function HeaderAuthScreen() {
           backgroundColor="primary"
           dataSet={{ media: ids.right_container }}
         >
-        <View borderColor="borderColor" backgroundColor="backgroundDark" style={styles.v_sweeps_balance}>
+        {isLoggedIn ? <View borderColor="borderColor" backgroundColor="backgroundDark" style={styles.v_sweeps_balance}>
           <Image
             style={styles.i_gold}
             dataSet={{ media: ids.i_gold }}
@@ -104,31 +86,20 @@ function HeaderAuthScreen() {
               {t("header.palms-gold")}
             </Text>
           </View>
-        </View>
-          {/* {isLoggedIn ? (
-            <Button style={{ marginRight: 10 }} onPress={() => router.navigate("/(modal)/inbox")}>
-              <MaterialIcons name="notifications" size={28} color="white" />
-              {unreadCount > 0 && (
-                <View backgroundColor="blue" style={styles.v_bell}>
-                  <Text color="text" style={styles.t_bell_number}>
-                    {unreadCount}
-                  </Text>
-                </View>
-              )}
-            </Button>
-          ) : (
-            <Button
-              borderColor="button"
-              onPress={() => router.push("/(modal)/auth/login")}
-              style={styles.button_style}
-              dataSet={{ media: ids.button_style }}
-            >
-              <Text fontFamily="Montserrat-Medium">Log in</Text>
-            </Button>
-          )}
-          <Button onPress={() => (navigation as any).openDrawer()}>
-            <MaterialIcons name="list" size={35} color="white" />
-          </Button> */}
+        </View> : 
+        <BGButton
+          label={"Login"}
+          textColor="textDark"
+          onPress={() => router.push("/(modal)/auth/login")}
+          style={styles.button_style}
+          dataSet={{ media: ids.button_style }}
+          fontFamily="Montserrat-Bold"
+          labelStyle={styles.btn_login_label}
+          bgColors={["#DF7B0B", "#E5D33D"]}
+          strokeColors={["#E4C234", "#FFFFAAE3", "#E08A14"]}
+          borderWidth={1}
+        />
+        }
         </View>
       </View>
     </View>

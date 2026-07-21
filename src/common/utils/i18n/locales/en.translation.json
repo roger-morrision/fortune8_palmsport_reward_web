@@ -25,7 +25,7 @@
   "otp": {
     "title": "ACCOUNT VERIFICATION",
     "subtitle": "A 6 digit code has been sent to your email!",
-    "submit": "ENTER",
+    "submit": "Login",
     "resend-prefix": "Didn't receive the code?",
     "resend-link": "Send Again"
   },

@@ -1,6 +1,7 @@
 import { Asset } from "expo-asset";
+import { CDN_URL } from "./Config";
 
-export const Images = {
+const StaticImages = {
   "palmsplay-rewards": require("@/assets/images/palmsplay-rewards.png"),
   "gold": require("@/assets/images/gold.png"),
   "bg-authentication": require("@/assets/images/background/bg-authentication.webp"),
@@ -15,6 +16,7 @@ export const Images = {
   "kyc-failed": require("@/assets/images/inbox/kyc-failed.png"),
 
   //AUTH
+  "bonus-rewards": require("@/assets/images/auth/bonus-rewards.png"),
   "button-google": require("@/assets/images/auth/button-google.png"),
   "button-facebook": require("@/assets/images/auth/button-facebook.png"),
   "kyc-icon": require("@/assets/images/auth/kyc-icon.png"),
@@ -23,6 +25,7 @@ export const Images = {
   "kyc-verification-verified": require("@/assets/images/auth/kyc-verification-verified.png"),
 
   // HOME
+  "home-banner": require("@/assets/images/home/home-banner.png"),
   "banner-1": require("@/assets/images/home/banner-1.png"),
   "cash-back": require("@/assets/images/home/cash-back.png"),
   gambly: require("@/assets/images/home/gambly.png"),
@@ -58,13 +61,30 @@ export const Images = {
   "bg": require("@/assets/images/countries-logo/bg.png"),
 } as const;
 
+// CDN / remote images — add URL strings here (no preloading needed)
+const CDNImages = {
+  "tier-cup-copper": CDN_URL + "/image-assets/profile/tier-cup-copper.png",
+  "tier-cup-bronze": CDN_URL + "/image-assets/profile/tier-cup-bronze.png",
+  "tier-cup-silver": CDN_URL + "/image-assets/profile/tier-cup-silver.png",
+  "tier-cup-gold": CDN_URL + "/image-assets/profile/tier-cup-gold.png",
+} as const;
+
+export const Images = { ...StaticImages, ...CDNImages } as const;
+
+export type StaticImageKey = keyof typeof StaticImages;
+export type CDNImageKey = keyof typeof CDNImages;
 export type ImageKey = keyof typeof Images;
 
 export type NamedAssets = {
-  [K in ImageKey]: Asset;
+  [K in StaticImageKey]: Asset;
+} & {
+  [K in CDNImageKey]: string;
 };
 
-// image preloading
-const ImageAssets = Object.keys(Images).map((key) => Images[key as ImageKey]);
+// Only static images are passed to useAssets for preloading
+const StaticImageAssets = Object.keys(StaticImages).map(
+  (key) => StaticImages[key as StaticImageKey]
+);
 
-export default ImageAssets;
+export { StaticImages, CDNImages };
+export default StaticImageAssets;

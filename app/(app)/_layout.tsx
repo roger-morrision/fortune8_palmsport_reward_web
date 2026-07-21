@@ -8,7 +8,7 @@ import useAppSelector from "@/src/common/hooks/useAppSelector";
 import useColorScheme from "@/src/common/hooks/useColorScheme";
 import useThemeColor from "@/src/common/hooks/useThemeColor";
 import Fonts from "@/src/constants/Fonts";
-import ImageAssets, { ImageKey, Images, NamedAssets } from "@/src/constants/Images";
+import StaticImageAssets, { CDNImages, CDNImageKey, StaticImages, StaticImageKey, NamedAssets } from "@/src/constants/Images";
 import Styles from "@/src/constants/Styles";
 import { AssetContext } from "@/src/context/AssetContext";
 import HomeProvider from "@/src/context/HomeContext";
@@ -35,7 +35,7 @@ const queryClient = new QueryClient();
 export default function () {
   const [stateLoaded, setStateLoaded] = useState(false);
   const [fontsLoaded] = useFonts(Fonts);
-  const [assets] = useAssets(ImageAssets);
+  const [assets] = useAssets(StaticImageAssets);
 
   // Callback function to hide the splash screen when layout is triggered
   const onLayout = useCallback(() => {
@@ -50,10 +50,13 @@ export default function () {
     if (!assets) return null;
 
     const map = {} as NamedAssets;
-    const keys = Object.keys(Images) as ImageKey[];
 
-    keys.forEach((img: ImageKey, index: number) => {
-      map[img] = assets[index];
+    (Object.keys(StaticImages) as StaticImageKey[]).forEach((key, index) => {
+      (map as Record<string, unknown>)[key] = assets[index];
+    });
+
+    (Object.keys(CDNImages) as CDNImageKey[]).forEach((key) => {
+      (map as Record<string, unknown>)[key] = CDNImages[key];
     });
 
     return map;

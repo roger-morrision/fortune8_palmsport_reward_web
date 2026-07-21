@@ -98,7 +98,7 @@ function TabScreens() {
         screenOptions={{
           sceneStyle: {
             zIndex: 100,
-            backgroundColor,
+            backgroundColor: primaryColor,
           },
           tabBarActiveTintColor,
           headerShadowVisible: false,

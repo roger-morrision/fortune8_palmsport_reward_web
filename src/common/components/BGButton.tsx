@@ -1,5 +1,5 @@
 import { ReactNode, useState } from "react";
-import { ColorName } from "@/src/constants/Colors";
+import { AnyColor } from "@/src/constants/Colors";
 import { FontFamily } from "@/src/constants/Fonts";
 import { LinearGradient, LinearGradientPoint } from "expo-linear-gradient";
 import {
@@ -21,7 +21,7 @@ type Props = {
   style: StyleProp<ViewStyle>;
   outerLinearStyle?: StyleProp<ViewStyle>;
   innerLinearStyle?: StyleProp<ViewStyle>;
-  textColor?: ColorName;
+  textColor?: AnyColor;
   fontFamily?: FontFamily;
   isLoading?: boolean;
   borderRadius?: number;
