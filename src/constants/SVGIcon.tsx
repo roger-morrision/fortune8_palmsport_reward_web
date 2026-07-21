@@ -14,6 +14,7 @@ import EmailSent from "@/assets/svg/email-sent.svg";
 import Email from "@/assets/svg/email.svg";
 import Gift from "@/assets/svg/gift.svg";
 import GameController from "@/assets/svg/game-controller.svg";
+import Diamond from "@/assets/svg/diamond.svg";
 import Heart from "@/assets/svg/heart.svg";
 import GHome from "@/assets/svg/home.svg";
 import GSettings from "@/assets/svg/settings.svg";
@@ -25,6 +26,10 @@ import TierLevel from "@/assets/svg/tabs/tier-level.svg";
 import Trophy from "@/assets/svg/trophy";
 import Up from "@/assets/svg/up.svg";
 import Upload from "@/assets/svg/upload.svg";
+import Earn from "@/assets/svg/earn.svg";
+import Unlock from "@/assets/svg/unlock.svg";
+import Exclusive from "@/assets/svg/exclusive.svg";
+import Elite from "@/assets/svg/elite.svg";
 
 // REDEEM
 import Bitcoin from "@/assets/svg/redeem/bitcoin";
@@ -126,6 +131,7 @@ export type SVGName =
   | "tier-level"
   | "gift"
   | "game-controller"
+  | "diamond"
   | "upload"
   | "ach"
   | "bitcoin"
@@ -145,6 +151,10 @@ export type SVGName =
   | "up"
   | "email"
   | "warning"
+  | "earn"
+  | "unlock"
+  | "exclusive"
+  | "elite"
   | INBOX
   | CATEGORIES
   | MENU
@@ -202,6 +212,8 @@ const SVGIcon = (props: IconProps) => {
       return <Email width={width || 40} height={height || 32} {...props} />;
     case "game-controller":
       return <GameController width={width || 15} height={height || 11} {...props} />;
+    case "diamond":
+      return <Diamond width={width || 16} height={height || 13} {...props} />;
     case "gift":
       return <Gift width={width || 15} height={height || 14} {...props} />;
     case "trophy":
@@ -214,6 +226,14 @@ const SVGIcon = (props: IconProps) => {
       return <GSettings width={width || 37} height={height || 38} {...props} />;
     case "warning":
       return <Warning width={width || 95} height={height || 87} {...props} fill={props.fill ?? "#EBCD75"} />;
+    case "earn":
+      return <Earn width={width || 56} height={height || 56} {...props} />;
+    case "unlock":
+      return <Unlock width={width || 56} height={height || 56} {...props} />;
+    case "exclusive":
+      return <Exclusive width={width || 56} height={height || 56} {...props} />;
+    case "elite":
+      return <Elite width={width || 56} height={height || 56} {...props} />;
 
     // CATEGORIES
     case "new":

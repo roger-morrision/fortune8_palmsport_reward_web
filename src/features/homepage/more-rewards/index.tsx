@@ -2,9 +2,10 @@ import Text from "@/src/common/components/Text";
 import View from "@/src/common/components/View";
 import { MaterialIcon } from "@/src/common/components/Icon";
 import StyleSheet from "react-native-media-query";
+import SVGIcon, { SVGName } from "@/src/constants/SVGIcon";
 
 type Benefit = {
-  icon: string;
+  icon: SVGName;
   title: string;
   description: string;
 };
@@ -17,10 +18,10 @@ type Props = {
 };
 
 const DEFAULT_BENEFITS: Benefit[] = [
-  { icon: "stars", title: "Earn Palms Gold", description: "Collect through eligible gameplay and activities." },
-  { icon: "emoji-events", title: "Unlock Rewards", description: "Move through the tiers to access valuable benefits." },
-  { icon: "card-giftcard", title: "Exclusive Draw Entries", description: "Use your rewards access to enter selected VP and member draws." },
-  { icon: "workspace-premium", title: "Elite+ Benefits", description: "Unlock extra perks, exclusive games, and subscriber-only rewards." },
+  { icon: "earn", title: "Earn Palms Gold", description: "Collect through eligible gameplay and activities." },
+  { icon: "unlock", title: "Unlock Rewards", description: "Move through the tiers to access valuable benefits." },
+  { icon: "exclusive", title: "Exclusive Draw Entries", description: "Use your rewards access to enter selected VP and member draws." },
+  { icon: "elite", title: "Elite+ Benefits", description: "Unlock extra perks, exclusive games, and subscriber-only rewards." },
 ];
 
 export default function MoreRewards({
@@ -44,7 +45,7 @@ export default function MoreRewards({
       <View style={styles.v_cards} dataSet={{ media: ids.v_cards }}>
         {benefits.map((item, i) => (
           <View borderColor="#F5C8421F" key={i} style={styles.card} dataSet={{ media: ids.card }}>
-            <MaterialIcon name={item.icon as any} size={36} color="button" backgroundColor="transparent" />
+            <SVGIcon name={item.icon} />
             <Text fontFamily="Montserrat-Bold" color="text" style={styles.t_card_title} dataSet={{ media: ids.t_card_title }}>
               {item.title}
             </Text>

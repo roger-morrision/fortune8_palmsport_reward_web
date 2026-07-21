@@ -67,6 +67,7 @@ const CDNImages = {
   "tier-cup-bronze": CDN_URL + "/image-assets/profile/tier-cup-bronze.png",
   "tier-cup-silver": CDN_URL + "/image-assets/profile/tier-cup-silver.png",
   "tier-cup-gold": CDN_URL + "/image-assets/profile/tier-cup-gold.png",
+  "elite": CDN_URL + "/image-assets/profile/elite.png",
 } as const;
 
 export const Images = { ...StaticImages, ...CDNImages } as const;

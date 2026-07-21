@@ -43,7 +43,7 @@ function FaqRow({ item }: { item: FaqItem }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <View style={styles.faq_item} dataSet={{ media: ids.faq_item }}>
+    <View backgroundColor="#0A1220" style={styles.faq_item} dataSet={{ media: ids.faq_item }}>
       <Pressable style={styles.faq_header} onPress={() => setOpen((v) => !v)}>
         <Text
           fontFamily="Montserrat-SemiBold"
@@ -80,18 +80,20 @@ export default function FAQ({
   items = DEFAULT_ITEMS,
 }: Props) {
   return (
-    <View style={styles.container} dataSet={{ media: ids.container }}>
-      <Text fontFamily="Montserrat-Bold" color="text" style={styles.t_title} dataSet={{ media: ids.t_title }}>
-        {title}{" "}
-        <Text fontFamily="Montserrat-Bold" color="button" style={styles.t_title} dataSet={{ media: ids.t_title }}>
-          {highlight}
+    <View backgroundColor="#0A1220" style={styles.container} dataSet={{ media: ids.container }}>
+      <View style={styles.center} dataSet={{ media: ids.center }}>
+        <Text fontFamily="Montserrat-Bold" color="text" style={styles.t_title} dataSet={{ media: ids.t_title }}>
+          {title}{" "}
+          <Text fontFamily="Montserrat-Bold" color="button" style={styles.t_title} dataSet={{ media: ids.t_title }}>
+            {highlight}
+          </Text>
         </Text>
-      </Text>
 
-      <View style={styles.v_list} dataSet={{ media: ids.v_list }}>
-        {items.map((item, i) => (
-          <FaqRow key={i} item={item} />
-        ))}
+        <View style={styles.v_list} dataSet={{ media: ids.v_list }}>
+          {items.map((item, i) => (
+            <FaqRow key={i} item={item} />
+          ))}
+        </View>
       </View>
     </View>
   );
@@ -100,13 +102,21 @@ export default function FAQ({
 const { ids, styles } = StyleSheet.create({
   container: {
     width: "100%",
-    maxWidth: 1084,
     alignSelf: "center",
     alignItems: "center",
     marginTop: 64,
+    paddingVertical: 80,
     "@media (max-width: 800px)": {
       marginTop: 40,
+      paddingLeft: 16,
+      paddingRight: 16
     },
+  },
+  center: {
+    width: "100%",
+    maxWidth: 768,
+    alignSelf: "center",
+    alignItems: "center",
   },
   t_title: {
     fontSize: 30,

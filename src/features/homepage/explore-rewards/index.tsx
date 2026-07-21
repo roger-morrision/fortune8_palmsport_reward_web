@@ -6,7 +6,8 @@ import { CDNImageKey } from "@/src/constants/Images";
 import { useAssetContext } from "@/src/context/AssetContext";
 import { Image } from "react-native";
 import { FontAwesomeIcon, MaterialIcon, MaterialSymbol } from "@/src/common/components/Icon";
-import SVGIcon from "@/src/constants/SVGIcon";
+import SVGIcon, { SVGName } from "@/src/constants/SVGIcon";
+import Button from "@/src/common/components/Button";
 
 type Tier = {
   name: string;
@@ -75,79 +76,34 @@ export default function ExploreRewards({
             <Text fontFamily="Montserrat-Bold" color="text" style={styles.t_tier_name} dataSet={{ media: ids.t_tier_name }}>
               {tier.name}
             </Text>
-            <View style={styles.v_tier_row}>
-              {/* <MaterialIcon name="stadia_controller" /> */}
-              <View borderColor="#CD7F3255" style={styles.v_icon}>
-                <SVGIcon name="game-controller" />
-              </View>
-              <View>
-                <Text fontFamily="Montserrat-Bold" color="#F5C842" style={styles.t_tier_key}>
-                  GAME ACCESS
-                </Text>
-                <Text fontFamily="Montserrat" color="text" style={styles.t_tier_val}>
-                  {tier.gameAccess}
-                </Text>
-              </View>
-            </View>
-            <View style={styles.v_tier_row}>
-              <View borderColor="#CD7F3255" style={styles.v_icon}>
-                <SVGIcon name="gift" width={15} height={15} />
-              </View>
-              <View>
-                <Text fontFamily="Montserrat-Bold" color="#F5C842" style={styles.t_tier_key}>
-                  BONUS
-                </Text>
-                <Text fontFamily="Montserrat" color="text" style={styles.t_tier_val}>
-                  {tier.bonus}
-                </Text>
-              </View>
-            </View>
-            <BGButton
-              label="Get Started"
-              onPress={() => onGetStarted?.(tier)}
+            <Item svg="game-controller" label="GAME ACCESS" description={tier.gameAccess} />
+            <Item svg="gift" label="BONUS" description={tier.bonus} />
+
+            <Button
               style={styles.btn_start}
-              dataSet={{ media: ids.btn_start }}
-              fontFamily="Montserrat-SemiBold"
-              labelStyle={styles.btn_start_label}
-              bgColors={["#0D1A4A", "#0D1A4A"]}
-              strokeColors={[tier.color, tier.color, tier.color]}
-              borderWidth={1}
-            />
+              borderColor="#CD7F3255"
+              backgroundColor="#CD7F3233"
+              onPress={() => onGetStarted?.(tier)}
+              dataSet={{ media: ids.btn_start }}>
+              <Text 
+                color="#F5C842"
+                fontFamily="Montserrat-Bold"
+                style={styles.btn_start_label} >
+                Get Started
+              </Text>
+            </Button>
           </View>
         ))}
 
         {/* Elite+ card */}
         <View style={styles.elite_card} dataSet={{ media: ids.elite_card }}>
-          <View style={styles.elite_badge}>
-            <Text fontFamily="Montserrat-Bold" style={styles.t_elite_badge}>Subscribe Now</Text>
+          <View backgroundColor="#F5C842" style={styles.elite_badge}>
+            <Text fontFamily="Montserrat-Bold" color="textDark" style={styles.t_elite_badge}>Subscribe Now</Text>
           </View>
-          <Text fontFamily="Montserrat-Bold" color="button" style={styles.t_elite_name}>
-            ELITE+
-          </Text>
-          <View style={styles.v_tier_row}>
-            <Text fontFamily="Montserrat-Bold" color="closeColor" style={styles.t_tier_key}>
-              GAME ACCESS
-            </Text>
-            <Text fontFamily="Montserrat" color="text" style={styles.t_tier_val}>
-              {ELITE_TIER.gameAccess}
-            </Text>
-          </View>
-          <View style={styles.v_tier_row}>
-            <Text fontFamily="Montserrat-SemiBold" color="closeColor" style={styles.t_tier_key}>
-              DAILY REWARD
-            </Text>
-            <Text fontFamily="Montserrat" color="text" style={styles.t_tier_val}>
-              {ELITE_TIER.dailyReward}
-            </Text>
-          </View>
-          <View style={styles.v_tier_row}>
-            <Text fontFamily="Montserrat-SemiBold" color="closeColor" style={styles.t_tier_key}>
-              EXCLUSIVE PERKS
-            </Text>
-            <Text fontFamily="Montserrat" color="text" style={styles.t_tier_val}>
-              {ELITE_TIER.exclusivePerks}
-            </Text>
-          </View>
+          <Image style={styles.i_tier_elite} source={{ uri: images?.["elite"] }} resizeMode="contain" />
+          <Item svg="game-controller" label="GAME ACCESS" description={ELITE_TIER.gameAccess} />
+          <Item svg="gift" label="DAILY REWARD" description={ELITE_TIER.dailyReward} />
+          <Item svg="diamond" label="EXCLUSIVE PERKS" description={ELITE_TIER.exclusivePerks} />
           <BGButton
             label="View Elite+"
             onPress={onViewElite}
@@ -178,6 +134,32 @@ export default function ExploreRewards({
       </Text>
     </View>
   );
+}
+
+type PropsItem = {
+  label: string;
+  description: string;
+  svg: SVGName;
+  svgWidth?: number;
+  svgHeight?: number;
+}
+
+const Item = ({label, description, svg}: PropsItem) => {
+  return (
+    <View style={styles.v_tier_row}>
+      <View borderColor="#CD7F3255" style={styles.v_icon}>
+        <SVGIcon name={svg} />
+      </View>
+      <View>
+        <Text fontFamily="Montserrat-Bold" color="#F5C842" style={styles.t_tier_key}>
+          {label}
+        </Text>
+        <Text fontFamily="Montserrat" color="text" style={styles.t_tier_val}>
+          {description}
+        </Text>
+      </View>
+    </View>
+  )
 }
 
 const { ids, styles } = StyleSheet.create({
@@ -237,7 +219,6 @@ const { ids, styles } = StyleSheet.create({
   tier_card: {
     flex: 1,
     minWidth: 150,
-    maxWidth: 180,
     borderWidth: 1,
     borderRadius: 10,
     backgroundColor: "#07122E",
@@ -245,8 +226,8 @@ const { ids, styles } = StyleSheet.create({
     padding: 16,
     gap: 10,
     "@media (max-width: 800px)": {
-      minWidth: "45%",
-      maxWidth: "48%",
+      minWidth: "46%",
+      maxWidth: "46%",
     },
   },
   v_tier_dot: {
@@ -257,6 +238,10 @@ const { ids, styles } = StyleSheet.create({
   i_tier_cup: {
     width: 56,
     height: 68,
+  },
+  i_tier_elite: {
+    width: 106,
+    height: 67,
   },
   t_tier_name: {
     fontSize: 16,
@@ -277,14 +262,15 @@ const { ids, styles } = StyleSheet.create({
   },
   btn_start: {
     height: 36,
-    borderRadius: 6,
     marginTop: 8,
+    borderRadius: 6,
+    borderWidth: 1,
     alignItems: "center",
     justifyContent: "center",
   },
   btn_start_label: {
-    fontSize: 12,
-    lineHeight: 14,
+    fontSize: 14,
+    lineHeight: 16,
   },
 
   // Elite+
@@ -293,7 +279,7 @@ const { ids, styles } = StyleSheet.create({
     minWidth: 160,
     maxWidth: 200,
     borderWidth: 1,
-    borderColor: "#FFB019",
+    borderColor: "#16D03E",
     borderRadius: 10,
     backgroundColor: "#07122E",
     padding: 16,
@@ -307,7 +293,6 @@ const { ids, styles } = StyleSheet.create({
     position: "absolute",
     top: -12,
     alignSelf: "center",
-    backgroundColor: "#23C339",
     borderRadius: 20,
     paddingVertical: 3,
     paddingHorizontal: 12,
@@ -315,7 +300,6 @@ const { ids, styles } = StyleSheet.create({
   t_elite_badge: {
     fontSize: 10,
     lineHeight: 14,
-    color: "#FFFFFF",
   },
   t_elite_name: {
     fontSize: 22,
@@ -325,7 +309,6 @@ const { ids, styles } = StyleSheet.create({
   btn_elite: {
     height: 36,
     borderRadius: 6,
-    marginTop: 8,
     alignItems: "center",
     justifyContent: "center",
   },
