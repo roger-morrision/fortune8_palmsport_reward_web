@@ -1,13 +1,12 @@
+import { Image } from "react-native";
 import Text from "@/src/common/components/Text";
 import View from "@/src/common/components/View";
-import BGButton from "@/src/common/components/BGButton";
 import StyleSheet from "react-native-media-query";
-import { CDNImageKey } from "@/src/constants/Images";
-import { useAssetContext } from "@/src/context/AssetContext";
-import { Image } from "react-native";
-import { FontAwesomeIcon, MaterialIcon, MaterialSymbol } from "@/src/common/components/Icon";
-import SVGIcon, { SVGName } from "@/src/constants/SVGIcon";
 import Button from "@/src/common/components/Button";
+import { CDNImageKey } from "@/src/constants/Images";
+import BGButton from "@/src/common/components/BGButton";
+import SVGIcon, { SVGName } from "@/src/constants/SVGIcon";
+import { useAssetContext } from "@/src/context/AssetContext";
 
 type Tier = {
   name: string;
@@ -29,7 +28,7 @@ type Props = {
 };
 
 const DEFAULT_TIERS: Tier[] = [
-  { name: "Copper",  gameAccess: "Entry Level",        bonus: "None",                   color: "#C65918",   icon: "tier-cup-copper"},
+  { name: "Copper",  gameAccess: "Entry Level",        bonus: "None",                    color: "#C65918",  icon: "tier-cup-copper"},
   { name: "Bronze",  gameAccess: "Prime Games",        bonus: "3,000,000 Silver Coins",  color: "#CF7D0C",  icon: "tier-cup-bronze" },
   { name: "Silver",  gameAccess: "Premium Games",      bonus: "10,000,000 Silver Coins", color: "#8197BB",  icon: "tier-cup-silver" },
   { name: "Gold",    gameAccess: "VIP Games",          bonus: "17,000,000 Silver Coins", color: "#FFB019",  icon: "tier-cup-gold" },
@@ -64,7 +63,6 @@ export default function ExploreRewards({
       <Text fontFamily="Montserrat" color="closeColor" style={styles.t_subtitle} dataSet={{ media: ids.t_subtitle }}>
         {subtitle}
       </Text>
-
       <View style={styles.v_tiers} dataSet={{ media: ids.v_tiers }}>
         {tiers.map((tier, i) => (
           <View
@@ -78,7 +76,6 @@ export default function ExploreRewards({
             </Text>
             <Item svg="game-controller" label="GAME ACCESS" description={tier.gameAccess} />
             <Item svg="gift" label="BONUS" description={tier.bonus} />
-
             <Button
               style={styles.btn_start}
               borderColor="#CD7F3255"
@@ -230,11 +227,6 @@ const { ids, styles } = StyleSheet.create({
       maxWidth: "46%",
     },
   },
-  v_tier_dot: {
-    width: 14,
-    height: 14,
-    borderRadius: 7,
-  },
   i_tier_cup: {
     width: 56,
     height: 68,
@@ -300,11 +292,6 @@ const { ids, styles } = StyleSheet.create({
   t_elite_badge: {
     fontSize: 10,
     lineHeight: 14,
-  },
-  t_elite_name: {
-    fontSize: 22,
-    lineHeight: 28,
-    marginTop: 8,
   },
   btn_elite: {
     height: 36,

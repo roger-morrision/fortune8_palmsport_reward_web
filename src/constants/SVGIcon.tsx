@@ -12,9 +12,9 @@ import Warning from "@/assets/svg/warning.svg";
 
 import EmailSent from "@/assets/svg/email-sent.svg";
 import Email from "@/assets/svg/email.svg";
-import Gift from "@/assets/svg/gift.svg";
-import GameController from "@/assets/svg/game-controller.svg";
-import Diamond from "@/assets/svg/diamond.svg";
+import Gift from "@/assets/svg/gift";
+import GameController from "@/assets/svg/game-controller";
+import Diamond from "@/assets/svg/diamond";
 import Heart from "@/assets/svg/heart.svg";
 import GHome from "@/assets/svg/home.svg";
 import GSettings from "@/assets/svg/settings.svg";
