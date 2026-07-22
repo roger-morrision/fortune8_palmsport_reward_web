@@ -2,7 +2,7 @@ import View from "@/src/common/components/View";
 import { ScrollView } from "react-native";
 import AccountDetails from "./account-details";
 import {ids, styles } from "./styles.css";
-import Footer from "../home/footer";
+import Footer from "../homepage/footer";
 import PalmsGold from "./palms-gold";
 import DataRow from "./data-table/data-row";
 import BGButton from "@/src/common/components/BGButton";

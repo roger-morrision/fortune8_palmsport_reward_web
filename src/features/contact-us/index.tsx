@@ -18,7 +18,7 @@ import _ from "lodash";
 import React, { useEffect, useState } from "react";
 import { ScrollView } from "react-native";
 import validator from "validator";
-import Footer from "../home/footer";
+import Footer from "../homepage/footer";
 import GotoGambly from "../home/go-to-gambly";
 import { ids, styles } from "./styles.css";
 import Info from "./info";

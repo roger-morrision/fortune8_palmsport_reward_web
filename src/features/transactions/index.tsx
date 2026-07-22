@@ -1,10 +1,9 @@
 import React, { useEffect, useRef } from "react";
-import Footer from "../home/footer";
+import Footer from "../homepage/footer";
 import { useRouter } from "expo-router";
 import { FlatList } from "react-native";
 import Categories from "./categories";
 import DisplayItem from "./display-item";
-import GotoGambly from "../home/go-to-gambly";
 import View from "@/src/common/components/View";
 import Text from "@/src/common/components/Text";
 import StyleSheet from "react-native-media-query";
@@ -74,7 +73,6 @@ function Contents() {
                 </Button>
               </View>
               <View style={styles.footer} dataSet={{ media: ids.footer }}>
-                <GotoGambly />
                 <Footer />
               </View>
             </>

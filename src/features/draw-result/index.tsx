@@ -5,7 +5,7 @@ import { ScrollView } from "react-native";
 import { ids, styles } from "./styles.css";
 import Banner from "./banner";
 import ResultsTable, { DrawTableColumn } from "./results-table";
-import Footer from "../home/footer";
+import Footer from "../homepage/footer";
 import moment from "moment";
 import { useQueryApi } from "@/src/common/hooks/useQueryApi";
 import { RaffleService } from "@/src/api/services/raffles.service";

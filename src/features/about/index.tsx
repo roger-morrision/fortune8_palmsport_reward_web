@@ -3,13 +3,12 @@ import Screen from "@/src/common/components/Screen";
 import View from "@/src/common/components/View";
 import { ABOUT_LIST } from "@/src/constants/Objects";
 import { useLocalSearchParams } from "expo-router";
-import { ScrollView } from "react-native";
 import StyleSheet from "react-native-media-query";
-import Footer from "../home/footer";
-import GotoGambly from "../home/go-to-gambly";
+import SupportButton from "./support-button";
+import { ScrollView } from "react-native";
+import Footer from "../homepage/footer";
 import Categories from "./categories";
 import TierItem from "./display-item";
-import SupportButton from "./support-button";
 import FAQs from "./faqs";
 
 function AboutPage() {
@@ -36,7 +35,6 @@ function AboutPage() {
           <SupportButton />
         </Screen>
         <View style={styles.footer} dataSet={{ media: ids.footer }}>
-          <GotoGambly />
           <Footer />
         </View>
       </ScrollView>

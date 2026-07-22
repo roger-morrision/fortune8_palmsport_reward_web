@@ -5,7 +5,7 @@ import { RaffleService } from "@/src/api/services/raffles.service";
 import { RewardService } from "@/src/api/services/rewards.service";
 import { useQueries } from "@tanstack/react-query";
 import { ScrollView } from "react-native";
-import Footer from "../home/footer";
+import Footer from "../homepage/footer";
 import Banner from "./banner";
 import Countdown from "./countdown";
 import DrawTerms from "./terms";

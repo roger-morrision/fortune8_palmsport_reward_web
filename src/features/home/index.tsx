@@ -7,7 +7,7 @@ import View from "@/src/common/components/View";
 import { ids, styles } from "./styles.css";
 import HotDeals from "./containers";
 import Banner from "./banner";
-import Footer from "./footer";
+import Footer from "../homepage/footer";
 
 export default function HomePage() {
   const { scrollRef, sectionY } = useHomeContext();

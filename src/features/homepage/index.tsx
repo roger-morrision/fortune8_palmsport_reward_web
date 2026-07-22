@@ -1,7 +1,7 @@
 import View from "@/src/common/components/View";
 import { ScrollView } from "react-native";
 import StyleSheet from "react-native-media-query";
-import Footer from "../home/footer";
+import Footer from "./footer";
 import HomeBanner from "./banner";
 import ExploreRewards from "./explore-rewards";
 import FAQ from "./faq";
