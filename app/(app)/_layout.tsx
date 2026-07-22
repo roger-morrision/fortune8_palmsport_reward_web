@@ -66,7 +66,7 @@ export default function () {
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
         <PersistGate persistor={persistor} onBeforeLift={onBeforeLimit}>
-          {fontsLoaded && namedAssets && stateLoaded ? (
+          {fontsLoaded && stateLoaded ? (
             <AssetContext.Provider value={{ images: namedAssets }}>
               <GestureHandlerRootView onLayout={onLayout} style={Styles.flex}>
                 <RootProvider>

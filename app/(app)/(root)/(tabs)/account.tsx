@@ -1,4 +1,5 @@
 import ScreenTitle from "@/src/common/components/header/screen-title";
+import InteractionManagerScreenWrapper from "@/src/common/components/InteractiveManager";
 import ProtectedScreen from "@/src/common/components/ProtectedScreen";
 import Screen from "@/src/common/components/Screen";
 import UserProfilePage from "@/src/features/user-page";
@@ -10,10 +11,12 @@ function UserProfileScreen() {
 
   return (
     <ProtectedScreen>
-      <Screen style={styles.container} dataSet={{ media: ids.container }}>
-        <ScreenTitle options={{ title: t("account.title") }} />
-        <UserProfilePage />
-      </Screen>
+      <InteractionManagerScreenWrapper>
+        <Screen style={styles.container} dataSet={{ media: ids.container }}>
+          <ScreenTitle options={{ title: t("account.title") }} />
+          <UserProfilePage />
+        </Screen>
+      </InteractionManagerScreenWrapper>
     </ProtectedScreen>
   );
 }

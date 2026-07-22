@@ -45,7 +45,6 @@ function TabScreens() {
     const publicPaths = [
       "/",
       "/menu",
-      "/account",
       "/auth",
       "/auth/login",
       "/auth/signup",
@@ -54,7 +53,6 @@ function TabScreens() {
       "/reset-password",
       "/email-verification",
       "/resend-verification",
-      "/account",
       "/deactivated-verified",
       "/how-to-play",
       "/how-it-works",
