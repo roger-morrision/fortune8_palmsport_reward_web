@@ -104,8 +104,20 @@ const { ids, styles } = StyleSheet.create({
     },
   },
   t_center_menu: {
-    fontSize: 16,
-    lineHeight: 20,
+    fontSize: 14,
+    lineHeight: 18,
+  },
+  elite_btn: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 1,
+    backgroundColor: "transparent",
+  },
+  t_elite_label: {
+    color: "#C9A84C",
+  },
+  t_elite_active: {
+    color: "#E8C84A",
   },
 
   // BALANCE

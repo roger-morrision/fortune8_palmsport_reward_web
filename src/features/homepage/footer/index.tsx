@@ -134,7 +134,8 @@ function Footer({ onLayout }: any) {
           />
         </Pressable>
         <Text style={styles.t_copyright} dataSet={{ media: ids.t_copyright }}>
-          {t("footer.copyright")?.replace("2025", moment().format("YYYY"))}{`\n Version ${PackageJson.version}`} 
+          {t("footer.copyright")?.replace("2025", moment().format("YYYY"))}
+          <Text style={styles.t_version} dataSet={{ media: ids.t_version }}>{`\n Version ${PackageJson.version}`} </Text>
         </Text>
       </View>
     </View>

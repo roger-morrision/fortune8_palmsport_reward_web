@@ -57,6 +57,7 @@ function TabScreens() {
       "/how-to-play",
       "/how-it-works",
       "/promotions",
+      "/elite-plus",
     ];
 
     const publicPrefixes = [

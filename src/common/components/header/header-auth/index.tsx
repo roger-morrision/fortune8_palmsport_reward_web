@@ -12,6 +12,7 @@ import { useTranslation } from "react-i18next";
 import numeral from "numeral";
 import { selectedUserCoins } from "@/src/store/slices/user.slice";
 import BGButton from "../../BGButton";
+import { MaterialCommunityIcon } from "../../Icon";
 import { selectAuthLoggedIn } from "@/src/store/slices/auth.slice";
 
 function HeaderAuthScreen() {
@@ -49,7 +50,7 @@ function HeaderAuthScreen() {
             style={styles.t_center_menu}
             onPress={() => router.navigate("/")}
             dataSet={{ media: ids.t_center_menu }}
-            color={routeToPathname("/") === pathname ? "button" : "text"}
+            color={routeToPathname("/") === pathname ? "activeHeader" : "text"}
           >
             {t("header.home")}
           </Text>
@@ -59,11 +60,31 @@ function HeaderAuthScreen() {
             onPress={() => router.navigate("/(tabs)/account")}
             style={[styles.t_center_menu]}
             dataSet={{ media: ids.t_center_menu }}
-            color={routeToPathname("/(tabs)/account") === pathname ? "button" : "text"}
+            color={routeToPathname("/(tabs)/account") === pathname ? "activeHeader" : "text"}
           >
             {t("header.myaccount")}
           </Text>
           <Raffles />
+          <Button
+            onPress={() => router.navigate("/(tabs)/elite-plus")}
+            style={styles.elite_btn}
+            dataSet={{ media: ids.elite_btn }}
+          >
+            <MaterialCommunityIcon
+              disabled
+              name="crown"
+              size={20}
+              color={"#F5C842" as any}
+            />
+            <Text
+              fontFamily="Montserrat-Medium"
+              style={styles.t_center_menu}
+              dataSet={{ media: ids.t_center_menu }}
+              color={routeToPathname("/(tabs)/elite-plus") === pathname ? "activeHeader" : "text"}
+            >
+              Elite+
+            </Text>
+          </Button>
         </View>
 
         <View

@@ -80,14 +80,6 @@ const { ids, styles } = StyleSheet.create({
     gap: 5,
     height: 68,
   },
-  tab_home: {
-    gap: 1,
-    flex: 1,
-    height: 68,
-    top: "-23%",
-    alignItems: "center",
-    justifyContent: "center",
-  },
   label_style: {
     textTransform: "capitalize",
     fontFamily: "Montserrat",

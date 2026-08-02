@@ -51,6 +51,7 @@ const Colors = {
     goldFlatBorder: "#E3AD37",
     green: "#23C339",
     inProgress: "#F79400",
+    activeHeader: "#F5C842",
   },
   dark: {
     background: "#000D30",
@@ -91,6 +92,7 @@ const Colors = {
     goldFlatBorder: "#E3AD37",
     green: "#23C339",
     inProgress: "#F79400",
+    activeHeader: "#F5C842",
   },
 };
 

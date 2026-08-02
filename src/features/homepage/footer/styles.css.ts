@@ -69,6 +69,13 @@ const { ids, styles } = StyleSheet.create({
       fontSize: 10,
     },
   },
+  t_version: {
+    fontSize: 10,
+    lineHeight: 12,
+    "@media (max-width: 800px)": {
+      fontSize: 9,
+    },
+  },
   t_note_title: {
     fontSize: 14,
     lineHeight: 18,

@@ -32,9 +32,6 @@ const StaticImages = {
   gift: require("@/assets/images/home/gift.png"),
   "how-it-works": require("@/assets/images/home/how-it-works.png"),
   rewards: require("@/assets/images/home/rewards.png"),
-  "bitcoin-banner": require("@/assets/images/home/bitcoin-banner.png"),
-  "coming-soon": require("@/assets/images/home/coming-soon.png"),
-  "sweepscoin-banner": require("@/assets/images/home/sweepscoin-banner.webp"),
 
   // PRODUCTS
   "product-high-roller": require("@/assets/images/products/product-high-roller.png"),
@@ -68,6 +65,10 @@ const CDNImages = {
   "tier-cup-silver": CDN_URL + "/image-assets/profile/tier-cup-silver.png",
   "tier-cup-gold": CDN_URL + "/image-assets/profile/tier-cup-gold.png",
   "elite": CDN_URL + "/image-assets/profile/elite.png",
+
+
+  // ELITE
+  "elite-banner": CDN_URL + "/image-assets/elite/elite-banner.jpg",
 } as const;
 
 export const Images = { ...StaticImages, ...CDNImages } as const;
