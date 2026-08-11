@@ -14,7 +14,7 @@ const FAQItem = ({ item }: any) => {
       <View style={styles.cardHeader}>
         <Text
           color={visible ? "yellowThick" : "text"}
-          fontFamily="Montserrat-Bold"
+          fontFamily="Montserrat"
           selectable={false}
           style={styles.title}
         >
@@ -31,7 +31,7 @@ const FAQItem = ({ item }: any) => {
 
       {visible && (
         <View style={styles.v_info}>
-          <Text fontFamily="Montserrat-Medium" style={styles.description}>
+          <Text fontFamily="Montserrat" style={styles.description}>
             {item.description}
           </Text>
         </View>

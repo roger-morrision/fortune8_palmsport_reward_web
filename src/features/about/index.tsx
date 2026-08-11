@@ -6,9 +6,11 @@ import { useLocalSearchParams } from "expo-router";
 import StyleSheet from "react-native-media-query";
 import SupportButton from "./support-button";
 import { ScrollView } from "react-native";
+import DisplayItem from "./display-item";
 import Footer from "../homepage/footer";
 import Categories from "./categories";
-import TierItem from "./display-item";
+import Policy from "./policy";
+import Terms from "./terms";
 import FAQs from "./faqs";
 
 function AboutPage() {
@@ -20,9 +22,13 @@ function AboutPage() {
   const RenderContent = useMemo(() => {
     if (itemSelected.title === "FAQs") {
       return <FAQs />;
+    }else if (itemSelected.title === "Terms & Conditions") {
+      return <Terms />;
+    }else if (itemSelected.title === "Privacy Policy") {
+      return <Policy />;
     }
 
-    return <TierItem title={itemSelected.pageTitle} description={itemSelected.description} />;
+    return <DisplayItem title={itemSelected.pageTitle} description={itemSelected.description} />;
   }, [itemSelected]);
 
   return (

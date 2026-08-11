@@ -19,13 +19,10 @@ export default function EliteBanner() {
 const { ids, styles } = StyleSheet.create({
   container: {
     width: "100%",
-    maxWidth: 1084,
+    // maxWidth: 1084,
     alignSelf: "center",
-    marginTop: 20,
-    borderRadius: 10,
     overflow: "hidden",
     "@media (max-width: 800px)": {
-      borderRadius: 8,
       marginTop: 12,
     },
   },

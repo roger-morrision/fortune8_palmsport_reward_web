@@ -50,7 +50,7 @@ function HeaderAuthScreen() {
             style={styles.t_center_menu}
             onPress={() => router.navigate("/")}
             dataSet={{ media: ids.t_center_menu }}
-            color={routeToPathname("/") === pathname ? "activeHeader" : "text"}
+            color={routeToPathname("/") === pathname ? "activeHeader" : "#8A9AC0"}
           >
             {t("header.home")}
           </Text>
@@ -60,7 +60,7 @@ function HeaderAuthScreen() {
             onPress={() => router.navigate("/(tabs)/account")}
             style={[styles.t_center_menu]}
             dataSet={{ media: ids.t_center_menu }}
-            color={routeToPathname("/(tabs)/account") === pathname ? "activeHeader" : "text"}
+            color={routeToPathname("/(tabs)/account") === pathname ? "activeHeader" : "#8A9AC0"}
           >
             {t("header.myaccount")}
           </Text>
@@ -80,9 +80,9 @@ function HeaderAuthScreen() {
               fontFamily="Montserrat-Medium"
               style={styles.t_center_menu}
               dataSet={{ media: ids.t_center_menu }}
-              color={routeToPathname("/(tabs)/elite-plus") === pathname ? "activeHeader" : "text"}
+              color={routeToPathname("/(tabs)/elite-plus") === pathname ? "activeHeader" : "#8A9AC0"}
             >
-              Elite+
+              {t("header.elite")}
             </Text>
           </Button>
         </View>

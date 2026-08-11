@@ -1,7 +1,5 @@
 import { ImageKey } from "./Images";
-import Privacy from "./privacy";
 import Sweepstakes from "./sweepstakes";
-import Terms from "./terms";
 
 export type REDEEM_GUIDELINES_PROPS = {
   step: string;
@@ -67,13 +65,13 @@ export const ABOUT_LIST: ABOUTLISTTYPES[] = [
     title: "Terms & Conditions",
     route: "terms-and-conditions",
     pageTitle: "Terms & Conditions",
-    description: Terms,
+    description: "",
   },
   {
     title: "Privacy Policy",
     route: "privacy-policy",
     pageTitle: "Privacy Policy",
-    description: Privacy,
+    description: "",
   },
   {
     title: "FAQs",

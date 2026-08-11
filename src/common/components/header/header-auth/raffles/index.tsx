@@ -53,7 +53,7 @@ const Raffles = () => {
     <View style={styles.v_fbandsound}>
       <Pressable style={styles.v_country} onPress={onPress}>
         <View style={styles.v_country}>
-          <Text color={isActive ? "button" : "text"}
+          <Text color={isActive ? "activeHeader" : "#8A9AC0"}
             suppressHighlighting
             fontFamily="Montserrat-Medium"
             style={styles.t_label}
@@ -62,7 +62,7 @@ const Raffles = () => {
           </Text>
           <MaterialIcon 
             disabled 
-            color={isActive ? "button" : "text"} 
+            color={isActive ? "activeHeader" : "#8A9AC0"} 
             name={isOpen ? "expand-less" : "expand-more"} size={14} />
         </View>
       </Pressable>

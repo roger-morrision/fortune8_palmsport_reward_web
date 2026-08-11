@@ -7,7 +7,7 @@ import { useQueries } from "@tanstack/react-query";
 import { ScrollView } from "react-native";
 import Footer from "../homepage/footer";
 import DrawTerms from "../raffle-draw/terms";
-import Countdown from "../raffle-draw/countdown";
+import Countdown from "./countdown";
 import EliteBanner from "./banner";
 import EliteTicketSelect from "./ticket-select";
 import { ids, styles } from "./styles.css";

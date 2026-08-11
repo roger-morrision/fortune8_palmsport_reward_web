@@ -1,6 +1,7 @@
 import Text from "@/src/common/components/Text";
 import View from "@/src/common/components/View";
 import { OngoingRaffle } from "@/src/store/types";
+import { LinearGradient } from "expo-linear-gradient";
 import { useEffect, useRef, useState } from "react";
 import { ViewStyle } from "react-native";
 import StyleSheet from "react-native-media-query";
@@ -87,72 +88,81 @@ export default function Countdown({ raffle, variant = "blue" }: Props) {
 
   return (
     <View
-      style={[styles.container, theme.container] as ViewStyle[]}
+      style={[styles.container] as ViewStyle[]}
       dataSet={{ media: ids.container }}
     >
-      {/* Title */}
-      <Text
-        fontFamily="Montserrat-SemiBold"
-        style={[styles.t_title, { color: theme.title }]}
-        dataSet={{ media: ids.t_title }}
-      >
-        NEXT DRAW STARTS IN
-      </Text>
+      <LinearGradient colors={["#100F1A", "#0C0B14"]} style={{width: "100%", height: "100%", position: "absolute"}}  />
+      <View 
+        style={styles.center_wrap}
+        dataSet={{ media: ids.center_wrap }}>
+        {/* Title */}
+        <Text
+          color="#6A5A30"
+          fontFamily="Montserrat"
+          style={[styles.t_title]}
+          dataSet={{ media: ids.t_title }}
+        >
+          NEXT DRAW STARTS IN
+        </Text>
 
-      {/* Digit boxes */}
-      <View style={styles.v_time} dataSet={{ media: ids.v_time }}>
-        {segments.map(([value, label], index) => (
-          <View key={label} style={{ flexDirection: "row", alignItems: "center" }}>
-            {index > 0 && (
-              <Text
-                fontFamily="Montserrat-Bold"
-                style={[styles.t_colon, { color: theme.colon }]}
-                dataSet={{ media: ids.t_colon }}
-              >
-                {":"}
-              </Text>
-            )}
-            <View style={styles.v_segment}>
-              <Text
-                fontFamily="Montserrat"
-                style={[styles.t_label, { color: theme.label }]}
-                dataSet={{ media: ids.t_label }}
-              >
-                {label}
-              </Text>
-              <View style={[styles.digit_box, theme.digitBox] as ViewStyle[]}>
+        {/* Digit boxes */}
+        <View style={styles.v_time} dataSet={{ media: ids.v_time }}>
+          {segments.map(([value, label], index) => (
+            <View key={label} style={{ flexDirection: "row", alignItems: "center" }}>
+              {index > 0 && (
                 <Text
                   fontFamily="Montserrat-Bold"
-                  style={[styles.t_time, { color: theme.time }]}
-                  dataSet={{ media: ids.t_time }}
+                  style={[styles.t_colon, { color: theme.colon }]}
+                  dataSet={{ media: ids.t_colon }}
                 >
-                  {value}
+                  {" : "}
+                </Text>
+              )}
+              <View style={styles.v_segment}>
+                <View style={[styles.digit_box, theme.digitBox] as ViewStyle[]}>
+                  <Text
+                    fontFamily="Montserrat-Bold"
+                    style={[styles.t_time, { color: theme.time }]}
+                    dataSet={{ media: ids.t_time }}
+                  >
+                    {value}
+                  </Text>
+                </View>
+                <Text
+                  fontFamily="Montserrat"
+                  style={[styles.t_label, { color: theme.label }]}
+                  dataSet={{ media: ids.t_label }}
+                >
+                  {label}
                 </Text>
               </View>
-              
             </View>
-          </View>
-        ))}
-      </View>
+          ))}
+        </View>
 
-      {/* Entries */}
-      <View
-        backgroundColor="#091B38"
-        borderColor="#2D508B"
-        style={[styles.v_entries] as ViewStyle[]}
-        dataSet={{ media: ids.v_entries }}
-      >
-        <Text
-          fontFamily="Montserrat-SemiBold"
-          color="button"
-          style={[styles.t_entries]}
-          dataSet={{ media: ids.t_entries }}
+        {/* Star divider */}
+        <View style={styles.v_divider} dataSet={{ media: ids.v_divider }}>
+          <View style={[styles.divider_line, { backgroundColor: theme.divider }]} />
+          <Text style={[styles.t_star, { color: theme.star }]}>★</Text>
+          <View style={[styles.divider_line, { backgroundColor: theme.divider }]} />
+        </View>
+
+        {/* Entries */}
+        <View
+          style={[styles.v_entries, theme.entries] as ViewStyle[]}
+          dataSet={{ media: ids.v_entries }}
         >
-          Total No. of Entries:{" "}
-          <Text fontFamily="Montserrat-Bold" color="text" style={styles.t_entries}>
-            {raffle?.totalRedeemedTickets ?? 0}
+          <Text
+            fontFamily="Montserrat-SemiBold"
+            style={[styles.t_entries, { color: theme.entriesLabel }]}
+            dataSet={{ media: ids.t_entries }}
+          >
+            Total No. of Entries:{" "}
+            <Text fontFamily="Montserrat-Bold" color="text" style={styles.t_entries}>
+              {raffle?.totalRedeemedTickets ?? 0}
+            </Text>
           </Text>
-        </Text>
+        </View>
       </View>
     </View>
   );
@@ -161,21 +171,26 @@ export default function Countdown({ raffle, variant = "blue" }: Props) {
 const { ids, styles } = StyleSheet.create({
   container: {
     width: "50%",
-    padding: 28,
-    borderWidth: 2,
+    borderWidth: 1,
     borderRadius: 16,
+    borderColor: "#C9A84C2E",
     overflow: "hidden",
-    alignItems: "center",
+    // alignItems: "center",
     "@media (max-width: 800px)": {
       borderRadius: 12,
-      padding: 20,
       width: "100%",
     },
   },
+  center_wrap: {
+    flex: 1,
+    padding: 32,
+    "@media (max-width: 800px)": {
+      padding: 28,
+    },
+  },
   t_title: {
-    fontSize: 13,
+    fontSize: 12,
     lineHeight: 18,
-    textAlign: "center",
     letterSpacing: 1.5,
     "@media (max-width: 800px)": {
       fontSize: 12,
@@ -203,7 +218,7 @@ const { ids, styles } = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     "@media (max-width: 800px)": {
-      width: 62,
+      width: 68,
       height: 62,
       borderRadius: 10,
     },
@@ -236,6 +251,7 @@ const { ids, styles } = StyleSheet.create({
     },
   },
   v_divider: {
+    alignSelf: "center",
     flexDirection: "row",
     alignItems: "center",
     marginTop: 20,
@@ -257,13 +273,14 @@ const { ids, styles } = StyleSheet.create({
     lineHeight: 18,
   },
   v_entries: {
-    width: "90%",
+    width: "100%",
     marginTop: 12,
     borderWidth: 1,
     alignSelf: "center",
     borderRadius: 8,
     paddingVertical: 10,
     paddingHorizontal: 16,
+    // alignItems: "center",
   },
   t_entries: {
     fontSize: 13,

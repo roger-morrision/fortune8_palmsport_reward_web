@@ -1,4 +1,3 @@
-import BGButton from "@/src/common/components/BGButton";
 import Text from "@/src/common/components/Text";
 import View from "@/src/common/components/View";
 import { useMemo, useState } from "react";
@@ -8,6 +7,7 @@ import StyleSheet from "react-native-media-query";
 import Select from "@/src/common/components/select";
 import ConfirmTicketModal from "@/src/features/raffle-draw/ticket-select/confirm-modal";
 import Button from "@/src/common/components/Button";
+import { LinearGradient } from "expo-linear-gradient";
 
 type Props = {
   raffleId?: number;
@@ -29,93 +29,96 @@ export default function EliteTicketSelect({ raffleId = 0, ticketLimit = 0, ticke
   return (
     <>
       <View style={styles.container as any} dataSet={{ media: ids.container }}>
-        <View style={styles.v_row} dataSet={{ media: ids.v_row }}>
-          <View style={styles.v_col} dataSet={{ media: ids.v_col }}>
-            <Text
-              fontFamily="Montserrat-SemiBold"
-              color="text"
-              style={styles.t_label}
-              dataSet={{ media: ids.t_label }}
-            >
-              NUMBER OF PG REQUIRED
-            </Text>
-            <View style={styles.pg_input} dataSet={{ media: ids.pg_input }}>
-              <Text fontFamily="Montserrat" color="closeColor" style={styles.t_dropdown_val}>
-                {pgRequired ?? "-"}
+        <LinearGradient colors={["#100F1A", "#0C0B14"]} style={{width: "100%", height: "100%", position: "absolute"}}  />
+        <View style={styles.center_wrap} dataSet={{ media: ids.center_wrap }}>
+          <View style={styles.v_row} dataSet={{ media: ids.v_row }}>
+            <View style={styles.v_col} dataSet={{ media: ids.v_col }}>
+              <Text
+                fontFamily="Montserrat-SemiBold"
+                color="text"
+                style={styles.t_label}
+                dataSet={{ media: ids.t_label }}
+              >
+                NUMBER OF PG REQUIRED
               </Text>
+              <View style={styles.pg_input} dataSet={{ media: ids.pg_input }}>
+                <Text fontFamily="Montserrat" color="closeColor" style={styles.t_dropdown_val}>
+                  {pgRequired ?? "-"}
+                </Text>
+              </View>
             </View>
+
+            <Select
+              ids={3}
+              style={styles.v_col}
+              keys={"elite-ticket"}
+              selectedKey={"dropdownKey"}
+              options={ticketOptions}
+              value={tickets ?? "-"}
+              labelKey="name"
+              onSelected={setTickets}
+              onSelectedKeys={() => {}}
+              renderBase={(props) => (
+                <View style={styles.v_col} dataSet={{ media: ids.v_col }}>
+                  <Text
+                    fontFamily="Montserrat-SemiBold"
+                    color="text"
+                    style={styles.t_label}
+                    dataSet={{ media: ids.t_label }}
+                  >
+                    SELECT NUMBER OF TICKETS
+                  </Text>
+                  <Pressable
+                    style={styles.dropdown_btn}
+                    dataSet={{ media: ids.dropdown_btn }}
+                    onPress={() => {
+                      props.setVisible(!props.isVisible);
+                      props.setFocus(false);
+                    }}
+                  >
+                    <Text fontFamily="Montserrat" color="text" style={styles.t_dropdown_val}>
+                      {tickets ?? "-"}
+                    </Text>
+                    <MaterialIcon
+                      disabled
+                      name={props.isVisible ? "expand-less" : "expand-more"}
+                      style={styles.dropdown_arrow}
+                      size={22}
+                      color="closeColor"
+                    />
+                  </Pressable>
+                </View>
+              )}
+            />
           </View>
 
-          <Select
-            ids={3}
-            style={styles.v_col}
-            keys={"elite-ticket"}
-            selectedKey={"dropdownKey"}
-            options={ticketOptions}
-            value={tickets ?? "-"}
-            labelKey="name"
-            onSelected={setTickets}
-            onSelectedKeys={() => {}}
-            renderBase={(props) => (
-              <View style={styles.v_col} dataSet={{ media: ids.v_col }}>
-                <Text
-                  fontFamily="Montserrat-SemiBold"
-                  color="text"
-                  style={styles.t_label}
-                  dataSet={{ media: ids.t_label }}
-                >
-                  SELECT NUMBER OF TICKETS
-                </Text>
-                <Pressable
-                  style={styles.dropdown_btn}
-                  dataSet={{ media: ids.dropdown_btn }}
-                  onPress={() => {
-                    props.setVisible(!props.isVisible);
-                    props.setFocus(false);
-                  }}
-                >
-                  <Text fontFamily="Montserrat" color="text" style={styles.t_dropdown_val}>
-                    {tickets ?? "-"}
-                  </Text>
-                  <MaterialIcon
-                    disabled
-                    name={props.isVisible ? "expand-less" : "expand-more"}
-                    style={styles.dropdown_arrow}
-                    size={22}
-                    color="closeColor"
-                  />
-                </Pressable>
-              </View>
-            )}
-          />
-        </View>
-
-        {/* Elite+ hint */}
-        <View style={styles.v_hint}>
-          <Text fontFamily="Montserrat" style={styles.t_hint}>
-            <Text fontFamily="Montserrat-SemiBold" style={styles.t_hint_gold}>
-              ★ Elite+ members
+          {/* Elite+ hint */}
+          <View style={styles.v_hint}>
+            <Text fontFamily="Montserrat" style={styles.t_hint}>
+              <Text fontFamily="Montserrat-SemiBold" style={styles.t_hint_gold}>
+                ★ Elite+ members
+              </Text>
+              {" get priority access and exclusive ticket discounts on premium draws. No VIP pass required for this draw."}
             </Text>
-            {" get priority access and exclusive ticket discounts on premium draws. No VIP pass required for this draw."}
-          </Text>
-        </View>
+          </View>
 
-        <Button
-          backgroundColor={tickets != null ? "#C9A84C1F" : "#3A3A3A"}
-          borderColor={tickets != null ? "#8A6A1E" : "#555"}
-          disabled={tickets == null}
-          onPress={() => tickets != null && setShowConfirm(true)}
-          style={styles.btn_confirm}
-          dataSet={{ media: ids.btn_confirm }}
-        >
-          <Text
-            color="#C9A84C"
-            style={styles.label_confirm}
-            dataSet={{ media: ids.label_confirm }}
+          <Button
+            backgroundColor={tickets != null ? "#C9A84C1F" : "#3A3A3A"}
+            borderColor={tickets != null ? "#8A6A1E" : "#555"}
+            disabled={tickets == null}
+            onPress={() => tickets != null && setShowConfirm(true)}
+            style={styles.btn_confirm}
+            dataSet={{ media: ids.btn_confirm }}
           >
-            CONFIRM
-          </Text>
-        </Button>
+            <Text
+              color="#C9A84C"
+              style={styles.label_confirm}
+              dataSet={{ media: ids.label_confirm }}
+            >
+              CONFIRM
+            </Text>
+          </Button>
+        </View>
       </View>
 
       {tickets != null && pgRequired != null && (
@@ -136,15 +139,20 @@ const { ids, styles } = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     borderRadius: 10,
-    overflow: "visible",
-    padding: 24,
-    borderWidth: 2,
-    borderColor: "#3A2800",
-    backgroundColor: "#1A1000",
+    overflow: "hidden",
+    borderWidth: 1,
+    borderColor: "#C9A84C2E",
     "@media (max-width: 800px)": {
       borderRadius: 8,
-      padding: 20,
       width: "100%",
+    },
+  },
+  center_wrap: {
+    flex: 1,
+    justifyContent: "center",
+    padding: 24,
+    "@media (max-width: 800px)": {
+      padding: 20,
     },
   },
   v_row: {

@@ -30,12 +30,11 @@ export default function Root({ children }: { children: React.ReactNode }) {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
 
-        {/* Montserrat from Google Fonts — replaces 2.3MB of local TTF files.
-            display=swap renders text in a fallback font immediately, swapping
-            to Montserrat once loaded so the UI is never blocked. */}
+        {/* Montserrat from Google Fonts — Latin + Cyrillic subsets for Bulgarian support.
+            display=swap renders text in a fallback font immediately. */}
         <link
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&subset=latin,cyrillic&display=swap"
         />
 
         {/* Material Symbols */}
@@ -54,57 +53,49 @@ export default function Root({ children }: { children: React.ReactNode }) {
   );
 }
 
-// Montserrat v31 is a variable font — one WOFF2 file covers all weights.
-// The browser caches it from the Google Fonts <link> above, so these aliases
-// are served from cache (zero extra downloads).
-// Each alias maps the RN fontFamily name to the correct font-weight so the
-// variable font renders the right thickness.
-const MONTSERRAT_WOFF2 = 'https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459WlhyyTh89Y.woff2';
+// Aliases map RN font family names to the correct Montserrat weight.
+// Each alias includes both cyrillic-ext and latin subset WOFF2 files (real URLs from
+// Google Fonts) with proper unicode-range so Bulgarian characters render in bold/semibold/etc.
+// All weights share the same cyrillic-ext and cyrillic WOFF2 — only the latin differs.
+const CYR_EXT = 'https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459WRhyzbi.woff2';
+const CYR     = 'https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459W1hyzbi.woff2';
+const LATIN   = 'https://fonts.gstatic.com/s/montserrat/v31/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2';
 
-const fontAliases = `
+function alias(family: string, weight: number) {
+  return `
   @font-face {
-    font-family: 'Montserrat';
-    src: url('${MONTSERRAT_WOFF2}') format('woff2');
-    font-weight: 400;
+    font-family: '${family}';
+    src: url('${CYR_EXT}') format('woff2');
+    font-weight: ${weight};
     font-display: swap;
+    unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
   }
   @font-face {
-    font-family: 'Montserrat-Light';
-    src: url('${MONTSERRAT_WOFF2}') format('woff2');
-    font-weight: 300;
+    font-family: '${family}';
+    src: url('${CYR}') format('woff2');
+    font-weight: ${weight};
     font-display: swap;
+    unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
   }
   @font-face {
-    font-family: 'Montserrat-Medium';
-    src: url('${MONTSERRAT_WOFF2}') format('woff2');
-    font-weight: 500;
+    font-family: '${family}';
+    src: url('${LATIN}') format('woff2');
+    font-weight: ${weight};
     font-display: swap;
-  }
-  @font-face {
-    font-family: 'Montserrat-SemiBold';
-    src: url('${MONTSERRAT_WOFF2}') format('woff2');
-    font-weight: 600;
-    font-display: swap;
-  }
-  @font-face {
-    font-family: 'Montserrat-Bold';
-    src: url('${MONTSERRAT_WOFF2}') format('woff2');
-    font-weight: 700;
-    font-display: swap;
-  }
-  @font-face {
-    font-family: 'Montserrat-ExtraBold';
-    src: url('${MONTSERRAT_WOFF2}') format('woff2');
-    font-weight: 800;
-    font-display: swap;
-  }
-  @font-face {
-    font-family: 'Montserrat-Black';
-    src: url('${MONTSERRAT_WOFF2}') format('woff2');
-    font-weight: 900;
-    font-display: swap;
-  }
-`;
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+                   U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122,
+                   U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }`;
+}
+
+const fontAliases = [
+  alias('Montserrat-Light',     300),
+  alias('Montserrat-Medium',    500),
+  alias('Montserrat-SemiBold',  600),
+  alias('Montserrat-Bold',      700),
+  alias('Montserrat-ExtraBold', 800),
+  alias('Montserrat-Black',     900),
+].join('\n');
 
 const responsiveBackground = `
 body {
