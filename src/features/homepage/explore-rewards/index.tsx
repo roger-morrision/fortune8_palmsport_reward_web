@@ -7,6 +7,7 @@ import { CDNImageKey } from "@/src/constants/Images";
 import BGButton from "@/src/common/components/BGButton";
 import SVGIcon, { SVGName } from "@/src/constants/SVGIcon";
 import { useAssetContext } from "@/src/context/AssetContext";
+import { useTranslation } from "react-i18next";
 
 type Tier = {
   name: string;
@@ -18,9 +19,6 @@ type Tier = {
 };
 
 type Props = {
-  label?: string;
-  title?: string;
-  subtitle?: string;
   tiers?: Tier[];
   onGetStarted?: (tier: Tier) => void;
   onViewElite?: () => void;
@@ -28,10 +26,10 @@ type Props = {
 };
 
 const DEFAULT_TIERS: Tier[] = [
-  { name: "Copper",  gameAccess: "Entry Level",        bonus: "None",                    color: "#C65918",  icon: "tier-cup-copper"},
-  { name: "Bronze",  gameAccess: "Prime Games",        bonus: "3,000,000 Silver Coins",  color: "#CF7D0C",  icon: "tier-cup-bronze" },
-  { name: "Silver",  gameAccess: "Premium Games",      bonus: "10,000,000 Silver Coins", color: "#8197BB",  icon: "tier-cup-silver" },
-  { name: "Gold",    gameAccess: "VIP Games",          bonus: "17,000,000 Silver Coins", color: "#FFB019",  icon: "tier-cup-gold" },
+  { name: "Copper", gameAccess: "Entry Level",        bonus: "None",                    color: "#C65918", icon: "tier-cup-copper" },
+  { name: "Bronze", gameAccess: "Prime Games",        bonus: "3,000,000 Silver Coins",  color: "#CF7D0C", icon: "tier-cup-bronze" },
+  { name: "Silver", gameAccess: "Premium Games",      bonus: "10,000,000 Silver Coins", color: "#8197BB", icon: "tier-cup-silver" },
+  { name: "Gold",   gameAccess: "VIP Games",          bonus: "17,000,000 Silver Coins", color: "#FFB019", icon: "tier-cup-gold" },
 ];
 
 const ELITE_TIER = {
@@ -42,34 +40,28 @@ const ELITE_TIER = {
 };
 
 export default function ExploreRewards({
-  label = "PALMS TIERS",
-  title = "Explore Your Rewards",
-  subtitle = "Progress through the Palms Tiers or unlock more with Elite+",
   tiers = DEFAULT_TIERS,
   onGetStarted,
   onViewElite,
   onJoinNow,
 }: Props) {
   const { images } = useAssetContext();
+  const { t } = useTranslation();
 
   return (
     <View style={styles.container} dataSet={{ media: ids.container }}>
       <Text fontFamily="Montserrat-Bold" color="button" style={styles.t_label} dataSet={{ media: ids.t_label }}>
-        {label}
+        {t("homepage.tiers-label")}
       </Text>
       <Text fontFamily="Montserrat-Bold" color="text" style={styles.t_title} dataSet={{ media: ids.t_title }}>
-        {title}
+        {t("homepage.tiers-title")}
       </Text>
       <Text fontFamily="Montserrat" color="closeColor" style={styles.t_subtitle} dataSet={{ media: ids.t_subtitle }}>
-        {subtitle}
+        {t("homepage.tiers-subtitle")}
       </Text>
       <View style={styles.v_tiers} dataSet={{ media: ids.v_tiers }}>
         {tiers.map((tier, i) => (
-          <View
-            key={i}
-            style={styles.tier_card}
-            dataSet={{ media: ids.tier_card }}
-          >
+          <View key={i} style={styles.tier_card} dataSet={{ media: ids.tier_card }}>
             <Image style={styles.i_tier_cup} source={{ uri: images?.[tier.icon] }} resizeMode="contain" />
             <Text fontFamily="Montserrat-Bold" color="text" style={styles.t_tier_name} dataSet={{ media: ids.t_tier_name }}>
               {tier.name}
@@ -81,12 +73,10 @@ export default function ExploreRewards({
               borderColor="#CD7F3255"
               backgroundColor="#CD7F3233"
               onPress={() => onGetStarted?.(tier)}
-              dataSet={{ media: ids.btn_start }}>
-              <Text 
-                color="#F5C842"
-                fontFamily="Montserrat-Bold"
-                style={styles.btn_start_label} >
-                Get Started
+              dataSet={{ media: ids.btn_start }}
+            >
+              <Text color="#F5C842" fontFamily="Montserrat-Bold" style={styles.btn_start_label}>
+                {t("homepage.tiers-get-started")}
               </Text>
             </Button>
           </View>
@@ -95,14 +85,16 @@ export default function ExploreRewards({
         {/* Elite+ card */}
         <View style={styles.elite_card} dataSet={{ media: ids.elite_card }}>
           <View backgroundColor="#F5C842" style={styles.elite_badge}>
-            <Text fontFamily="Montserrat-Bold" color="textDark" style={styles.t_elite_badge}>Subscribe Now</Text>
+            <Text fontFamily="Montserrat-Bold" color="textDark" style={styles.t_elite_badge}>
+              {t("homepage.tiers-subscribe")}
+            </Text>
           </View>
           <Image style={styles.i_tier_elite} source={{ uri: images?.["elite"] }} resizeMode="contain" />
           <Item svg="game-controller" label="GAME ACCESS" description={ELITE_TIER.gameAccess} />
           <Item svg="gift" label="DAILY REWARD" description={ELITE_TIER.dailyReward} />
           <Item svg="diamond" label="EXCLUSIVE PERKS" description={ELITE_TIER.exclusivePerks} />
           <BGButton
-            label="View Elite+"
+            label={t("homepage.tiers-view-elite")}
             onPress={onViewElite}
             style={styles.btn_elite}
             dataSet={{ media: ids.btn_elite }}
@@ -116,7 +108,7 @@ export default function ExploreRewards({
       </View>
 
       <BGButton
-        label="JOIN NOW"
+        label={t("homepage.tiers-join-now")}
         onPress={onJoinNow}
         style={styles.btn_join}
         dataSet={{ media: ids.btn_join }}
@@ -127,7 +119,7 @@ export default function ExploreRewards({
         borderWidth={1}
       />
       <Text fontFamily="Montserrat" color="closeColor" style={styles.t_disclaimer}>
-        Elite+ is a paid subscription. You can manage or cancel anything in your user profile settings.
+        {t("homepage.tiers-disclaimer")}
       </Text>
     </View>
   );
@@ -137,27 +129,23 @@ type PropsItem = {
   label: string;
   description: string;
   svg: SVGName;
-  svgWidth?: number;
-  svgHeight?: number;
-}
+};
 
-const Item = ({label, description, svg}: PropsItem) => {
-  return (
-    <View style={styles.v_tier_row}>
-      <View borderColor="#CD7F3255" style={styles.v_icon}>
-        <SVGIcon name={svg} />
-      </View>
-      <View>
-        <Text fontFamily="Montserrat-Bold" color="#F5C842" style={styles.t_tier_key}>
-          {label}
-        </Text>
-        <Text fontFamily="Montserrat" color="text" style={styles.t_tier_val}>
-          {description}
-        </Text>
-      </View>
+const Item = ({ label, description, svg }: PropsItem) => (
+  <View style={styles.v_tier_row}>
+    <View borderColor="#CD7F3255" style={styles.v_icon}>
+      <SVGIcon name={svg} />
     </View>
-  )
-}
+    <View>
+      <Text fontFamily="Montserrat-Bold" color="#F5C842" style={styles.t_tier_key}>
+        {label}
+      </Text>
+      <Text fontFamily="Montserrat" color="text" style={styles.t_tier_val}>
+        {description}
+      </Text>
+    </View>
+  </View>
+);
 
 const { ids, styles } = StyleSheet.create({
   container: {
@@ -209,8 +197,11 @@ const { ids, styles } = StyleSheet.create({
     },
   },
   v_icon: {
-    width: 23, height: 23, borderRadius: 10,
-    borderWidth: 1, alignItems: "center",
+    width: 23,
+    height: 23,
+    borderRadius: 10,
+    borderWidth: 1,
+    alignItems: "center",
     justifyContent: "center",
   },
   tier_card: {
@@ -264,8 +255,6 @@ const { ids, styles } = StyleSheet.create({
     fontSize: 14,
     lineHeight: 16,
   },
-
-  // Elite+
   elite_card: {
     flex: 1,
     minWidth: 160,
@@ -299,7 +288,6 @@ const { ids, styles } = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-
   btn_join: {
     height: 50,
     width: 220,
@@ -316,6 +304,7 @@ const { ids, styles } = StyleSheet.create({
     fontSize: 15,
     lineHeight: 18,
     letterSpacing: 1,
+    textAlign: "center",
   },
   t_disclaimer: {
     fontSize: 12,

@@ -8,6 +8,7 @@ import Select from "@/src/common/components/select";
 import ConfirmTicketModal from "@/src/features/raffle-draw/ticket-select/confirm-modal";
 import Button from "@/src/common/components/Button";
 import { LinearGradient } from "expo-linear-gradient";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   raffleId?: number;
@@ -18,6 +19,7 @@ type Props = {
 export default function EliteTicketSelect({ raffleId = 0, ticketLimit = 0, ticketPrice = 0 }: Props) {
   const [tickets, setTickets] = useState<number | null>(null);
   const [showConfirm, setShowConfirm] = useState(false);
+  const { t } = useTranslation();
 
   const ticketOptions = useMemo(
     () => Array.from({ length: ticketLimit }, (_, i) => i + 1),
@@ -39,7 +41,7 @@ export default function EliteTicketSelect({ raffleId = 0, ticketLimit = 0, ticke
                 style={styles.t_label}
                 dataSet={{ media: ids.t_label }}
               >
-                NUMBER OF PG REQUIRED
+                {t("raffle-draw.pg-required")}
               </Text>
               <View style={styles.pg_input} dataSet={{ media: ids.pg_input }}>
                 <Text fontFamily="Montserrat" color="closeColor" style={styles.t_dropdown_val}>
@@ -66,7 +68,7 @@ export default function EliteTicketSelect({ raffleId = 0, ticketLimit = 0, ticke
                     style={styles.t_label}
                     dataSet={{ media: ids.t_label }}
                   >
-                    SELECT NUMBER OF TICKETS
+                    {t("raffle-draw.select-tickets")}
                   </Text>
                   <Pressable
                     style={styles.dropdown_btn}
@@ -95,10 +97,7 @@ export default function EliteTicketSelect({ raffleId = 0, ticketLimit = 0, ticke
           {/* Elite+ hint */}
           <View style={styles.v_hint}>
             <Text fontFamily="Montserrat" style={styles.t_hint}>
-              <Text fontFamily="Montserrat-SemiBold" style={styles.t_hint_gold}>
-                ★ Elite+ members
-              </Text>
-              {" get priority access and exclusive ticket discounts on premium draws. No VIP pass required for this draw."}
+              {t("raffle-draw.elite-hint")}
             </Text>
           </View>
 

@@ -18,7 +18,6 @@
     "or-continue": "Or continue with",
     "resend": "RESEND VERIFICATION LINK",
     "submit": "LOG IN",
-
     "email-resend-title": "Email Verification Sent!",
     "email-resend-description": "Please check your email and verify your email address to continue.",
     "email-resend-button": "Back to Login"
@@ -59,7 +58,13 @@
     "user-id": "Winner User ID"
   },
   "raffle-draw": {
-    "title": "RAFFLE DRAW"
+    "title": "RAFFLE DRAW",
+    "next-draw": "NEXT DRAW STARTS IN",
+    "total-entries": "Total No. of Entries:",
+    "pg-required": "NUMBER OF PG REQUIRED",
+    "select-tickets": "SELECT NUMBER OF TICKETS",
+    "elite-hint": "★ Elite+ members get priority access and exclusive ticket discounts on premium draws. No VIP pass required for this draw.",
+    "draw-terms": "DRAW TERMS AND CONDITIONS"
   },
   "footer": {
     "policies": "POLICIES",
@@ -214,5 +219,36 @@
     "pol105": "За въпроси или искания, свързани с данните Ви:",
     "pol106": "📧 privacy@azconsulting.bg или support@palmsplay.com",
     "pol107": "📮 АЗ Консултинг ЕООД, [адрес], София, България"
+  },
+  "homepage": {
+    "banner-title": "YOUR REWARDS START HERE\nWITH PALMS PLAY",
+    "banner-desc": "Claim more free play bonuses and raffle draw entries.\nYour rewards are waiting for you.",
+    "banner-btn": "JOIN NOW",
+    "more-title": "More Rewards.",
+    "more-highlight": "More Benefits.",
+    "more-subtitle": "Earn more as you play, unlock better rewards, and access exclusive member benefits.",
+    "benefit-1-title": "Earn Palms Gold",
+    "benefit-1-desc": "Collect through eligible gameplay and activities.",
+    "benefit-2-title": "Unlock Rewards",
+    "benefit-2-desc": "Move through the tiers to access valuable benefits.",
+    "benefit-3-title": "Exclusive Draw Entries",
+    "benefit-3-desc": "Use your rewards access to enter selected VP and member draws.",
+    "benefit-4-title": "Elite+ Benefits",
+    "benefit-4-desc": "Unlock extra perks, exclusive games, and subscriber-only rewards.",
+    "tiers-label": "PALMS TIERS",
+    "tiers-title": "Explore Your Rewards",
+    "tiers-subtitle": "Progress through the Palms Tiers or unlock more with Elite+",
+    "tiers-disclaimer": "Elite+ is a paid subscription. You can manage or cancel anything in your user profile settings.",
+    "tiers-get-started": "Get Started",
+    "tiers-view-elite": "View Elite+",
+    "tiers-join-now": "JOIN NOW",
+    "tiers-subscribe": "Subscribe Now",
+    "faq-title": "Frequently Asked",
+    "faq-highlight": "Questions",
+    "faq-q1": "Are rewards available to all Palms Play members?",
+    "faq-q2": "How do I earn Palms Gold?",
+    "faq-q3": "How do I enter a rewards draw?",
+    "faq-q4": "When are draw winners announced?",
+    "faq-q5": "Are some draws exclusive to Elite+ members?"
   }
 }

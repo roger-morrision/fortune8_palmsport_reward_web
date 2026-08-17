@@ -5,6 +5,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { useEffect, useRef, useState } from "react";
 import { ViewStyle } from "react-native";
 import StyleSheet from "react-native-media-query";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   raffle?: OngoingRaffle;
@@ -57,6 +58,7 @@ const THEME = {
 };
 
 export default function Countdown({ raffle, variant = "blue" }: Props) {
+  const { t } = useTranslation();
   const targetMs = raffle ? new Date(raffle.drawDate).getTime() : 0;
   const targetRef = useRef<number>(targetMs);
   const [time, setTime] = useState<TimeLeft>(raffle ? getTimeLeft(targetMs) : ZERO);
@@ -102,7 +104,7 @@ export default function Countdown({ raffle, variant = "blue" }: Props) {
           style={[styles.t_title]}
           dataSet={{ media: ids.t_title }}
         >
-          NEXT DRAW STARTS IN
+          {t("raffle-draw.next-draw")}
         </Text>
 
         {/* Digit boxes */}
@@ -157,7 +159,7 @@ export default function Countdown({ raffle, variant = "blue" }: Props) {
             style={[styles.t_entries, { color: theme.entriesLabel }]}
             dataSet={{ media: ids.t_entries }}
           >
-            Total No. of Entries:{" "}
+            {t("raffle-draw.total-entries")}{" "}
             <Text fontFamily="Montserrat-Bold" color="text" style={styles.t_entries}>
               {raffle?.totalRedeemedTickets ?? 0}
             </Text>

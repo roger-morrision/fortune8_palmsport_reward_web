@@ -4,6 +4,7 @@ import { MaterialIcon } from "@/src/common/components/Icon";
 import { useState } from "react";
 import { Pressable, ViewStyle } from "react-native";
 import StyleSheet from "react-native-media-query";
+import { useTranslation } from "react-i18next";
 
 const PLACEHOLDER_TERMS = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
@@ -37,6 +38,7 @@ const THEME = {
 
 export default function DrawTerms({ content = PLACEHOLDER_TERMS, variant = "blue" }: Props) {
   const [expanded, setExpanded] = useState(true);
+  const { t } = useTranslation();
   const theme = THEME[variant];
 
   return (
@@ -60,7 +62,7 @@ export default function DrawTerms({ content = PLACEHOLDER_TERMS, variant = "blue
           style={[styles.t_title, { color: theme.title }]}
           dataSet={{ media: ids.t_title }}
         >
-          DRAW TERMS AND CONDITIONS
+          {t("raffle-draw.draw-terms")}
         </Text>
 
         <MaterialIcon

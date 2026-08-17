@@ -1,56 +1,46 @@
 import Text from "@/src/common/components/Text";
 import View from "@/src/common/components/View";
-import { MaterialIcon } from "@/src/common/components/Icon";
 import StyleSheet from "react-native-media-query";
 import SVGIcon, { SVGName } from "@/src/constants/SVGIcon";
+import { useTranslation } from "react-i18next";
 
 type Benefit = {
   icon: SVGName;
-  title: string;
-  description: string;
+  titleKey: string;
+  descKey: string;
 };
 
-type Props = {
-  title?: string;
-  highlight?: string;
-  subtitle?: string;
-  benefits?: Benefit[];
-};
-
-const DEFAULT_BENEFITS: Benefit[] = [
-  { icon: "earn", title: "Earn Palms Gold", description: "Collect through eligible gameplay and activities." },
-  { icon: "unlock", title: "Unlock Rewards", description: "Move through the tiers to access valuable benefits." },
-  { icon: "exclusive", title: "Exclusive Draw Entries", description: "Use your rewards access to enter selected VP and member draws." },
-  { icon: "elite", title: "Elite+ Benefits", description: "Unlock extra perks, exclusive games, and subscriber-only rewards." },
+const BENEFITS: Benefit[] = [
+  { icon: "earn",      titleKey: "homepage.benefit-1-title", descKey: "homepage.benefit-1-desc" },
+  { icon: "unlock",    titleKey: "homepage.benefit-2-title", descKey: "homepage.benefit-2-desc" },
+  { icon: "exclusive", titleKey: "homepage.benefit-3-title", descKey: "homepage.benefit-3-desc" },
+  { icon: "elite",     titleKey: "homepage.benefit-4-title", descKey: "homepage.benefit-4-desc" },
 ];
 
-export default function MoreRewards({
-  title = "More Rewards.",
-  highlight = "More Benefits.",
-  subtitle = "Earn more as you play, unlock better rewards, and access exclusive member benefits.",
-  benefits = DEFAULT_BENEFITS,
-}: Props) {
+export default function MoreRewards() {
+  const { t } = useTranslation();
+
   return (
     <View backgroundColor="#0A1220" style={styles.container} dataSet={{ media: ids.container }}>
       <Text fontFamily="Montserrat-Bold" color="text" style={styles.t_title} dataSet={{ media: ids.t_title }}>
-        {title}{" "}
+        {t("homepage.more-title")}{" "}
         <Text fontFamily="Montserrat-Bold" color="button" style={styles.t_title} dataSet={{ media: ids.t_title }}>
-          {highlight}
+          {t("homepage.more-highlight")}
         </Text>
       </Text>
       <Text fontFamily="Montserrat" color="closeColor" style={styles.t_subtitle} dataSet={{ media: ids.t_subtitle }}>
-        {subtitle}
+        {t("homepage.more-subtitle")}
       </Text>
 
       <View style={styles.v_cards} dataSet={{ media: ids.v_cards }}>
-        {benefits.map((item, i) => (
+        {BENEFITS.map((item, i) => (
           <View borderColor="#F5C8421F" key={i} style={styles.card} dataSet={{ media: ids.card }}>
             <SVGIcon name={item.icon} />
             <Text fontFamily="Montserrat-Bold" color="text" style={styles.t_card_title} dataSet={{ media: ids.t_card_title }}>
-              {item.title}
+              {t(item.titleKey)}
             </Text>
             <Text fontFamily="Montserrat" color="closeColor" style={styles.t_card_desc} dataSet={{ media: ids.t_card_desc }}>
-              {item.description}
+              {t(item.descKey)}
             </Text>
           </View>
         ))}

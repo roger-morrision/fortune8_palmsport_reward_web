@@ -5,13 +5,14 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Image } from "react-native";
 import StyleSheet from "react-native-media-query";
 import { useAssetContext } from "@/src/context/AssetContext";
+import { useTranslation } from "react-i18next";
 
 export default function HomeBanner() {
   const { images } = useAssetContext();
+  const { t } = useTranslation();
 
   return (
     <View style={styles.container} dataSet={{ media: ids.container }}>
-      
       <Image
         source={{ uri: images?.["home-banner"].uri }}
         style={styles.img}
@@ -26,14 +27,13 @@ export default function HomeBanner() {
       />
       <View style={styles.v_left} dataSet={{ media: ids.v_left }}>
         <Text fontFamily="Montserrat-Bold" color="text" style={styles.t_title} dataSet={{ media: ids.t_title }}>
-          {"YOUR REWARDS START HERE\nWITH PALMS PLAY"}
+          {t("homepage.banner-title")}
         </Text>
         <Text fontFamily="Montserrat" color="text" style={styles.t_desc} dataSet={{ media: ids.t_desc }}>
-          {"Claim more free play bonuses and raffle draw entries.\nYour rewards are waiting for you."}
+          {t("homepage.banner-desc")}
         </Text>
         <BGButton
-          label={"JOIN NOW"}
-          // onPress={onJoinNow}
+          label={t("homepage.banner-btn")}
           style={styles.btn}
           borderRadius={4}
           dataSet={{ media: ids.btn }}
@@ -91,7 +91,7 @@ const { ids, styles } = StyleSheet.create({
       width: "100%",
       bottom: 0,
       height: "90%",
-      justifyContent: "flex-end"
+      justifyContent: "flex-end",
     },
   },
   t_title: {
@@ -133,5 +133,6 @@ const { ids, styles } = StyleSheet.create({
     fontSize: 14,
     lineHeight: 16,
     letterSpacing: 1,
+    textAlign: "center",
   },
 });

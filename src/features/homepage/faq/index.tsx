@@ -4,43 +4,39 @@ import { MaterialIcon } from "@/src/common/components/Icon";
 import { useState } from "react";
 import { Pressable } from "react-native";
 import StyleSheet from "react-native-media-query";
+import { useTranslation } from "react-i18next";
 
 type FaqItem = {
-  question: string;
+  questionKey: string;
   answer: string;
 };
 
-type Props = {
-  title?: string;
-  highlight?: string;
-  items?: FaqItem[];
-};
-
-const DEFAULT_ITEMS: FaqItem[] = [
+const FAQ_ITEMS: FaqItem[] = [
   {
-    question: "Are rewards available to all Palms Play members?",
+    questionKey: "homepage.faq-q1",
     answer: "Yes, rewards are available to all registered Palms Play members. Simply sign up and start earning Palms Gold through eligible activities.",
   },
   {
-    question: "How do I earn Palms Gold?",
+    questionKey: "homepage.faq-q2",
     answer: "You can earn Palms Gold by participating in eligible gameplay, completing daily activities, and reaching milestones within the platform.",
   },
   {
-    question: "How do I enter a rewards draw?",
+    questionKey: "homepage.faq-q3",
     answer: "Use your accumulated Palms Gold to purchase tickets for available raffle draws. Go to the Raffle Draw section and select the number of tickets you wish to enter.",
   },
   {
-    question: "When are draw winners announced?",
+    questionKey: "homepage.faq-q4",
     answer: "Draw winners are announced shortly after each draw closes. Results are published in the Draw Results section and winners are notified via email.",
   },
   {
-    question: "Are some draws exclusive to Elite+ members?",
+    questionKey: "homepage.faq-q5",
     answer: "Yes, certain VIP draws and exclusive tournaments are reserved for Elite+ subscribers. Upgrade to Elite+ to access these premium draws.",
   },
 ];
 
 function FaqRow({ item }: { item: FaqItem }) {
   const [open, setOpen] = useState(false);
+  const { t } = useTranslation();
 
   return (
     <View backgroundColor="#0A1220" style={styles.faq_item} dataSet={{ media: ids.faq_item }}>
@@ -51,7 +47,7 @@ function FaqRow({ item }: { item: FaqItem }) {
           style={styles.t_question}
           dataSet={{ media: ids.t_question }}
         >
-          {item.question}
+          {t(item.questionKey)}
         </Text>
         <MaterialIcon
           name={open ? "expand-less" : "expand-more"}
@@ -74,23 +70,21 @@ function FaqRow({ item }: { item: FaqItem }) {
   );
 }
 
-export default function FAQ({
-  title = "Frequently Asked",
-  highlight = "Questions",
-  items = DEFAULT_ITEMS,
-}: Props) {
+export default function FAQ() {
+  const { t } = useTranslation();
+
   return (
     <View backgroundColor="#0A1220" style={styles.container} dataSet={{ media: ids.container }}>
       <View style={styles.center} dataSet={{ media: ids.center }}>
         <Text fontFamily="Montserrat-Bold" color="text" style={styles.t_title} dataSet={{ media: ids.t_title }}>
-          {title}{" "}
+          {t("homepage.faq-title")}{" "}
           <Text fontFamily="Montserrat-Bold" color="button" style={styles.t_title} dataSet={{ media: ids.t_title }}>
-            {highlight}
+            {t("homepage.faq-highlight")}
           </Text>
         </Text>
 
         <View style={styles.v_list} dataSet={{ media: ids.v_list }}>
-          {items.map((item, i) => (
+          {FAQ_ITEMS.map((item, i) => (
             <FaqRow key={i} item={item} />
           ))}
         </View>
@@ -109,7 +103,7 @@ const { ids, styles } = StyleSheet.create({
     "@media (max-width: 800px)": {
       marginTop: 40,
       paddingLeft: 16,
-      paddingRight: 16
+      paddingRight: 16,
     },
   },
   center: {
