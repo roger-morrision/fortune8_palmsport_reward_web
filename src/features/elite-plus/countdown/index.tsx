@@ -57,7 +57,7 @@ const THEME = {
 };
 
 export default function Countdown({ raffle, variant = "blue" }: Props) {
-  const targetMs = raffle ? new Date(raffle.drawAt).getTime() : 0;
+  const targetMs = raffle ? new Date(raffle.drawDate).getTime() : 0;
   const targetRef = useRef<number>(targetMs);
   const [time, setTime] = useState<TimeLeft>(raffle ? getTimeLeft(targetMs) : ZERO);
 
@@ -69,9 +69,9 @@ export default function Countdown({ raffle, variant = "blue" }: Props) {
       setTime(ZERO);
       return;
     }
-    targetRef.current = new Date(raffle.drawAt).getTime();
+    targetRef.current = new Date(raffle.drawDate).getTime();
     setTime(getTimeLeft(targetRef.current));
-  }, [raffle?.drawAt]);
+  }, [raffle?.drawDate]);
 
   useEffect(() => {
     if (!raffle) return;

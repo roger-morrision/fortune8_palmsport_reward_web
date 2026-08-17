@@ -95,7 +95,7 @@ export default function ConfirmTicketModal({ visible, raffleId, tickets, pgRequi
           ) : (
             // ── Confirm view ──────────────────────────────────────────
             <View style={styles.v_content} dataSet={{ media: ids.v_content }}>
-              <SVGIcon name="warning" fill="#E4BD30" />
+              <SVGIcon name="warning"  />
               <Text
                 fontFamily="Montserrat-Bold"
                 color="text"

@@ -220,10 +220,9 @@ const { ids, styles } = StyleSheet.create({
     fontSize: 28,
     lineHeight: 36,
     marginHorizontal: 4,
-    marginBottom: 18,
+    marginTop: 18,
     "@media (max-width: 800px)": {
       fontSize: 22,
-      marginBottom: 14,
     },
   },
   t_label: {

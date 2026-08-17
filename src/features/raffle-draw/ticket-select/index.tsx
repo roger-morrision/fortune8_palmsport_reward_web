@@ -32,6 +32,7 @@ export default function TicketSelect({ raffleId = 0, ticketLimit = 0, ticketPric
         <View style={styles.v_row} dataSet={{ media: ids.v_row }}>
           <Select
             ids={2}
+            style={styles.v_col}
             keys={"ticket"}
             selectedKey={"dropdownKey"}
             options={ticketOptions}
@@ -125,6 +126,7 @@ const { ids, styles } = StyleSheet.create({
     borderRadius: 10,
     overflow: "visible",
     padding: 24,
+    paddingTop: 33,
     borderWidth: 2,
     borderColor: "#1C3470",
     backgroundColor: "#09183B",
@@ -144,6 +146,7 @@ const { ids, styles } = StyleSheet.create({
     gap: 16,
     zIndex: 11,
     flexDirection: "row",
+    alignItems: "center",
     "@media (max-width: 800px)": {
       flexDirection: "column",
       gap: 0,
@@ -207,9 +210,10 @@ const { ids, styles } = StyleSheet.create({
     },
   },
   btn_confirm: {
-    marginTop: 20,
+    marginTop: 40,
     height: 44,
-    width: "100%",
+    width: "60%",
+    alignSelf: "center",
     "@media (max-width: 800px)": {
       height: 48,
     },

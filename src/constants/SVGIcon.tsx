@@ -136,18 +136,43 @@ const SVGIcon = ({ name, width, height, fill, style, ...props }: IconProps) => {
   const w = width ?? def?.w ?? 24;
   const h = height ?? def?.h ?? 24;
 
+  const resolvedFill = fill ?? DEFAULT_FILLS[name];
+
   if (Platform.OS === "web") {
+    if (resolvedFill) {
+      // CSS mask: SVG shape is the mask, background-color is the visible color.
+      // This correctly handles fill="currentColor" SVGs loaded from a CDN.
+      return (
+        <span
+          style={{
+            display: "inline-block",
+            width: Number(w),
+            height: Number(h),
+            backgroundColor: resolvedFill,
+            WebkitMaskImage: `url(${uri})`,
+            WebkitMaskRepeat: "no-repeat",
+            WebkitMaskSize: "contain",
+            WebkitMaskPosition: "center",
+            maskImage: `url(${uri})`,
+            maskRepeat: "no-repeat",
+            maskSize: "contain",
+            maskPosition: "center",
+            flexShrink: 0,
+            ...(style as React.CSSProperties),
+          }}
+        />
+      );
+    }
     return (
       <img
         src={uri}
         width={Number(w)}
         height={Number(h)}
-        style={{ display: "block", ...(style as React.CSSProperties) }}
+        style={{ display: "block", flexShrink: 0, ...(style as React.CSSProperties) }}
       />
     );
   }
 
-  const resolvedFill = fill ?? DEFAULT_FILLS[name];
   return (
     <SvgUri
       uri={uri}
