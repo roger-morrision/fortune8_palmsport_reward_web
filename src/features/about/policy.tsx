@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React from "react";
 import StyleSheet from "react-native-media-query";
 import Text from "@/src/common/components/Text";
 import View from "@/src/common/components/View";
@@ -8,7 +8,7 @@ const Policy = () => {
   const { t } = useTranslation();
 
   return (
-    <View 
+    <View
       backgroundColor="blueDark"
       borderColor="blueBorder"
       style={styles.box_container}
@@ -20,6 +20,7 @@ const Policy = () => {
         {t("policy.lastupdate")}{"\n\n"}
         {t("policy.pol1")}{"\n"}
         {t("policy.pol2")}{"\n\n"}
+
         {t("policy.pol3")}{"\n"}
         {t("policy.pol4")}{"\n"}
         {t("policy.pol5")}{"\n"}
@@ -47,10 +48,12 @@ const Policy = () => {
         {t("policy.pol25")}{"\n"}
         {t("policy.pol26")}{"\n\n"}
         {t("policy.pol27")}{"\n\n"}
+      </Description>
 
-        {<Table />}
+      {<Table />}
 
-        {"\n\n"}{t("policy.pol44")}{"\n\n"}
+      <Description>
+        {"\n"}{t("policy.pol44")}{"\n\n"}
         {t("policy.pol45")}{"\n"}
         {t("policy.pol46")}{"\n"}
         {t("policy.pol47")}{"\n"}
@@ -79,10 +82,10 @@ const Policy = () => {
         {t("policy.pol69")}{"\n\n"}
 
         {t("policy.pol71")}{"\n\n"}
-        
+
         {t("policy.pol79")}{"\n"}
         {t("policy.pol80")}{"\n\n"}
-        
+
         {t("policy.pol81")}{"\n"}
         {t("policy.pol82")}{"\n"}
         {t("policy.pol83")}{"\n"}
@@ -141,75 +144,88 @@ const Description = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-const NBSP = "\u00A0"; // non-breaking space
-
-const padToWidth = (str: string, width: number) => {
-  const len = [...str].length;
-  const needed = Math.max(0, width - len);
-  return str + NBSP.repeat(needed);
-};
-
-const findLongestLineLength = (text: string): number => {
-  return text
-    .split("\n")
-    .reduce((max, line) => Math.max(max, [...line.trim()].length), 0);
-};
-
-const combineColumns = (left: string, right: string, baseWidth: number) => {
-  const leftLines = left.split("\n");
-  const rightLines = right.split("\n");
-  const max = Math.max(leftLines.length, rightLines.length);
-
-  return Array.from({ length: max }, (_, i) => {
-    const l = (leftLines[i] ?? "").trim();
-    const r = (rightLines[i] ?? "").trim();
-    return `${padToWidth(l, baseWidth + 4)}${r}`; // +4 adds spacing buffer
-  }).join("\n");
-};
-
 function Table() {
   const { t } = useTranslation();
 
-  const leftText = `
-${t("policy.pol28")}\n
-${t("policy.pol29")}\n
-${t("policy.pol30")}\n
-${t("policy.pol31")}\n
-${t("policy.pol32")}\n
-${t("policy.pol33")}\n
-${t("policy.pol34")}\n
-${t("policy.pol35")}\n
-`.trim();
+  const leftRows: string[] = [
+    t("policy.pol29"),
+    t("policy.pol30"),
+    t("policy.pol31"),
+    t("policy.pol32"),
+    t("policy.pol33"),
+    t("policy.pol34"),
+    t("policy.pol35"),
+  ];
 
-  const rightText = `
-${t("policy.pol36")}\n
-${t("policy.pol37")}\n
-
-${t("policy.pol38")}\n
-${t("policy.pol39")}\n
-${t("policy.pol40")}\n
-
-${t("policy.pol41")}\n
-${t("policy.pol42")}\n
-
-${t("policy.pol43")}\n
-`.trim();
-
-  const combinedText = useMemo(() => {
-    // 1️⃣ Find the longest visible line from leftText
-    const longest = findLongestLineLength(leftText);
-
-    // 2️⃣ Combine both sides using the longest line width as base
-    return combineColumns(leftText, rightText, longest);
-  }, [leftText, rightText]);
+  const rightRows: string[] = [
+    t("policy.pol37"),
+    `${t("policy.pol38")}; ${t("policy.pol39")}`,
+    `${t("policy.pol40")}; ${t("policy.pol41")}`,
+    t("policy.pol42"),
+    t("policy.pol43"),
+    "",
+    "",
+  ];
 
   return (
-    <Text fontFamily="Montserrat">
-      {combinedText}
-    </Text>
+    <View style={tableStyles.container}>
+      {/* Header row */}
+      <View style={tableStyles.row}>
+        <View style={tableStyles.leftCol}>
+          <Text fontFamily="Montserrat-Bold" color="text" style={tableStyles.header}>
+            {t("policy.pol28")}
+          </Text>
+        </View>
+        <View style={tableStyles.rightCol}>
+          <Text fontFamily="Montserrat-Bold" color="text" style={tableStyles.header}>
+            {t("policy.pol36")}
+          </Text>
+        </View>
+      </View>
+      {/* Data rows */}
+      {leftRows.map((left, i) => (
+        <View key={i} style={tableStyles.row}>
+          <View style={tableStyles.leftCol}>
+            <Text fontFamily="Montserrat" color="text" style={tableStyles.cell}>
+              {left}
+            </Text>
+          </View>
+          <View style={tableStyles.rightCol}>
+            <Text fontFamily="Montserrat-Bold" color="text" style={tableStyles.cell}>
+              {rightRows[i]}
+            </Text>
+          </View>
+        </View>
+      ))}
+    </View>
   );
 }
 
+const tableStyles = StyleSheet.create({
+  container: {
+    width: "100%",
+    marginVertical: 8,
+  },
+  row: {
+    flexDirection: "row",
+    paddingVertical: 6,
+  },
+  leftCol: {
+    flex: 1,
+    paddingRight: 16,
+  },
+  rightCol: {
+    flex: 1,
+  },
+  header: {
+    fontSize: 14,
+    lineHeight: 20,
+  },
+  cell: {
+    fontSize: 13,
+    lineHeight: 20,
+  },
+}).styles;
 
 const { ids, styles } = StyleSheet.create({
   box_container: {

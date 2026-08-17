@@ -418,7 +418,8 @@ export type OngoingRaffle = {
   "description": string;
   "thumbnail": string;
   "startAt": string;
-  "drawAt": string;
+  "drawDate": string;
+  "drawTime": string;
   "ticketPrice": number;
   "ticketLimit": number;
   "numWinners": number;

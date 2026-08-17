@@ -38,6 +38,7 @@ export default function Banner({
         <Text
           fontFamily="Montserrat"
           color="text"
+          numberOfLines={10}
           style={styles.t_description}
           dataSet={{ media: ids.t_description }}
         >
@@ -47,6 +48,7 @@ export default function Banner({
         <Text
           fontFamily="Montserrat"
           color="text"
+          numberOfLines={5}
           style={styles.t_prize_label}
           dataSet={{ media: ids.t_prize_label }}
         >
@@ -56,6 +58,7 @@ export default function Banner({
         <Text
           fontFamily="Montserrat-Bold"
           color="button"
+          numberOfLines={5}
           style={styles.t_prize_name}
           dataSet={{ media: ids.t_prize_name }}
         >
