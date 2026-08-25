@@ -14,23 +14,39 @@ type FaqItem = {
 const FAQ_ITEMS: FaqItem[] = [
   {
     questionKey: "homepage.faq-q1",
-    answer: "Yes, rewards are available to all registered Palms Play members. Simply sign up and start earning Palms Gold through eligible activities.",
+    answer: "homepage.faq-q1-answer",
   },
   {
     questionKey: "homepage.faq-q2",
-    answer: "You can earn Palms Gold by participating in eligible gameplay, completing daily activities, and reaching milestones within the platform.",
+    answer: "homepage.faq-q2-answer",
   },
   {
     questionKey: "homepage.faq-q3",
-    answer: "Use your accumulated Palms Gold to purchase tickets for available raffle draws. Go to the Raffle Draw section and select the number of tickets you wish to enter.",
+    answer: "homepage.faq-q3-answer",
   },
   {
     questionKey: "homepage.faq-q4",
-    answer: "Draw winners are announced shortly after each draw closes. Results are published in the Draw Results section and winners are notified via email.",
+    answer: "homepage.faq-q4-answer",
   },
   {
     questionKey: "homepage.faq-q5",
-    answer: "Yes, certain VIP draws and exclusive tournaments are reserved for Elite+ subscribers. Upgrade to Elite+ to access these premium draws.",
+    answer: "homepage.faq-q5-answer",
+  },
+  {
+    questionKey: "homepage.faq-q6",
+    answer: "homepage.faq-q6-answer",
+  },
+  {
+    questionKey: "homepage.faq-q7",
+    answer: "homepage.faq-q7-answer",
+  },
+  {
+    questionKey: "homepage.faq-q8",
+    answer: "homepage.faq-q8-answer",
+  },
+  {
+    questionKey: "homepage.faq-q9",
+    answer: "homepage.faq-q9-answer",
   },
 ];
 
@@ -52,6 +68,7 @@ function FaqRow({ item }: { item: FaqItem }) {
         <MaterialIcon
           name={open ? "expand-less" : "expand-more"}
           size={24}
+          disabled
           color="closeColor"
           backgroundColor="transparent"
         />
@@ -63,7 +80,7 @@ function FaqRow({ item }: { item: FaqItem }) {
           style={styles.t_answer}
           dataSet={{ media: ids.t_answer }}
         >
-          {item.answer}
+          {t(item.answer)}
         </Text>
       )}
     </View>

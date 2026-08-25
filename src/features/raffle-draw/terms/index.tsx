@@ -1,19 +1,12 @@
 import Text from "@/src/common/components/Text";
 import View from "@/src/common/components/View";
 import { MaterialIcon } from "@/src/common/components/Icon";
-import { useState } from "react";
 import { Pressable, ViewStyle } from "react-native";
 import StyleSheet from "react-native-media-query";
 import { useTranslation } from "react-i18next";
-
-const PLACEHOLDER_TERMS = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`;
+import { useRouter } from "expo-router";
 
 type Props = {
-  content?: string;
   variant?: "blue" | "gold";
 };
 
@@ -36,8 +29,8 @@ const THEME = {
   },
 };
 
-export default function DrawTerms({ content = PLACEHOLDER_TERMS, variant = "blue" }: Props) {
-  const [expanded, setExpanded] = useState(true);
+export default function DrawTerms({ variant = "blue" }: Props) {
+  const router = useRouter();
   const { t } = useTranslation();
   const theme = THEME[variant];
 
@@ -46,7 +39,7 @@ export default function DrawTerms({ content = PLACEHOLDER_TERMS, variant = "blue
       style={[styles.container, theme.container] as ViewStyle[]}
       dataSet={{ media: ids.container }}
     >
-      <Pressable style={styles.header} onPress={() => setExpanded((v) => !v)}>
+      <Pressable style={styles.header} onPress={() => router.push("/about/terms-and-conditions")}>
         {/* Icon badge */}
         <View style={[styles.icon_circle, theme.iconCircle] as ViewStyle[]}>
           <MaterialIcon
@@ -65,32 +58,23 @@ export default function DrawTerms({ content = PLACEHOLDER_TERMS, variant = "blue
           {t("raffle-draw.draw-terms")}
         </Text>
 
-        <MaterialIcon
-          disabled
-          name={expanded ? "expand-less" : "expand-more"}
-          size={24}
-          color={theme.chevron as any}
-        />
+        <View style={{flexDirection: "row", alignItems: "center"}}>
+          <Text
+            fontFamily="Montserrat-Bold"
+            style={[styles.t_title, { color: theme.title }]}
+            dataSet={{ media: ids.t_title }}
+          >
+            {t("raffle-draw.view-terms")}
+          </Text>
+          <MaterialIcon
+            disabled
+            name={"chevron-right"}
+            size={24}
+            color={theme.chevron as any}
+          />
+        </View>
+       
       </Pressable>
-
-      {expanded && (
-        <>
-          <View style={[styles.divider, { backgroundColor: theme.divider }]} />
-          <View style={styles.v_content} dataSet={{ media: ids.v_content }}>
-            {content.split("\n\n").map((para, i) => (
-              <Text
-                key={i + "index"}
-                fontFamily="Montserrat"
-                color="text"
-                style={styles.t_content}
-                dataSet={{ media: ids.t_content }}
-              >
-                {para.trim()}
-              </Text>
-            ))}
-          </View>
-        </>
-      )}
     </View>
   );
 }

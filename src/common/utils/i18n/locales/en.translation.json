@@ -64,7 +64,8 @@
     "pg-required": "NUMBER OF PG REQUIRED",
     "select-tickets": "SELECT NUMBER OF TICKETS",
     "elite-hint": "★ Elite+ members get priority access and exclusive ticket discounts on premium draws. No VIP pass required for this draw.",
-    "draw-terms": "DRAW TERMS AND CONDITIONS"
+    "draw-terms": "DRAW TERMS AND CONDITIONS",
+    "view-terms": "VIEW TERMS"
   },
   "footer": {
     "policies": "POLICIES",
@@ -246,9 +247,22 @@
     "faq-title": "Frequently Asked",
     "faq-highlight": "Questions",
     "faq-q1": "Are rewards available to all Palms Play members?",
-    "faq-q2": "How do I earn Palms Gold?",
+    "faq-q1-answer":  "Yes. Every registered Palms Play member automatically joins the Palms Rewards program. As you play, you'll unlock rewards, progress through membership tiers, and earn access to exclusive promotions, raffles, and member benefits.",
+    "faq-q2": "What's the difference between Bonus Gold Coins and Qualified Palms Gold?",
+    "faq-q2-answer": "Bonus Gold Coins are used to play Gold-enabled games. Once you've completed the required playthrough, they are converted into Qualified Palms Gold. Qualified Palms Gold is your reward currency and can be used to enter exciting prize draws and unlock rewards.",
     "faq-q3": "How do I enter a rewards draw?",
+    "faq-q3-answer": "Simply use your Qualified Palms Gold to enter any available draw. Each draw shows how many entries are required, and you can choose how many entries you'd like to submit before the draw closes.",
     "faq-q4": "When are draw winners announced?",
-    "faq-q5": "Are some draws exclusive to Elite+ members?"
+    "faq-q4-answer": "Each draw displays its closing date and winner announcement date. Winners are notified through their Palms Play account and can also view the results on the Rewards portal.",
+    "faq-q5": "Are some draws exclusive to Elite+ members?",
+    "faq-q5-answer": "Yes. Some premium prizes and special promotions are available exclusively to Elite+ subscribers. Elite+ members also receive additional daily rewards, exclusive games, and access to VIP-only tournaments and events.",
+    "faq-q6": "Do my Palms Gold expire?",
+    "faq-q6-answer": "Qualified Palms Gold remains in your account as long as your account is active. Promotional campaigns may have different conditions, so always check the promotion details.",
+    "faq-q7": "Can I win cash prizes?",
+    "faq-q7-answer": "No. Palms Rewards is a promotional rewards program. Qualified Palms Gold can only be used to enter prize draws and unlock member benefits. It cannot be exchanged for cash.",
+    "faq-q8": "What is Elite+?",
+    "faq-q8-answer": "Elite+ is our premium subscription that unlocks the complete Palms Play experience, including all games, larger daily rewards, exclusive prize draws, VIP tournaments, and subscriber-only promotions.",
+    "faq-q9": "Can I see how many Palms Gold I have?",
+    "faq-q9-answer": "Yes. Your Qualified Palms Gold balance, membership tier, and available rewards are always visible in your Rewards dashboard."
   }
 }

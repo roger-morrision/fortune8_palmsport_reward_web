@@ -62,7 +62,7 @@ export default function ElitePlusPage() {
           strokeColors={["#E4C234", "#FFFFAAE3", "#E08A14"]}
         />
 
-        <DrawTerms content={data?.tnc} variant="gold" />
+        <DrawTerms variant="gold" />
 
         <View style={styles.footer} dataSet={{ media: ids.footer }}>
           <Footer />

@@ -64,7 +64,7 @@ export default function RaffleDrawPage() {
           fontFamily="Montserrat-Bold"
         />
 
-        <DrawTerms content={data?.tnc} />
+        <DrawTerms />
 
         <View style={styles.footer} dataSet={{ media: ids.footer }}>
           <Footer />

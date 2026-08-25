@@ -54,7 +54,7 @@ const Colors = {
     activeHeader: "#F5C842",
   },
   dark: {
-    background: "#000D30",
+    background: "#0A1220",
     backgroundDark: "#070B3A",
     primary: "#070D1A",
     secondary: "#0C193A",
