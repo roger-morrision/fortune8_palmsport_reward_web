@@ -1,5 +1,5 @@
 import BGButton from '@/src/common/components/BGButton';
-import { ANDROID_CLIENT_ID, IOS_CLIENT_ID, WEB_CLIENT_ID } from "@/src/constants/Config";
+import { WEB_CLIENT_ID } from "@/src/constants/Config";
 import { useAssetContext } from '@/src/context/AssetContext';
 import { useAuthService } from "@/src/store/hooks";
 import * as GoogleAuth from "expo-auth-session/providers/google";
@@ -10,11 +10,7 @@ const Google = () => {
   const { signWithGoogle } = useAuthService();
   const { images } = useAssetContext();
   const [request, response, promptAsync]: any = GoogleAuth.useIdTokenAuthRequest({
-     iosClientId: IOS_CLIENT_ID,
-    androidClientId: ANDROID_CLIENT_ID,
     webClientId: WEB_CLIENT_ID,
-    // scopes: ['openid', 'profile', 'email'],
-    // useProxy: false,
   });
 
   React.useEffect(() => {

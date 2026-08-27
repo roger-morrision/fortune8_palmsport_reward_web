@@ -1,4 +1,4 @@
-name: Version Bump & CI
+name: Version Bump & CI (Production)
 
 on:
   push:
@@ -51,38 +51,34 @@ jobs:
           git commit -m "chore: bump version ${{ steps.bump.outputs.old }} → ${{ steps.bump.outputs.new }} [skip ci]"
           git push
 
-  # ── Job 2: type-check, test, build ────────────────────────────────────────
+  # ── Job 2: type-check, build, deploy ──────────────────────────────────────
   ci:
-    name: Type-check · Test · Build
+    name: Type-check · Build · Deploy (Production)
     runs-on: ubuntu-latest
     # On push: wait for the bump to finish. On PRs: run directly.
     needs: [bump-version]
     if: always() && (needs.bump-version.result == 'success' || github.event_name == 'pull_request')
 
     env:
-      EXPO_PUBLIC_ENVIRONMENT: ${{ secrets.EXPO_PUBLIC_ENVIRONMENT }}
-      EXPO_PUBLIC_API_URL: ${{ secrets.EXPO_PUBLIC_API_URL }}
-      EXPO_PUBLIC_API_WEBSOCKET_URL: ${{ secrets.EXPO_PUBLIC_API_WEBSOCKET_URL }}
-      EXPO_PUBLIC_AUTH_USERNAME: ${{ secrets.EXPO_PUBLIC_AUTH_USERNAME }}
-      EXPO_PUBLIC_AUTH_PASSWORD: ${{ secrets.EXPO_PUBLIC_AUTH_PASSWORD }}
-      EXPO_PUBLIC_PARTNER_ID: ${{ secrets.EXPO_PUBLIC_PARTNER_ID }}
-      EXPO_PUBLIC_CDN_URL: ${{ secrets.EXPO_PUBLIC_CDN_URL }}
-      EXPO_PUBLIC_REWARDS_URL: ${{ secrets.EXPO_PUBLIC_REWARDS_URL }}
-      EXPO_PUBLIC_FB_APP_ID: ${{ secrets.EXPO_PUBLIC_FB_APP_ID }}
-      EXPO_PUBLIC_EXPO_CLIENT_ID: ${{ secrets.EXPO_PUBLIC_EXPO_CLIENT_ID }}
-      EXPO_PUBLIC_IOS_CLIENT_ID: ${{ secrets.EXPO_PUBLIC_IOS_CLIENT_ID }}
-      EXPO_PUBLIC_ANDROID_CLIENT_ID: ${{ secrets.EXPO_PUBLIC_ANDROID_CLIENT_ID }}
-      EXPO_PUBLIC_WEB_CLIENT_ID: ${{ secrets.EXPO_PUBLIC_WEB_CLIENT_ID }}
+      EXPO_PUBLIC_ENVIRONMENT: ${{ secrets.PROD_EXPO_PUBLIC_ENVIRONMENT }}
+      EXPO_PUBLIC_API_URL: ${{ secrets.PROD_EXPO_PUBLIC_API_URL }}
+      EXPO_PUBLIC_API_WEBSOCKET_URL: ${{ secrets.PROD_EXPO_PUBLIC_API_WEBSOCKET_URL }}
+      EXPO_PUBLIC_AUTH_USERNAME: ${{ secrets.PROD_EXPO_PUBLIC_AUTH_USERNAME }}
+      EXPO_PUBLIC_AUTH_PASSWORD: ${{ secrets.PROD_EXPO_PUBLIC_AUTH_PASSWORD }}
+      EXPO_PUBLIC_PARTNER_ID: ${{ secrets.PROD_EXPO_PUBLIC_PARTNER_ID }}
+      EXPO_PUBLIC_CDN_URL: ${{ secrets.PROD_EXPO_PUBLIC_CDN_URL }}
+      EXPO_PUBLIC_FB_APP_ID: ${{ secrets.PROD_EXPO_PUBLIC_FB_APP_ID }}
+      EXPO_PUBLIC_WEB_CLIENT_ID: ${{ secrets.PROD_EXPO_PUBLIC_WEB_CLIENT_ID }}
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4.2.2
+        uses: actions/checkout@v4
         with:
           # Pull the latest commit so CI sees the bumped package.json.
           ref: ${{ github.ref }}
 
       - name: Setup Node
-        uses: actions/setup-node@v4.4.0
+        uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
@@ -100,11 +96,7 @@ jobs:
             "EXPO_PUBLIC_AUTH_PASSWORD=${EXPO_PUBLIC_AUTH_PASSWORD}" \
             "EXPO_PUBLIC_PARTNER_ID=${EXPO_PUBLIC_PARTNER_ID}" \
             "EXPO_PUBLIC_CDN_URL=${EXPO_PUBLIC_CDN_URL}" \
-            "EXPO_PUBLIC_REWARDS_URL=${EXPO_PUBLIC_REWARDS_URL}" \
             "EXPO_PUBLIC_FB_APP_ID=${EXPO_PUBLIC_FB_APP_ID}" \
-            "EXPO_PUBLIC_EXPO_CLIENT_ID=${EXPO_PUBLIC_EXPO_CLIENT_ID}" \
-            "EXPO_PUBLIC_IOS_CLIENT_ID=${EXPO_PUBLIC_IOS_CLIENT_ID}" \
-            "EXPO_PUBLIC_ANDROID_CLIENT_ID=${EXPO_PUBLIC_ANDROID_CLIENT_ID}" \
             "EXPO_PUBLIC_WEB_CLIENT_ID=${EXPO_PUBLIC_WEB_CLIENT_ID}" \
             > .env
 
@@ -114,19 +106,19 @@ jobs:
       - name: Build web (expo export)
         run: npx expo export --platform web
 
-      # ── Deploy to server via SSH ───────────────────────────────────────────
+      # ── Deploy to production server via SSH ───────────────────────────────
       # Required secrets (Settings → Secrets and variables → Actions):
-      #   DEPLOY_SSH_KEY     — private SSH key whose public key is in ~/.ssh/authorized_keys on the server
-      #   DEPLOY_HOST        — server IP or hostname, e.g. "123.45.67.89"
-      #   DEPLOY_USER        — SSH user, e.g. "deploy" or "root"
-      #   DEPLOY_PATH        — nginx web root on the server, e.g. "/var/www/staging"
-      - name: Deploy to server via SSH
+      #   PROD_DEPLOY_SSH_KEY  — private key whose public key is in authorized_keys on prod server
+      #   PROD_DEPLOY_HOST     — production server IP or hostname
+      #   PROD_DEPLOY_USER     — SSH user
+      #   PROD_DEPLOY_PATH     — web root on production server, e.g. "/var/www/html"
+      - name: Deploy to production via SSH
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         env:
-          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
-          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
-          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
-          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
+          DEPLOY_SSH_KEY: ${{ secrets.PROD_DEPLOY_SSH_KEY }}
+          DEPLOY_HOST: ${{ secrets.PROD_DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.PROD_DEPLOY_USER }}
+          DEPLOY_PATH: ${{ secrets.PROD_DEPLOY_PATH }}
         run: |
           mkdir -p ~/.ssh
           printf '%s\n' "$DEPLOY_SSH_KEY" > ~/.ssh/deploy_key

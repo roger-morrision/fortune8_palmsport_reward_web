@@ -9,7 +9,6 @@ import useAppDispatch from "@/src/common/hooks/useAppDispatch";
 import useAppSelector from "@/src/common/hooks/useAppSelector";
 import { LOGIN_STATES } from "@/src/common/utils/states-holder";
 import { useInputHelper } from "@/src/common/utils/useInputHelper";
-import { GAMBLY_URL } from "@/src/constants/Config";
 import { useAuthService } from "@/src/store/hooks";
 import {
   authActions,
@@ -69,7 +68,6 @@ function Login() {
   };
 
   const onForgot = () => {
-    window.location.href = `${GAMBLY_URL}/forgot-password`;
   };
 
   useEffect(() => {

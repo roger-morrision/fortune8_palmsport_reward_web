@@ -1,0 +1,86 @@
+name: Develop CI & Deploy (Staging)
+
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    branches:
+      - develop
+  workflow_dispatch:
+
+jobs:
+  ci:
+    name: Type-check · Test · Build · Deploy (Staging)
+    runs-on: ubuntu-latest
+
+    env:
+      EXPO_PUBLIC_ENVIRONMENT: ${{ secrets.DEV_EXPO_PUBLIC_ENVIRONMENT }}
+      EXPO_PUBLIC_API_URL: ${{ secrets.DEV_EXPO_PUBLIC_API_URL }}
+      EXPO_PUBLIC_API_WEBSOCKET_URL: ${{ secrets.DEV_EXPO_PUBLIC_API_WEBSOCKET_URL }}
+      EXPO_PUBLIC_AUTH_USERNAME: ${{ secrets.DEV_EXPO_PUBLIC_AUTH_USERNAME }}
+      EXPO_PUBLIC_AUTH_PASSWORD: ${{ secrets.DEV_EXPO_PUBLIC_AUTH_PASSWORD }}
+      EXPO_PUBLIC_PARTNER_ID: ${{ secrets.DEV_EXPO_PUBLIC_PARTNER_ID }}
+      EXPO_PUBLIC_CDN_URL: ${{ secrets.DEV_EXPO_PUBLIC_CDN_URL }}
+      EXPO_PUBLIC_FB_APP_ID: ${{ secrets.DEV_EXPO_PUBLIC_FB_APP_ID }}
+      EXPO_PUBLIC_WEB_CLIENT_ID: ${{ secrets.DEV_EXPO_PUBLIC_WEB_CLIENT_ID }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Create .env
+        run: |
+          printf '%s\n' \
+            "EXPO_PUBLIC_ENVIRONMENT=${EXPO_PUBLIC_ENVIRONMENT}" \
+            "EXPO_PUBLIC_API_URL=${EXPO_PUBLIC_API_URL}" \
+            "EXPO_PUBLIC_API_WEBSOCKET_URL=${EXPO_PUBLIC_API_WEBSOCKET_URL}" \
+            "EXPO_PUBLIC_AUTH_USERNAME=${EXPO_PUBLIC_AUTH_USERNAME}" \
+            "EXPO_PUBLIC_AUTH_PASSWORD=${EXPO_PUBLIC_AUTH_PASSWORD}" \
+            "EXPO_PUBLIC_PARTNER_ID=${EXPO_PUBLIC_PARTNER_ID}" \
+            "EXPO_PUBLIC_CDN_URL=${EXPO_PUBLIC_CDN_URL}" \
+            "EXPO_PUBLIC_FB_APP_ID=${EXPO_PUBLIC_FB_APP_ID}" \
+            "EXPO_PUBLIC_WEB_CLIENT_ID=${EXPO_PUBLIC_WEB_CLIENT_ID}" \
+            > .env
+
+      - name: Type-check
+        run: npx tsc --noEmit
+
+      - name: Build web (expo export)
+        run: npx expo export --platform web
+
+      # ── Deploy to staging server via SSH ──────────────────────────────────
+      # Required secrets (Settings → Secrets and variables → Actions):
+      #   DEV_DEPLOY_SSH_KEY  — private key whose public key is in authorized_keys on staging server
+      #   DEV_DEPLOY_HOST     — staging server IP or hostname
+      #   DEV_DEPLOY_USER     — SSH user
+      #   DEV_DEPLOY_PATH     — web root on staging server, e.g. "/var/www/staging"
+      - name: Deploy to staging via SSH
+        if: github.event_name == 'push'
+        env:
+          DEPLOY_SSH_KEY: ${{ secrets.DEV_DEPLOY_SSH_KEY }}
+          DEPLOY_HOST: ${{ secrets.DEV_DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEV_DEPLOY_USER }}
+          DEPLOY_PATH: ${{ secrets.DEV_DEPLOY_PATH }}
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "$DEPLOY_SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H "$DEPLOY_HOST" >> ~/.ssh/known_hosts
+
+          rsync -az --delete \
+            -e "ssh -i ~/.ssh/deploy_key" \
+            dist/ \
+            "$DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH/"
+
+          ssh -i ~/.ssh/deploy_key "$DEPLOY_USER@$DEPLOY_HOST" \
+            "sudo systemctl reload nginx"
