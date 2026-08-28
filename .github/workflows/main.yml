@@ -1,4 +1,4 @@
-name: Version Bump & CI (Production)
+name: Develop CI & Deploy (Production)
 
 on:
   push:
