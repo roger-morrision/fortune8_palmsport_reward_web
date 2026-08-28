@@ -12,6 +12,6 @@ export const RaffleService = {
   },
   redemptions: ({ params }: { params?: Types.Redemption }) =>
     apiClient.get(API_ENDPOINTS.RAFFLES.REDEMPTIONS, { params }),
-  ongoing: () => apiClient.get(API_ENDPOINTS.RAFFLES.ONGOING),
+  ongoing: (type: "REGULAR" | "VIP") => apiClient.get(API_ENDPOINTS.RAFFLES.ONGOING, { params: { type }}),
   results: () => apiClient.get(API_ENDPOINTS.RAFFLES.RESULTS),
 };

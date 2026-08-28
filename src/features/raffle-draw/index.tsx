@@ -21,7 +21,7 @@ export default function RaffleDrawPage() {
       },
       {
         queryKey: ["ongoing-raffle"],
-        queryFn: () => RaffleService.ongoing(),
+        queryFn: () => RaffleService.ongoing("REGULAR"),
       },
     ],
   });

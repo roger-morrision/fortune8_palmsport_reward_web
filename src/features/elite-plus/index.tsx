@@ -20,8 +20,8 @@ export default function ElitePlusPage() {
         queryFn: () => RewardService.rafflePage(),
       },
       {
-        queryKey: ["elite-ongoing-raffle"],
-        queryFn: () => RaffleService.ongoing(),
+        queryKey: ["elite-ongoing-raffle-elite"],
+        queryFn: () => RaffleService.ongoing("VIP"),
       },
     ],
   });
