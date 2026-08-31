@@ -8,6 +8,8 @@ import BGButton from "@/src/common/components/BGButton";
 import SVGIcon, { SVGName } from "@/src/constants/SVGIcon";
 import { useAssetContext } from "@/src/context/AssetContext";
 import { useTranslation } from "react-i18next";
+import useAppSelector from "@/src/common/hooks/useAppSelector";
+import { selectAuthLoggedIn } from "@/src/store/slices/auth.slice";
 
 type Tier = {
   name: string;
@@ -47,6 +49,7 @@ export default function ExploreRewards({
 }: Props) {
   const { images } = useAssetContext();
   const { t } = useTranslation();
+  const isLoggedIn = useAppSelector(selectAuthLoggedIn);
 
   return (
     <View style={styles.container} dataSet={{ media: ids.container }}>
@@ -68,7 +71,7 @@ export default function ExploreRewards({
             </Text>
             <Item svg="game-controller" label="GAME ACCESS" description={tier.gameAccess} />
             <Item svg="gift" label="BONUS" description={tier.bonus} />
-            <Button
+            {!isLoggedIn && <Button
               style={styles.btn_start}
               borderColor="#CD7F3255"
               backgroundColor="#CD7F3233"
@@ -78,7 +81,7 @@ export default function ExploreRewards({
               <Text color="#F5C842" fontFamily="Montserrat-Bold" style={styles.btn_start_label}>
                 {t("homepage.tiers-get-started")}
               </Text>
-            </Button>
+            </Button>}
           </View>
         ))}
 
@@ -93,7 +96,7 @@ export default function ExploreRewards({
           <Item svg="game-controller" label="GAME ACCESS" description={ELITE_TIER.gameAccess} />
           <Item svg="gift" label="DAILY REWARD" description={ELITE_TIER.dailyReward} />
           <Item svg="diamond" label="EXCLUSIVE PERKS" description={ELITE_TIER.exclusivePerks} />
-          <BGButton
+          {!isLoggedIn && <BGButton
             label={t("homepage.tiers-view-elite")}
             onPress={onViewElite}
             style={styles.btn_elite}
@@ -103,11 +106,11 @@ export default function ExploreRewards({
             bgColors={["#23C339", "#1AA82E"]}
             strokeColors={["#23C339", "#1AA82E", "#23C339"]}
             borderWidth={1}
-          />
+          />}
         </View>
       </View>
 
-      <BGButton
+      {!isLoggedIn && <BGButton
         label={t("homepage.tiers-join-now")}
         onPress={onJoinNow}
         style={styles.btn_join}
@@ -117,7 +120,7 @@ export default function ExploreRewards({
         bgColors={["#DF7B0B", "#E5D33D"]}
         strokeColors={["#E4C234", "#FFFFAAE3", "#E08A14"]}
         borderWidth={1}
-      />
+      />}
       <Text fontFamily="Montserrat" color="closeColor" style={styles.t_disclaimer}>
         {t("homepage.tiers-disclaimer")}
       </Text>

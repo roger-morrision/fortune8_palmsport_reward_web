@@ -69,6 +69,7 @@ jobs:
       EXPO_PUBLIC_CDN_URL: ${{ secrets.PROD_EXPO_PUBLIC_CDN_URL }}
       EXPO_PUBLIC_FB_APP_ID: ${{ secrets.PROD_EXPO_PUBLIC_FB_APP_ID }}
       EXPO_PUBLIC_WEB_CLIENT_ID: ${{ secrets.PROD_EXPO_PUBLIC_WEB_CLIENT_ID }}
+      EXPO_PUBLIC_PALMSPLAY_GAME_URL: ${{ secrets.PROD_EXPO_PUBLIC_PALMSPLAY_GAME_URL }}
 
     steps:
       - name: Checkout
@@ -98,6 +99,7 @@ jobs:
             "EXPO_PUBLIC_CDN_URL=${EXPO_PUBLIC_CDN_URL}" \
             "EXPO_PUBLIC_FB_APP_ID=${EXPO_PUBLIC_FB_APP_ID}" \
             "EXPO_PUBLIC_WEB_CLIENT_ID=${EXPO_PUBLIC_WEB_CLIENT_ID}" \
+            "EXPO_PUBLIC_PALMSPLAY_GAME_URL=${EXPO_PUBLIC_PALMSPLAY_GAME_URL}" \
             > .env
 
       - name: Type-check

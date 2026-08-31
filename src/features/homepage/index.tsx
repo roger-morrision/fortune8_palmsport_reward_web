@@ -6,14 +6,22 @@ import HomeBanner from "./banner";
 import ExploreRewards from "./explore-rewards";
 import FAQ from "./faq";
 import MoreRewards from "./more-rewards";
+import { useRouter } from "expo-router";
 
 export default function HomePage() {
+  const router = useRouter();
+
+  const handleLogin = () => {
+    router.push("/auth/login");
+  }
+
+
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View backgroundColor="primary" style={styles.container} dataSet={{ media: ids.container }}>
         <HomeBanner />
         <MoreRewards />
-        <ExploreRewards />
+        <ExploreRewards onJoinNow={handleLogin} onGetStarted={handleLogin} onViewElite={handleLogin} />
         <FAQ />
         <View style={styles.footer} dataSet={{ media: ids.footer }}>
           <Footer />

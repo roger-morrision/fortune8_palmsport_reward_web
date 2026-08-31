@@ -6,10 +6,15 @@ import { Image } from "react-native";
 import StyleSheet from "react-native-media-query";
 import { useAssetContext } from "@/src/context/AssetContext";
 import { useTranslation } from "react-i18next";
+import { PALMSPLAY_GAME_URL } from "@/src/constants/Config";
 
 export default function HomeBanner() {
   const { images } = useAssetContext();
   const { t } = useTranslation();
+
+  const gotoGame = () => {
+    window.location.href = PALMSPLAY_GAME_URL;
+  };
 
   return (
     <View style={styles.container} dataSet={{ media: ids.container }}>
@@ -36,6 +41,7 @@ export default function HomeBanner() {
           label={t("homepage.banner-btn")}
           style={styles.btn}
           borderRadius={4}
+          onPress={gotoGame}
           dataSet={{ media: ids.btn }}
           fontFamily="Montserrat-Bold"
           labelStyle={styles.btn_label}
