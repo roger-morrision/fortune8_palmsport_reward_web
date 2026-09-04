@@ -10,54 +10,10 @@ on:
   workflow_dispatch:
 
 jobs:
-  # ── Job 1: bump the patch version on every push to main ───────────────────
-  bump-version:
-    name: Bump patch version
-    runs-on: ubuntu-latest
-    # Only bump on direct pushes, not on pull requests.
-    if: github.event_name == 'push'
-
-    permissions:
-      contents: write
-
-    outputs:
-      new_version: ${{ steps.bump.outputs.new }}
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Bump patch version
-        id: bump
-        run: |
-          OLD=$(node -p "require('./package.json').version")
-          npm version patch --no-git-tag-version
-          NEW=$(node -p "require('./package.json').version")
-          echo "old=$OLD" >> $GITHUB_OUTPUT
-          echo "new=$NEW" >> $GITHUB_OUTPUT
-
-      - name: Commit and push
-        run: |
-          git config user.name  "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add package.json
-          git commit -m "chore: bump version ${{ steps.bump.outputs.old }} → ${{ steps.bump.outputs.new }} [skip ci]"
-          git push
-
-  # ── Job 2: type-check, build, deploy ──────────────────────────────────────
+  # ── Type-check, build, deploy ─────────────────────────────────────────────
   ci:
     name: Type-check · Build · Deploy (Production)
     runs-on: ubuntu-latest
-    # On push: wait for the bump to finish. On PRs: run directly.
-    needs: [bump-version]
-    if: always() && (needs.bump-version.result == 'success' || github.event_name == 'pull_request')
 
     env:
       EXPO_PUBLIC_ENVIRONMENT: ${{ secrets.PROD_EXPO_PUBLIC_ENVIRONMENT }}
@@ -74,9 +30,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          # Pull the latest commit so CI sees the bumped package.json.
-          ref: ${{ github.ref }}
 
       - name: Setup Node
         uses: actions/setup-node@v4
