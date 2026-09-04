@@ -18,10 +18,12 @@ export default function RaffleDrawPage() {
       {
         queryKey: ["raffle-page-description"],
         queryFn: () => RewardService.rafflePage(),
+        staleTime: 5 * 60 * 1000, // 5 minutes
       },
       {
         queryKey: ["ongoing-raffle"],
         queryFn: () => RaffleService.ongoing("REGULAR"),
+        staleTime: 60 * 1000, // 1 minute — countdown data changes more often
       },
     ],
   });

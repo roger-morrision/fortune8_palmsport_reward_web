@@ -17,7 +17,7 @@ const { ids, styles } = StyleSheet.create({
     marginTop: 40,
     alignSelf: "center",
     width: "100%",
-    maxWidth: 1084,
+    maxWidth: 1212,
     "@media (max-width: 800px)": {
       flexDirection: "column",
       gap: 24,

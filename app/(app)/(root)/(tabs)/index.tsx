@@ -5,12 +5,6 @@ import { selectAuthLoggedIn } from "@/src/store/slices/auth.slice";
 import { Redirect } from "expo-router";
 
 function HomeScreen() {
-  // const isLoggedIn = useAppSelector(selectAuthLoggedIn);
-
-  // if(!isLoggedIn){
-  //   return <Redirect  href={'(auth)/login'}/>
-  // }
-
   return (
     <InteractionManagerScreenWrapper>
       <HomePage />

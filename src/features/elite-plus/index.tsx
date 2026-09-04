@@ -18,10 +18,12 @@ export default function ElitePlusPage() {
       {
         queryKey: ["elite-raffle-page-description"],
         queryFn: () => RewardService.rafflePage(),
+        staleTime: 5 * 60 * 1000, // 5 minutes
       },
       {
         queryKey: ["elite-ongoing-raffle-elite"],
         queryFn: () => RaffleService.ongoing("VIP"),
+        staleTime: 60 * 1000, // 1 minute
       },
     ],
   });

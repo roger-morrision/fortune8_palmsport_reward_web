@@ -5,7 +5,7 @@ const { ids, styles } = StyleSheet.create({
     zIndex: 2,
     gap: 15,
     width: "100%",
-    maxWidth: 974,
+    maxWidth: 1213,
     marginTop: 33,
     alignSelf: "center",
     marginLeft: 20,

@@ -41,7 +41,7 @@ function AccountDetails() {
   }, [user]);
 
   return (
-    <View style={styles.container} dataSet={{ media: ids.container }}>
+    <View backgroundColor="#111F36" borderColor="#1A2D5E" style={styles.container} dataSet={{ media: ids.container }}>
       <View style={[styles.row_container, { justifyContent: "space-between" }]}>
         <View>
           <Text color="text" style={styles.text_title} dataSet={{ media: ids.text_title }}>

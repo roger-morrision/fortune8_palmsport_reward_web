@@ -16,7 +16,7 @@ type Props = {
 export default function DataTableRow({ columns, raffle, data }: Props) {
   return (
     // <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-      <View style={styles.wrapper as any} dataSet={{ media: ids.wrapper }}>
+      <View borderColor="#1A2D5E" style={styles.wrapper as any} dataSet={{ media: ids.wrapper }}>
         <FlatList
           data={data}
           scrollEnabled={false}

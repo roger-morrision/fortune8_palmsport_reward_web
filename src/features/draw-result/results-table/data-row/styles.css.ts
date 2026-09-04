@@ -3,10 +3,9 @@ import StyleSheet from "react-native-media-query";
 const { ids, styles } = StyleSheet.create({
   wrapper: {
     width: "100%",
-    borderWidth: 1,
+    borderWidth: 2,
     borderRadius: 10,
     overflow: "hidden",
-    borderColor: "#1C3470",
   },
   empty: {
     paddingVertical: 32,
@@ -22,7 +21,7 @@ const { ids, styles } = StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: 16,
     minHeight: 52,
-    backgroundColor: "#07122E",
+    backgroundColor: "#0C1629",
     borderBottomWidth: 1,
     borderBottomColor: "#1C3470",
     "@media (max-width: 800px)": {
@@ -30,7 +29,7 @@ const { ids, styles } = StyleSheet.create({
     },
   },
   row_even: {
-    backgroundColor: "#09183B",
+    backgroundColor: "#111F36",
   },
   cell: {
     flex: 1,

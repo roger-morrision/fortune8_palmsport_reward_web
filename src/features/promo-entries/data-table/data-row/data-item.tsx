@@ -8,6 +8,14 @@ import View from "@/src/common/components/View";
 import numeral from "numeral";
 import { Ionicon, MaterialIcon } from "@/src/common/components/Icon";
 
+// Resolves dot-separated keys like "raffle.code" from a nested object
+const getNestedValue = (obj: Record<string, unknown>, path: string): unknown => {
+  return path.split(".").reduce<unknown>((acc, key) => {
+    if (acc != null && typeof acc === "object") return (acc as Record<string, unknown>)[key];
+    return undefined;
+  }, obj);
+};
+
 type DataItemProps = {
   item: DataRowItem;
   headers: HeaderItem[];
@@ -89,8 +97,6 @@ const DataItem = (props: DataItemProps) => {
   }, [item.redeemStatusID]);
 
   if (isMobile) {
-   
-
     return (
       <View style={styles.card} dataSet={{ media: ids.card }}>
         <View style={{ gap: 4 }}>
@@ -136,16 +142,19 @@ const DataItem = (props: DataItemProps) => {
       style={[styles.r_style, isEven && { backgroundColor: "transparent" }]}
       dataSet={{ media: ids.r_style }}
     >
-      {headers.map((header) => (
-        <View key={header.id} style={[styles.c_style, header.cellStyle]}>
-          <Text
-            style={[styles.text_style]}
-            dataSet={{ media: ids.text_style }}
-          >
-            {item[header.id] != null ? String(item[header.id]) : "—"}
-          </Text>
-        </View>
-      ))}
+      {headers.map((header) => {
+        const value = getNestedValue(item, header.id);
+        const rendered = header.renderCell ? header.renderCell(value, item) : null;
+        return (
+          <View key={header.id} style={[styles.c_style, header.cellStyle]}>
+            {rendered != null ? rendered : (
+              <Text style={[styles.text_style]} dataSet={{ media: ids.text_style }}>
+                {value != null ? String(value) : "—"}
+              </Text>
+            )}
+          </View>
+        );
+      })}
     </View>
   );
 };

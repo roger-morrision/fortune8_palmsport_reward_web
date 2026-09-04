@@ -18,7 +18,7 @@ const { ids, styles } = StyleSheet.create({
   v_message_container: {
     gap: 21,
     width: "100%",
-    maxWidth: 1084,
+    maxWidth: 1212,
     alignSelf: "center",
     "@media (max-width: 800px)": {
       paddingLeft: 25,

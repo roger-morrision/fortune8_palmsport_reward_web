@@ -3,7 +3,7 @@ import StyleSheet from "react-native-media-query";
 const { ids, styles } = StyleSheet.create({
   main_container: {
     width: "100%",
-    maxWidth: 1084,
+    maxWidth: 1213,
     alignSelf: "center",
     flexDirection: "row",
     alignItems: "center",

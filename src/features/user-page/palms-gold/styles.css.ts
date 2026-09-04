@@ -10,9 +10,7 @@ const { ids, styles } = StyleSheet.create({
     borderRadius: 8,
     paddingBottom: 30,
     paddingHorizontal: 15,
-    borderWidth: 1.82,
-    borderColor: "#1C3470",
-    backgroundColor: "#09183B",
+    borderWidth: 2,
     "@media (max-width: 768px)": {
       width: "100%",
     },

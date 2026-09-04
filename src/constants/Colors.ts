@@ -2,7 +2,7 @@
  * The primary brand color used throughout the application.
  */
 export const brandColor = "#FFCF3D";
-export const borderColor = "#21366E";
+export const borderColor = "#2D508B";
 export const closeColor = "#ACB9D2";
 
 /**
@@ -76,7 +76,7 @@ const Colors = {
     closeColor,
     blue: "#3784FF",
     blueMatt: "#36529C",
-    blueDark: "#112047",
+    blueDark: "#111F36",
     blueLight: "#397DFF",
     blueBorder: "#21366A",
     yellow: "#FFDF83",

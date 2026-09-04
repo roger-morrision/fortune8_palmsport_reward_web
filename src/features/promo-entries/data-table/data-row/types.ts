@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import { ImageKey } from "@/src/constants/Images";
 import { ImageStyle, TextStyle, ViewStyle } from "react-native";
 
@@ -14,4 +15,6 @@ export type HeaderItem = {
   value?: string;
   buttonEnable?: boolean;
   iconStyle?: ImageStyle;
+  /** Custom renderer for a cell value. Return a string for plain text, or a ReactNode for custom UI. */
+  renderCell?: (value: unknown, item: DataRowItem) => ReactNode;
 };

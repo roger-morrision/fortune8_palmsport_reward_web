@@ -1,12 +1,18 @@
 {
   "header": {
     "home": "Н﻿ачало",
+    "benefits": "Предимства",
+    "tiers": "Нива",
+    "faq": "ЧЗВ",
+    "raffle": "Томбола",
     "myaccount": "Моят профил",
+    "promo-entries": "Промо участия",
     "raffles": "Томболи",
     "elite": "Elite+",
     "r-raffle-draw": "Теглене на томбола",
     "r-draw-result": "Резултат от тегленето",
-    "palms-gold": "Palms злато"
+    "palms-gold": "Palms злато",
+    "logout": "Изход"
   },
   "login": {
     "choose": "Language",
@@ -29,6 +35,9 @@
     "submit": "Въведи",
     "resend-prefix": "Не получихте кода?",
     "resend-link": "Прати пак"
+  },
+  "promo-entries": {
+    "button": "ВИЖТЕ РЕЗУЛТАТА ОТ ТОМБОЛАТА"
   },
   "account": {
     "title": "Моят профил",

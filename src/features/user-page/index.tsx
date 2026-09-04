@@ -4,8 +4,6 @@ import AccountDetails from "./account-details";
 import {ids, styles } from "./styles.css";
 import Footer from "../homepage/footer";
 import PalmsGold from "./palms-gold";
-import DataRow from "./data-table/data-row";
-import BGButton from "@/src/common/components/BGButton";
 
 function UserPage() {
   return (
@@ -16,18 +14,7 @@ function UserPage() {
             <AccountDetails />
             <PalmsGold />
           </View>
-          <DataRow />
-          <BGButton
-            // onPress={() => setTab(tab === "silver" ? "gold" : "silver")}
-            borderWidth={2}
-            fontFamily="Montserrat-Bold"
-            label={"VIEW RAFFLE DRAW RESULT"}
-            style={styles.button_view_result}
-            labelStyle={styles.label_view_result}
-          />
-          
-          {/* <KYCSection /> */}
-          <View style={{ gap: 10, marginTop: 100 }}>
+          <View style={{ gap: 10, marginTop: 200 }}>
             <Footer />
           </View>
         </View>

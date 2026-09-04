@@ -49,7 +49,7 @@ const { ids, styles } = StyleSheet.create({
     marginTop: 34,
     alignItems: "center",
     justifyContent: "center",
-    maxWidth: 1084,
+    maxWidth: 1212,
     borderRadius: 10,
     alignSelf: "center",
     "@media (min-width: 996px)": {

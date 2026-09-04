@@ -22,7 +22,7 @@ export default function ResultsTable({ title, columns, data }: Props) {
     <View style={styles.container} dataSet={{ media: ids.container }}>
       <Text
         fontFamily="Montserrat-Bold"
-        color="text"
+        color="#EABF3C"
         style={styles.t_title}
         dataSet={{ media: ids.t_title }}
       >
@@ -37,7 +37,7 @@ export default function ResultsTable({ title, columns, data }: Props) {
 const { ids, styles } = StyleSheet.create({
   container: {
     width: "100%",
-    maxWidth: 1084,
+    maxWidth: 1212,
     alignSelf: "center",
     marginTop: 40,
     "@media (max-width: 800px)": {

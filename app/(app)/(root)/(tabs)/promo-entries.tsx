@@ -1,18 +1,18 @@
 import ScreenTitle from "@/src/common/components/header/screen-title";
 import ProtectedScreen from "@/src/common/components/ProtectedScreen";
 import Screen from "@/src/common/components/Screen";
-import DrawResultPage from "@/src/features/draw-result";
+import PromoEntriesPage from "@/src/features/promo-entries";
 import { useTranslation } from "react-i18next";
 import StyleSheet from "react-native-media-query";
 
-function DrawResultScreen() {
+function PromoEntriesScreen() {
   const { t } = useTranslation();
-  
+
   return (
     <ProtectedScreen>
       <Screen style={styles.container} dataSet={{ media: ids.container }}>
-        <ScreenTitle options={{ title: t("draw-result.title") }} />
-        <DrawResultPage />
+        <ScreenTitle options={{ title: t("header.promo-entries")?.toUpperCase() }} />
+        <PromoEntriesPage />
       </Screen>
     </ProtectedScreen>
   );
@@ -20,7 +20,6 @@ function DrawResultScreen() {
 
 const { ids, styles } = StyleSheet.create({
   container: {
-    gap: 11,
     width: "100%",
     paddingTop: 8,
     alignSelf: "center",
@@ -30,4 +29,4 @@ const { ids, styles } = StyleSheet.create({
   },
 });
 
-export default DrawResultScreen;
+export default PromoEntriesScreen;

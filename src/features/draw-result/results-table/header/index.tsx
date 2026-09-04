@@ -12,7 +12,7 @@ export default function DrawTableHeader({ columns }: Props) {
   const { t } = useTranslation();
   
   return (
-    <View style={styles.container} dataSet={{ media: ids.container }}>
+    <View backgroundColor="#1C2A4E" style={styles.container} dataSet={{ media: ids.container }}>
       {columns.map((col, i) => (
         <View
           key={`h_${col.id}_${i}`}

@@ -55,7 +55,7 @@ const { ids, styles } = StyleSheet.create({
     paddingRight: 15,
     alignSelf: "center",
     "@media (min-width: 996px)": {
-      maxWidth: 974,
+      maxWidth: 1213,
     },
   },
   scroll_style: {

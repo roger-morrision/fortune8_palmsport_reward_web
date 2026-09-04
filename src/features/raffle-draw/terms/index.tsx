@@ -85,7 +85,7 @@ const { ids, styles } = StyleSheet.create({
     overflow: "hidden",
     alignSelf: "center",
     width: "100%",
-    maxWidth: 1084,
+    maxWidth: 1212,
     marginTop: 100,
     marginBottom: 25,
     borderWidth: 1,

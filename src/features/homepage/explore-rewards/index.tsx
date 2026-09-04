@@ -153,7 +153,7 @@ const Item = ({ label, description, svg }: PropsItem) => (
 const { ids, styles } = StyleSheet.create({
   container: {
     width: "100%",
-    maxWidth: 1084,
+    maxWidth: 1212,
     alignSelf: "center",
     alignItems: "center",
     marginTop: 64,

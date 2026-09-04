@@ -1,12 +1,18 @@
 {
   "header": {
     "home": "Home",
+    "benefits": "Benefits",
+    "tiers": "Tiers",
+    "faq": "FAQ",
+    "raffle": "Raffle",
     "myaccount": "My Account",
+    "promo-entries": "Promo Entries",
     "raffles": "Raffles",
     "elite": "Elite+",
     "r-raffle-draw": "Raffle Draw",
     "r-draw-result": "Draw Result",
-    "palms-gold": "PALMS GOLD"
+    "palms-gold": "PALMS GOLD",
+    "logout": "Logout"
   },
   "login": {
     "username": "Email",
@@ -28,6 +34,9 @@
     "submit": "Login",
     "resend-prefix": "Didn't receive the code?",
     "resend-link": "Send Again"
+  },
+  "promo-entries": {
+    "button": "VIEW RAFFLE DRAW RESULT"
   },
   "account": {
     "title": "MY ACCOUNT",
@@ -247,7 +256,7 @@
     "faq-title": "Frequently Asked",
     "faq-highlight": "Questions",
     "faq-q1": "Are rewards available to all Palms Play members?",
-    "faq-q1-answer":  "Yes. Every registered Palms Play member automatically joins the Palms Rewards program. As you play, you'll unlock rewards, progress through membership tiers, and earn access to exclusive promotions, raffles, and member benefits.",
+    "faq-q1-answer": "Yes. Every registered Palms Play member automatically joins the Palms Rewards program. As you play, you'll unlock rewards, progress through membership tiers, and earn access to exclusive promotions, raffles, and member benefits.",
     "faq-q2": "What's the difference between Bonus Gold Coins and Qualified Palms Gold?",
     "faq-q2-answer": "Bonus Gold Coins are used to play Gold-enabled games. Once you've completed the required playthrough, they are converted into Qualified Palms Gold. Qualified Palms Gold is your reward currency and can be used to enter exciting prize draws and unlock rewards.",
     "faq-q3": "How do I enter a rewards draw?",

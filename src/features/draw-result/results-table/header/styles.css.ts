@@ -4,7 +4,6 @@ const { ids, styles } = StyleSheet.create({
   container: {
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "#0D1A4A",
     borderBottomWidth: 1,
     borderBottomColor: "#1C3470",
     paddingHorizontal: 16,

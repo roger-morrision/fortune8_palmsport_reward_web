@@ -1,7 +1,9 @@
 import useAppSelector from "@/src/common/hooks/useAppSelector";
+import useAppDispatch from "@/src/common/hooks/useAppDispatch";
 import { useAssetContext } from "@/src/context/AssetContext";
 import { usePathname, useRouter } from "expo-router";
-import { Image } from "react-native";
+import { Image, Pressable } from "react-native";
+import { useState } from "react";
 import Button from "../../Button";
 import Text from "../../Text";
 import View from "../../View";
@@ -11,17 +13,29 @@ import { routeToPathname } from "@/src/common/utils/transform-helper";
 import { useTranslation } from "react-i18next";
 import numeral from "numeral";
 import { selectedUserCoins } from "@/src/store/slices/user.slice";
-import BGButton from "../../BGButton";
-import { MaterialCommunityIcon } from "../../Icon";
-import { selectAuthLoggedIn } from "@/src/store/slices/auth.slice";
+import { Ionicon, MaterialCommunityIcon } from "../../Icon";
+import { authActions } from "@/src/store/slices/auth.slice";
 
 function HeaderAuthScreen() {
   const router = useRouter();
+  const dispatch = useAppDispatch();
   const { t } = useTranslation();
   const pathname = usePathname();
   const { images } = useAssetContext();
   const balance = useAppSelector(selectedUserCoins);
-  const isLoggedIn = useAppSelector(selectAuthLoggedIn);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const handleLogout = () => {
+    setDropdownOpen(false);
+    dispatch(authActions.logout());
+  };
+
+  const handleMyAccount = () => {
+    setDropdownOpen(false);
+    router.navigate("/(tabs)/account");
+  };
+
+  console.log("dropdownOpendropdownOpen", dropdownOpen)
 
   return (
     <View
@@ -54,17 +68,17 @@ function HeaderAuthScreen() {
           >
             {t("header.home")}
           </Text>
+          <Raffles />
           <Text
             suppressHighlighting
             fontFamily="Montserrat-Medium"
-            onPress={() => router.navigate("/(tabs)/account")}
+            onPress={() => router.navigate("/(tabs)/promo-entries")}
             style={[styles.t_center_menu]}
             dataSet={{ media: ids.t_center_menu }}
-            color={routeToPathname("/(tabs)/account") === pathname ? "activeHeader" : "#8A9AC0"}
+            color={routeToPathname("/(tabs)/promo-entries") === pathname ? "activeHeader" : "#8A9AC0"}
           >
-            {t("header.myaccount")}
+            {t("header.promo-entries")}
           </Text>
-          <Raffles />
           <Button
             onPress={() => router.navigate("/(tabs)/elite-plus")}
             style={styles.elite_btn}
@@ -92,37 +106,68 @@ function HeaderAuthScreen() {
           backgroundColor="primary"
           dataSet={{ media: ids.right_container }}
         >
-        {isLoggedIn ? <View borderColor="borderColor" backgroundColor="backgroundDark" style={styles.v_sweeps_balance}>
-          <Image
-            style={styles.i_gold}
-            dataSet={{ media: ids.i_gold }}
-            source={{ uri: images?.["gold"].uri }}
-            resizeMode="contain"
-          />
-          <View>
-            <Text fontFamily="Montserrat-Bold" style={styles.t_balance}>
-              {numeral(balance.GOLD).format("0,000.00")}
-            </Text>
-            <Text fontFamily="Montserrat-Bold" style={styles.t_balance_label}>
-              {t("header.palms-gold")}
-            </Text>
+          <View style={styles.v_logged_in}>
+            <View borderColor="borderColor" style={styles.v_sweeps_balance}>
+              <Image
+                style={styles.i_gold}
+                dataSet={{ media: ids.i_gold }}
+                source={{ uri: images?.["gold"].uri }}
+                resizeMode="contain"
+              />
+              <View>
+                <Text fontFamily="Montserrat-Bold" style={styles.t_balance}>
+                  {numeral(balance.GOLD).format("0,000.00")}
+                </Text>
+                <Text fontFamily="Montserrat-Bold" style={styles.t_balance_label}>
+                  {t("header.palms-gold")}
+                </Text>
+              </View>
+            </View>
+
+            <View style={styles.v_account_wrapper}>
+              <Button
+                borderColor="borderColor" 
+                onPress={() => setDropdownOpen((prev) => !prev)}
+                style={styles.btn_account}
+              >
+                <Ionicon disabled name="person-circle-outline" size={28} color={"#8A9AC0" as any} />
+                <MaterialCommunityIcon disabled
+                  name={dropdownOpen ? "chevron-up" : "chevron-down"}
+                  size={18}
+                  color={"#8A9AC0" as any}
+                />
+              </Button>
+
+              {dropdownOpen && (
+                <View style={styles.v_dropdown} backgroundColor="#091426" borderColor="borderColor">
+                  <Pressable onPress={handleMyAccount} style={styles.dropdown_item}>
+                    <MaterialCommunityIcon name="account" size={18}
+                      color={routeToPathname("/(tabs)/account") === pathname ? "activeHeader" : "#8A9AC0"} />
+                    <Text fontFamily="Montserrat-Medium" style={styles.t_dropdown_item}
+                      color={routeToPathname("/(tabs)/account") === pathname ? "activeHeader" : "#8A9AC0"}>
+                      {t("header.myaccount")}
+                    </Text>
+                  </Pressable>
+                  <View style={styles.dropdown_divider} borderColor="borderColor" />
+                  <Pressable onPress={handleLogout} style={styles.dropdown_item}>
+                    <MaterialCommunityIcon name="logout" size={18} color={"#8A9AC0" as any} />
+                    <Text fontFamily="Montserrat-Medium" style={[styles.t_dropdown_item, styles.t_logout]}>
+                      {t("header.logout")}
+                    </Text>
+                  </Pressable>
+                </View>
+              )}
+            </View>
           </View>
-        </View> : 
-        <BGButton
-          label={"Login"}
-          textColor="textDark"
-          onPress={() => router.push("/(modal)/auth/login")}
-          style={styles.button_style}
-          dataSet={{ media: ids.button_style }}
-          fontFamily="Montserrat-Bold"
-          labelStyle={styles.btn_login_label}
-          bgColors={["#DF7B0B", "#E5D33D"]}
-          strokeColors={["#E4C234", "#FFFFAAE3", "#E08A14"]}
-          borderWidth={1}
-        />
-        }
         </View>
       </View>
+
+      {dropdownOpen && (
+        <Pressable
+          onPress={() => setDropdownOpen(false)}
+          style={styles.backdrop}
+        />
+      )}
     </View>
   );
 }

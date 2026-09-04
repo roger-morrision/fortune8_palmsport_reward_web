@@ -75,7 +75,7 @@ const { ids, styles } = StyleSheet.create({
     overflow: "hidden",
     alignSelf: "center",
     width: "100%",
-    maxWidth: 1084,
+    maxWidth: 1212,
     marginTop: 20,
     "@media (max-width: 800px)": {
       borderRadius: 8,

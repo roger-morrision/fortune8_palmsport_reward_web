@@ -4,7 +4,7 @@ const { ids, styles } = StyleSheet.create({
   flatlist: {
     flex: 1,
     width: "100%",
-    maxWidth: 1083,
+    maxWidth: 1213,
     marginTop: 22,
     alignSelf: "center",
     "@media (max-width: 768px)": {

@@ -56,6 +56,9 @@ const StaticImages = {
   // COUNTRIES LOGO
   "en": require("@/assets/images/countries-logo/en.png"),
   "bg": require("@/assets/images/countries-logo/bg.png"),
+
+  // PROMO ENTRIES
+  "promo-entries-empty": require("@/assets/images/promo-entries/promo-entries-empty.png"),
 } as const;
 
 // CDN / remote images — add URL strings here (no preloading needed)
