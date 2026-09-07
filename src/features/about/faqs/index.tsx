@@ -6,8 +6,54 @@ import FAQItem from "./faq-item";
 import View from "@/src/common/components/View";
 import TextInput from "@/src/common/components/TextInput";
 import { FeatherIcon, MaterialIcon } from "@/src/common/components/Icon";
+import { useTranslation } from "react-i18next";
+
+type FaqItem = {
+  questionKey: string;
+  answer: string;
+};
+
+const FAQ_ITEMS: FaqItem[] = [
+  {
+    questionKey: "homepage.faq-q1",
+    answer: "homepage.faq-q1-answer",
+  },
+  {
+    questionKey: "homepage.faq-q2",
+    answer: "homepage.faq-q2-answer",
+  },
+  {
+    questionKey: "homepage.faq-q3",
+    answer: "homepage.faq-q3-answer",
+  },
+  {
+    questionKey: "homepage.faq-q4",
+    answer: "homepage.faq-q4-answer",
+  },
+  {
+    questionKey: "homepage.faq-q5",
+    answer: "homepage.faq-q5-answer",
+  },
+  {
+    questionKey: "homepage.faq-q6",
+    answer: "homepage.faq-q6-answer",
+  },
+  {
+    questionKey: "homepage.faq-q7",
+    answer: "homepage.faq-q7-answer",
+  },
+  {
+    questionKey: "homepage.faq-q8",
+    answer: "homepage.faq-q8-answer",
+  },
+  {
+    questionKey: "homepage.faq-q9",
+    answer: "homepage.faq-q9-answer",
+  },
+];
 
 const FAQs = () => {
+  const { t } = useTranslation();
   const [search, setSearch] = useState<string>("");
 
   const faqList = useMemo(() => {

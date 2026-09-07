@@ -1,4 +1,4 @@
-import { createContext, useContext, useRef } from "react";
+import { createContext, useContext, useRef, useState } from "react";
 import { ScrollView } from "react-native";
 
 export type HomeSection =
@@ -16,6 +16,8 @@ type HomeContextType = {
   sectionY: React.RefObject<Record<string, number>>;
   scrollToSection: (ref: HomeSection) => void;
   pendingSection: React.RefObject<HomeSection | null>;
+  activeSection: HomeSection;
+  setActiveSection: (section: HomeSection) => void;
 };
 
 const HomeContext = createContext<HomeContextType>({} as HomeContextType);
@@ -28,8 +30,10 @@ const HomeProvider = ({ children }: ProviderProps) => {
   const scrollRef = useRef<ScrollView>(null);
   const sectionY = useRef<Record<string, number>>({});
   const pendingSection = useRef<HomeSection | null>(null);
+  const [activeSection, setActiveSection] = useState<HomeSection>("home");
 
   const scrollToSection = (key: HomeSection) => {
+    setActiveSection(key);
     if (key === "home") {
       scrollRef.current?.scrollTo({ y: 0, animated: true });
       return;
@@ -46,6 +50,8 @@ const HomeProvider = ({ children }: ProviderProps) => {
         sectionY,
         scrollToSection,
         pendingSection,
+        activeSection,
+        setActiveSection,
       }}
     >
       {children}

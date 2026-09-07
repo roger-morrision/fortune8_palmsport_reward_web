@@ -12,8 +12,8 @@ type Props = {
 
 const THEME = {
   blue: {
-    container:   { borderColor: "#1C3470", backgroundColor: "#051338" },
-    iconCircle:  { borderColor: "#1C3470", backgroundColor: "#07194A" },
+    container:   { borderColor: "#1A2D5E", backgroundColor: "#111F36" },
+    iconCircle:  { borderColor: "#1A2D5E", backgroundColor: "#111F36" },
     iconColor:   "#5195FF" as const,
     title:       "#FFFFFF",
     chevron:     "#FFFFFF",
@@ -88,7 +88,7 @@ const { ids, styles } = StyleSheet.create({
     maxWidth: 1212,
     marginTop: 100,
     marginBottom: 25,
-    borderWidth: 1,
+    borderWidth: 2,
     "@media (max-width: 800px)": {
       borderRadius: 8,
       marginTop: 70,

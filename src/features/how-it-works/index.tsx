@@ -1,13 +1,9 @@
-import Button from "@/src/common/components/Button";
-import { MaterialIcon } from "@/src/common/components/Icon";
 import Text from "@/src/common/components/Text";
 import View from "@/src/common/components/View";
-import SVGIcon, { SVGName } from "@/src/constants/SVGIcon";
-import { useLobbyService } from "@/src/store/hooks";
 import { useRouter } from "expo-router";
-import React from "react";
-import { Image, ScrollView } from "react-native";
 import { ids, styles } from "./styles.css";
+import { Image, ScrollView } from "react-native";
+import { MaterialIcon } from "@/src/common/components/Icon";
 import { useAssetContext } from "@/src/context/AssetContext";
 
 export default function HowItWorkPage() {

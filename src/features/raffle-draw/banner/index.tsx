@@ -21,7 +21,7 @@ export default function Banner({
   return (
     <View backgroundColor="blueDark" style={styles.container} dataSet={{ media: ids.container }}>
       <LinearGradient
-        colors={["#020E2E", "#06194B"]}
+        colors={["#020E2E", "#111F36"]}
         style={styles.gradient}
       />
 

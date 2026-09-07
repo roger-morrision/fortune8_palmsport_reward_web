@@ -31,15 +31,15 @@ function pad(n: number) {
 
 const THEME = {
   blue: {
-    container:  { borderColor: "#1C3470", backgroundColor: "#09183B" },
+    container:  { borderColor: "#1A2D5E", backgroundColor: "#111F36" },
     title:      "#5195FF",
-    digitBox:   { borderColor: "#1C3470", backgroundColor: "#070B3A" },
+    digitBox:   { borderColor: "transparent", backgroundColor: "transparent" },
     time:       "#FFFFFF",
     colon:      "#FFFFFF",
     label:      "#8DA4C8",
     star:       "#5195FF",
     divider:    "#1C3470",
-    entries:    { borderColor: "#21366E", backgroundColor: "#070B3A" },
+    entries:    { borderColor: "#2D508B", backgroundColor: "#091B38" },
     entriesLabel: "#5195FF",
   },
   gold: {

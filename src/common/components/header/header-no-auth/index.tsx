@@ -15,14 +15,15 @@ function HeaderNoAuthScreen() {
   const { t } = useTranslation();
   const pathname = usePathname();
   const { images } = useAssetContext();
-  const { scrollToSection, pendingSection } = useHomeContext();
+  const { scrollToSection, pendingSection, activeSection, setActiveSection } = useHomeContext();
+  const isHome = routeToPathname("/") === pathname;
 
   const handleScrollNav = (section: HomeSection) => {
-    const isHome = routeToPathname("/") === pathname;
     if (isHome) {
       scrollToSection(section);
     } else {
       pendingSection.current = section;
+      setActiveSection(section);
       router.navigate("/");
     }
   };
@@ -54,7 +55,7 @@ function HeaderNoAuthScreen() {
             style={styles.t_center_menu}
             onPress={() => handleScrollNav("home")}
             dataSet={{ media: ids.t_center_menu }}
-            color={routeToPathname("/") === pathname ? "activeHeader" : "#8A9AC0"}
+            color={isHome && activeSection === "home" ? "activeHeader" : "#8A9AC0"}
           >
             {t("header.home")}
           </Text>
@@ -64,7 +65,7 @@ function HeaderNoAuthScreen() {
             style={styles.t_center_menu}
             onPress={() => handleScrollNav("benefits")}
             dataSet={{ media: ids.t_center_menu }}
-            color="#8A9AC0"
+            color={isHome && activeSection === "benefits" ? "activeHeader" : "#8A9AC0"}
           >
             {t("header.benefits")}
           </Text>
@@ -74,7 +75,7 @@ function HeaderNoAuthScreen() {
             onPress={() => handleScrollNav("tiers")}
             style={[styles.t_center_menu]}
             dataSet={{ media: ids.t_center_menu }}
-            color="#8A9AC0"
+            color={isHome && activeSection === "tiers" ? "activeHeader" : "#8A9AC0"}
           >
             {t("header.tiers")}
           </Text>
@@ -84,14 +85,14 @@ function HeaderNoAuthScreen() {
             onPress={() => handleScrollNav("faq")}
             style={[styles.t_center_menu]}
             dataSet={{ media: ids.t_center_menu }}
-            color="#8A9AC0"
+            color={isHome && activeSection === "faq" ? "activeHeader" : "#8A9AC0"}
           >
             {t("header.faq")}
           </Text>
           <Text
             suppressHighlighting
             fontFamily="Montserrat-Medium"
-            onPress={() => router.navigate("/(tabs)/raffle-draw")}
+            onPress={() => { setActiveSection("raffle"); router.navigate("/(tabs)/raffle-draw"); }}
             style={[styles.t_center_menu]}
             dataSet={{ media: ids.t_center_menu }}
             color={routeToPathname("/(tabs)/raffle-draw") === pathname ? "activeHeader" : "#8A9AC0"}
