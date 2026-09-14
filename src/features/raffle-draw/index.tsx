@@ -1,16 +1,16 @@
 import ActivityIndicator from "@/src/common/components/ActivityIndicator";
-import BGButton from "@/src/common/components/BGButton";
-import View from "@/src/common/components/View";
 import { RaffleService } from "@/src/api/services/raffles.service";
 import { RewardService } from "@/src/api/services/rewards.service";
+import BGButton from "@/src/common/components/BGButton";
 import { useQueries } from "@tanstack/react-query";
-import { ScrollView } from "react-native";
-import Footer from "../homepage/footer";
-import Banner from "./banner";
-import Countdown from "./countdown";
-import DrawTerms from "./terms";
+import View from "@/src/common/components/View";
 import TicketSelect from "./ticket-select";
 import { ids, styles } from "./styles.css";
+import { ScrollView } from "react-native";
+import Footer from "../homepage/footer";
+import Countdown from "./countdown";
+import DrawTerms from "./terms";
+import Banner from "./banner";
 
 export default function RaffleDrawPage() {
   const [rafflePageQuery, ongoingQuery] = useQueries({

@@ -1,16 +1,16 @@
 import ActivityIndicator from "@/src/common/components/ActivityIndicator";
-import BGButton from "@/src/common/components/BGButton";
-import View from "@/src/common/components/View";
 import { RaffleService } from "@/src/api/services/raffles.service";
 import { RewardService } from "@/src/api/services/rewards.service";
+import BGButton from "@/src/common/components/BGButton";
 import { useQueries } from "@tanstack/react-query";
+import View from "@/src/common/components/View";
+import EliteTicketSelect from "./ticket-select";
+import DrawTerms from "../raffle-draw/terms";
+import { ids, styles } from "./styles.css";
 import { ScrollView } from "react-native";
 import Footer from "../homepage/footer";
-import DrawTerms from "../raffle-draw/terms";
 import Countdown from "./countdown";
 import EliteBanner from "./banner";
-import EliteTicketSelect from "./ticket-select";
-import { ids, styles } from "./styles.css";
 
 export default function ElitePlusPage() {
   const [rafflePageQuery, ongoingQuery] = useQueries({
@@ -32,7 +32,7 @@ export default function ElitePlusPage() {
   const ongoing = ongoingQuery.data;
   const isLoading = rafflePageQuery.isLoading || ongoingQuery.isLoading;
 
-  if (false) {
+  if (isLoading) {
     return (
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center", minHeight: 180 }}>
         <ActivityIndicator animating size="large" color="button" />

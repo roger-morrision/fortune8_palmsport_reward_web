@@ -1,12 +1,10 @@
-import React from "react";
-import { SvgUri, SvgProps } from "react-native-svg";
-import { Platform } from "react-native";
+import React, { useEffect, useState } from "react";
+import { SvgXml, SvgProps } from "react-native-svg";
 import Colors from "./Colors";
 import { CDN_URL } from "./Config";
 
 const SVG_CDN = CDN_URL + "/svg-assets/palmsplay";
 
-// CDN SVG paths — mirrors the CDNImages pattern in Images.ts
 const CDNSVGs = {
   // TABS
   "home":        SVG_CDN + "/tabs/home.svg",
@@ -128,57 +126,73 @@ const DEFAULT_FILLS: Partial<Record<SVGName, string>> = {
   "menu-arcade":   Colors.dark.textLabel,
 };
 
+// Module-level cache: url → fixed SVG text (fill="current" patched to fill="currentColor")
+// Keyed by URL only — color is applied via SvgXml's `color` prop at render time.
+const svgCache = new Map<string, string>();
+
+function fixSvgFill(text: string): string {
+  // "current" is invalid SVG — replace with "currentColor" so the color prop works.
+  // Use a word-boundary-style lookahead to avoid touching "currentColor" itself.
+  return text.replace(/fill="current"(?!Color)/gi, 'fill="currentColor"');
+}
+
+function useSvgXml(url: string): string | null {
+  const [xml, setXml] = useState<string | null>(() => svgCache.get(url) ?? null);
+
+  useEffect(() => {
+    if (svgCache.has(url)) {
+      setXml(svgCache.get(url)!);
+      return;
+    }
+    let cancelled = false;
+    fetch(url)
+      .then((r) => r.text())
+      .then((text) => {
+        if (cancelled) return;
+        const fixed = fixSvgFill(text);
+        svgCache.set(url, fixed);
+        setXml(fixed);
+      })
+      .catch((err) => {
+        console.warn("[SVGIcon] fetch failed:", url, err);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [url]);
+
+  return xml;
+}
+
 const SVGIcon = ({ name, width, height, fill, style, ...props }: IconProps) => {
   const uri = CDNSVGs[name];
-  if (!uri) return null;
 
   const def = DEFAULT_SIZES[name];
-  const w = width ?? def?.w ?? 24;
-  const h = height ?? def?.h ?? 24;
-
+  const w = Number(width ?? def?.w ?? 24);
+  const h = Number(height ?? def?.h ?? 24);
   const resolvedFill = fill ?? DEFAULT_FILLS[name];
 
-  if (Platform.OS === "web") {
-    if (resolvedFill) {
-      // CSS mask: SVG shape is the mask, background-color is the visible color.
-      // This correctly handles fill="currentColor" SVGs loaded from a CDN.
-      return (
-        <span
-          style={{
-            display: "inline-block",
-            width: Number(w),
-            height: Number(h),
-            backgroundColor: resolvedFill,
-            WebkitMaskImage: `url(${uri})`,
-            WebkitMaskRepeat: "no-repeat",
-            WebkitMaskSize: "contain",
-            WebkitMaskPosition: "center",
-            maskImage: `url(${uri})`,
-            maskRepeat: "no-repeat",
-            maskSize: "contain",
-            maskPosition: "center",
-            flexShrink: 0,
-            ...(style as React.CSSProperties),
-          }}
-        />
-      );
-    }
-    return (
-      <img
-        src={uri}
-        width={Number(w)}
-        height={Number(h)}
-        style={{ display: "block", flexShrink: 0, ...(style as React.CSSProperties) }}
-      />
-    );
+  // Always fetch — hooks must not be called conditionally
+  const xml = useSvgXml(uri ?? "");
+
+  if (!uri) return null;
+
+  if (!xml) {
+    return <SvgXml xml='<svg/>' width={w} height={h} />;
   }
 
+  // Substitute the resolved color directly into the SVG markup so every
+  // fill="currentColor" path renders with the exact color, no CSS context needed.
+  const coloredXml = resolvedFill
+    ? xml.replace(/fill="currentColor"/gi, `fill="${resolvedFill}"`)
+    : xml;
+
   return (
-    <SvgUri
-      uri={uri}
+    <SvgXml
+      xml={coloredXml}
       width={w}
       height={h}
-      fill={resolvedFill}
+      style={style as any}
       {...props}
     />
   );

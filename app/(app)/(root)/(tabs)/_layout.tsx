@@ -57,6 +57,7 @@ function TabScreens() {
       "/how-to-play",
       "/how-it-works",
       "/promotions",
+      // "/raffle-draw",
       // "/elite-plus",
       // "/promo-entries",
       // "/account",

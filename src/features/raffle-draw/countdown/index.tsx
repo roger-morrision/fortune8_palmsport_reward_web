@@ -81,10 +81,10 @@ export default function Countdown({ raffle, variant = "blue" }: Props) {
   }, [!!raffle]);
 
   const segments: [string, string][] = [
-    [pad(time.hours),   "HOURS"],
-    [pad(time.minutes), "MINS"],
-    [pad(time.seconds), "SECS"],
-    [pad(time.days),    "MS"],
+    [pad(time.days),   "DAYS"],
+    [pad(time.hours), "HOURS"],
+    [pad(time.minutes), "MINUTES"],
+    [pad(time.seconds),    "SECONDS"],
   ];
 
   return (

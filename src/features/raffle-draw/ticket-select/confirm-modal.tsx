@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useRouter } from "expo-router";
-import SVGIcon from "@/src/constants/SVGIcon";
 import Text from "@/src/common/components/Text";
 import View from "@/src/common/components/View";
 import Button from "@/src/common/components/Button";
 import BGButton from "@/src/common/components/BGButton";
 import { Modal, StyleSheet as SS } from "react-native";
-import { MaterialIcon } from "@/src/common/components/Icon";
+import { Ionicon, MaterialIcon } from "@/src/common/components/Icon";
 import { useMutationApi } from "@/src/common/hooks/useMutationApi";
 import { RaffleService } from "@/src/api/services/raffles.service";
 import { useQueryClient } from "@tanstack/react-query";
@@ -95,7 +94,7 @@ export default function ConfirmTicketModal({ visible, raffleId, tickets, pgRequi
           ) : (
             // ── Confirm view ──────────────────────────────────────────
             <View style={styles.v_content} dataSet={{ media: ids.v_content }}>
-              <SVGIcon name="warning"  />
+              <Ionicon name="warning" size={120} color="#E4BD30"  />
               <Text
                 fontFamily="Montserrat-Bold"
                 color="text"
@@ -160,7 +159,7 @@ const { ids, styles } = StyleSheet.create({
   },
   v_content: {
     gap: 16,
-    paddingTop: 87,
+    paddingTop: 40,
     paddingBottom: 40,
     alignItems: "center",
     paddingHorizontal: 32,
